@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SafeShare.API.props" />
+</Project>
