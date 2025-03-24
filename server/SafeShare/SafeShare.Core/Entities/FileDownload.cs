@@ -8,7 +8,7 @@ namespace SafeShare.CORE.Entities
 {
     public class FileDownload
     {
-        public byte[] FileContent { get; set; }  // הנתונים הבינאריים של הקובץ
+        public string pathInS3 { get; set; }  // הנתונים הבינאריים של הקובץ
         public string FileName { get; set; }  // שם הקובץ
         public string FileType { get; set; }  // פורמט הקובץ (MIME Type)
     }

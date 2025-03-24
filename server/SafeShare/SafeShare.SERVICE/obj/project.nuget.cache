@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OXeUtHgn9FU=",
+  "dgSpecHash": "zMbmGINyl0A=",
   "success": true,
-  "projectFilePath": "C:\\Users\\user1\\Desktop\\תכנות שנה ב\\פרוייקט פרקטיקום\\server\\SafeShare\\SafeShare.SERVICE\\SafeShare.SERVICE.csproj",
+  "projectFilePath": "C:\\Users\\user1\\Desktop\\תכנות שנה ב\\‏‏פרוייקט פרקטיקום - בלי ברנצים\\server\\SafeShare\\SafeShare.SERVICE\\SafeShare.SERVICE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",

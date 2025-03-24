@@ -36,7 +36,7 @@ namespace SafeShare.DATA.Repositories
             var file = await _dataContext.filesToUpload
                 .FirstOrDefaultAsync(file => file.FileId == fileId);  // השוואה בין userId של המשתמש לעומת המשתנה שנשלח
             if (file != null)
-                file.StoragePath = null;
+                return null;
             return file;
 
         }
@@ -58,9 +58,9 @@ namespace SafeShare.DATA.Repositories
             //שליפה מהענן!!
             FileDownload fileDownload = new FileDownload()
             {
-                FileContent = new byte[100],//forom the cloud
                 FileName = fileRecord.FileName,
-                FileType = fileRecord.FileType
+                FileType = fileRecord.FileType,
+                pathInS3=storagePath
             };
             fileRecord.DownloadCount++;
             await _dataContext.SaveChangesAsync();
@@ -103,38 +103,41 @@ namespace SafeShare.DATA.Repositories
 
         }
 
-        public async Task<int> UploadFileAsync(IFormFile file, string fileName, string passwordHash)
+        public async Task<int> UploadFileAsync(string pathInS3, string fileName, string passwordHash, int userId)
         {
-            if (file == null || file.Length == 0)
-                return 0;
+            if (string.IsNullOrWhiteSpace(fileName) || string.IsNullOrWhiteSpace(passwordHash))
+                throw new ArgumentException("שם הקובץ והסיסמה חובה!");
+            var fileExtension = Path.GetExtension(fileName).ToLower();
 
-            using (var memoryStream = new MemoryStream())
+            // יצירת אובייקט ושמירה במסד נתונים
+            var fileToUpload = new FileToUpload
             {
-                await file.CopyToAsync(memoryStream);
-                byte[] fileBytes = memoryStream.ToArray(); // קובץ מוצפן בפורמט בינארי
+                FileName = fileName,
+                DownloadCount = 0,
+                StoragePath = pathInS3, // נתיב מהאחסון
+                UploadDate = DateTime.Now,
+                FileType = fileExtension,
+                UserId=userId
+            };
 
-                // העלאה לענן  TODO
-                FileToUpload fileToUpload = new FileToUpload()
-                {
-                    FileName = file.FileName,
-                    DownloadCount = 0,
-                    StoragePath = "",//לשלוף מהענן
-                    UploadDate = DateTime.Now,
-                    FileType = Path.GetExtension(file.FileName),
-                    User = null// לשלוף מהטוקן
-
-
-                };
-                await _dataContext.filesToUpload.AddAsync(fileToUpload);
-
+            await _dataContext.filesToUpload.AddAsync(fileToUpload);
+            try
+            {
                 await _dataContext.SaveChangesAsync();
-
-                // 3. החזרת ה-ID של הקובץ כדי שנוכל להשתמש בו ליצירת קישור מוגן
-                return fileToUpload.FileId;
-
             }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine($"Error: {ex.InnerException?.Message}");
+                throw;
+            }
+
+            return fileToUpload.FileId; // החזרת מזהה הקובץ
         }
 
-
     }
+
+
+
+
 }
+

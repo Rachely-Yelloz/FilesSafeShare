@@ -1,22 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SafeShare.CORE.Entities
 {
     public static class EncryptionHelper
     {
-        private static readonly string Key = "YourSecretKey1234"; // מפתח קבוע, רצוי לשמור במקום בטוח
+        private static readonly string Key = "YourSecretKey1234567890123456"; // מפתח קבוע, רצוי לשמור במקום בטוח
+
+        private static byte[] GetKey(string key)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                return sha256.ComputeHash(Encoding.UTF8.GetBytes(key));
+            }
+        }
 
         public static string Encrypt(string text)
         {
             using (Aes aesAlg = Aes.Create())
             {
-                aesAlg.Key = Encoding.UTF8.GetBytes(Key);
-                aesAlg.IV = new byte[16]; // Empty initialization vector (just for example)
+                aesAlg.Key = GetKey(Key); // שימוש במפתח שהומר ל-32 בתים
+                aesAlg.IV = new byte[16]; // עדיף להשתמש ב-IV רנדומלי
 
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
@@ -26,10 +32,8 @@ namespace SafeShare.CORE.Entities
                     using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
                     {
                         swEncrypt.Write(text);
-                        swEncrypt.Close(); // Ensure all data is written to the CryptoStream
                     }
 
-                    // After the using block, we can convert the MemoryStream to Base64
                     return Convert.ToBase64String(msEncrypt.ToArray());
                 }
             }
@@ -41,7 +45,7 @@ namespace SafeShare.CORE.Entities
 
             using (Aes aesAlg = Aes.Create())
             {
-                aesAlg.Key = Encoding.UTF8.GetBytes(Key);
+                aesAlg.Key = GetKey(Key); // שימוש במפתח שהומר ל-32 בתים
                 aesAlg.IV = new byte[16];
 
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
@@ -55,8 +59,4 @@ namespace SafeShare.CORE.Entities
             }
         }
     }
-
-
 }
-
-

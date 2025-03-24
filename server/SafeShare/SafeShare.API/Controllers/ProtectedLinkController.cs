@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SafeShare.API.Models;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
@@ -6,6 +7,8 @@ namespace SafeShare.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class ProtectedLinkController : ControllerBase
     {
         private readonly IProtectedLinkService _protectedLinkService;
@@ -19,9 +22,10 @@ namespace SafeShare.API.Controllers
         [HttpPost("generate")]
         public async Task<IActionResult> GenerateProtectedLink([FromQuery] int fileId, [FromQuery] string password, [FromQuery] bool isOneTimeUse, [FromQuery] int? downloadLimit)
         {
+            var idClaim = User.FindFirst("id")?.Value;
             try
             {
-                string link = await _protectedLinkService.GenerateProtectedLinkAsync(fileId, password, isOneTimeUse, downloadLimit);
+                string link = await _protectedLinkService.GenerateProtectedLinkAsync(fileId, password, isOneTimeUse, downloadLimit,int.Parse(idClaim));
                 return Ok(new { link });
             }
             catch (Exception ex)

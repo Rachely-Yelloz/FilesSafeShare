@@ -1,11 +1,17 @@
+import { Outlet } from "react-router-dom"
+import Login from "./component/Login"
+import Register from "./component/Register"
 
-
+// 
 function App() {
 
   return (
     <>
-      <a>react work</a>
-    </>
+<Login></Login> 
+{/* <Register></Register> */}
+<Outlet />
+
+   </>
   )
 }
 

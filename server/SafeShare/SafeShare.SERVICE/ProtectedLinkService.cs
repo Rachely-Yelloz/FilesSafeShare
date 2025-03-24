@@ -10,19 +10,19 @@ namespace SafeShare.SERVICE
 {
     public class ProtectedLinkService : IProtectedLinkService
     {
-        private readonly IProtectedLinkService _protectedLinkService;
-        public ProtectedLinkService(IProtectedLinkService protectedLinkService)
+        private readonly IProtectedLinkRepository _protectedLinkRepository;
+        public ProtectedLinkService(IProtectedLinkRepository protectedLinkRepository)
         {
-            _protectedLinkService = protectedLinkService;
+            _protectedLinkRepository = protectedLinkRepository;
         }
         public Task<int> DecipherProtectedLinkAsync(string link, string passwordhash)
         {
-            return _protectedLinkService.DecipherProtectedLinkAsync(link, passwordhash);
+            return _protectedLinkRepository.DecipherProtectedLinkAsync(link, passwordhash);
         }
 
-        public Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit)
+        public Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId)
         {
-            return _protectedLinkService.GenerateProtectedLinkAsync(fileId, passwordhash, isOneTimeUse, downloadLimit);
+            return _protectedLinkRepository.GenerateProtectedLinkAsync(fileId, passwordhash, isOneTimeUse, downloadLimit, userId);
         }
     }
 }

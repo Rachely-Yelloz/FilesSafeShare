@@ -14,3 +14,19 @@ C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\serv
 C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\refint\SafeShare.SERVICE.dll
 C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.pdb
 C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\ref\SafeShare.SERVICE.dll
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\bin\Debug\net8.0\SafeShare.SERVICE.deps.json
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\bin\Debug\net8.0\SafeShare.SERVICE.dll
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\bin\Debug\net8.0\SafeShare.SERVICE.pdb
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\bin\Debug\net8.0\SafeShare.CORE.dll
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\bin\Debug\net8.0\SafeShare.CORE.pdb
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.csproj.AssemblyReference.cache
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.AssemblyInfoInputs.cache
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.AssemblyInfo.cs
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.csproj.CoreCompileInputs.cache
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.sourcelink.json
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShar.35A9B3C0.Up2Date
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.dll
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\refint\SafeShare.SERVICE.dll
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\SafeShare.SERVICE.pdb
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.SERVICE\obj\Debug\net8.0\ref\SafeShare.SERVICE.dll

@@ -3,64 +3,21 @@ using SafeShare.CORE.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace SafeShare.DATA.Repositories
 {
-    public class ProtectedLinkRepository:IProtectedLinkRepository
+    public class ProtectedLinkRepository : IProtectedLinkRepository
     {
         private readonly DataContext _dataContext;
         public ProtectedLinkRepository(DataContext dataContext)
         {
             _dataContext = dataContext;
         }
-        //public async Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit)
-        //{
-        //    var file = await _dataContext.filesToUpload.FindAsync(fileId);
-        //    if (file == null)
-        //        throw new FileNotFoundException("קובץ לא נמצא");
-
-
-        //    // 3. יצירת רשומת קישור מוגן
-        //    var protectedLink = new ProtectedLink
-        //    {
-        //        FileId = fileId,
-        //        PasswordHash = passwordhash,
-        //        CreationDate = DateTime.Now,
-        //        ExpirationDate = DateTime.Now.AddDays(7), // תקף לשבוע
-        //        IsOneTimeUse = isOneTimeUse,
-        //        DownloadLimit = downloadLimit,
-        //        CurrentDownloadCount = 0
-        //    };
-
-        //    await _dataContext.protectedLinks.AddAsync(protectedLink);
-        //    await _dataContext.SaveChangesAsync();
-
-        //    // 4. הצפנת ה- fileId כדי לייצר קישור מוגן
-        //    string encryptedId = EncryptionHelper.Encrypt(protectedLink.LinkId.ToString());
-        //    string downloadLink = $"https://yourapp.com/download/{encryptedId}";// TODO: change the link
-
-        //    return downloadLink;
-        //}
-        //public async Task<int> decipherProtectedLinkAsync(string link, string passwordhash)
-        //{
-        //    int linkId = int.Parse(EncryptionHelper.Decrypt(link));
-        //    ProtectedLink protectedLink = await _dataContext.protectedLinks.FindAsync(linkId);
-        //    if (protectedLink == null)
-        //        throw new FileNotFoundException("file not found");
-        //    if (protectedLink.PasswordHash != passwordhash)
-        //        throw new UnauthorizedAccessException("invalid password");
-
-        //    if (protectedLink.IsOneTimeUse && protectedLink.CurrentDownloadCount == 1
-        //        || (protectedLink.DownloadLimit != null && protectedLink.DownloadLimit == protectedLink.CurrentDownloadCount))
-        //        throw new InvalidOperationException("You have reached the download limit of the link.");
-
-        //    protectedLink.CurrentDownloadCount++;
-        //    await _dataContext.SaveChangesAsync();
-        //    return protectedLink.FileId;
-        //}
-        public async Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit)
+        public async Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId)
         {
             var file = await _dataContext.filesToUpload.FindAsync(fileId);
             if (file == null)
@@ -75,7 +32,8 @@ namespace SafeShare.DATA.Repositories
                 ExpirationDate = DateTime.Now.AddDays(7), // תקף לשבוע
                 IsOneTimeUse = isOneTimeUse,
                 DownloadLimit = downloadLimit,
-                CurrentDownloadCount = 0
+                CurrentDownloadCount = 0,
+                UserId =userId
             };
 
             await _dataContext.protectedLinks.AddAsync(protectedLink);
@@ -92,22 +50,33 @@ namespace SafeShare.DATA.Repositories
 
         public async Task<int> DecipherProtectedLinkAsync(string link, string passwordhash)
         {
-            int linkId;
-            try
-            {
-                linkId = int.Parse(EncryptionHelper.Decrypt(link));
-            }
-            catch (FormatException)
-            {
-                throw new InvalidOperationException("הקישור המוצפן לא תקין.");
-            }
+            // כתובת תקנית של השרת (ללא קידוד)
+            var url = "https://yourapp.com/download/";
+
+            // פענוח הכתובת המקודדת
+            string decodedLink = Uri.UnescapeDataString(link);
+
+            // בדיקה אם הקישור באמת מתחיל בכתובת הרצויה
+            if (!decodedLink.StartsWith(url))
+                throw new InvalidOperationException("הקישור אינו תקין.");
+
+            // חיתוך החלק של ה-ID המוצפן
+            var changeLink = decodedLink.Substring(url.Length);
+
+            if (!int.TryParse(EncryptionHelper.Decrypt(changeLink), out int linkId))
+                throw new InvalidOperationException("הקישור המוצפן לא מכיל מזהה תקין.");
 
             ProtectedLink protectedLink = await _dataContext.protectedLinks.FindAsync(linkId);
             if (protectedLink == null)
                 throw new FileNotFoundException("הקישור לא נמצא במסד הנתונים.");
 
-            if (protectedLink.PasswordHash != passwordhash)
+            // השוואת סיסמה מאובטחת
+            if (!CryptographicOperations.FixedTimeEquals(
+                Encoding.UTF8.GetBytes(protectedLink.PasswordHash),
+                Encoding.UTF8.GetBytes(passwordhash)))
+            {
                 throw new UnauthorizedAccessException("הסיסמה שהוזנה אינה תואמת.");
+            }
 
             // בדיקה אם הגעת למגבלת ההורדות
             if ((protectedLink.IsOneTimeUse && protectedLink.CurrentDownloadCount >= 1) ||
@@ -122,6 +91,8 @@ namespace SafeShare.DATA.Repositories
 
             return protectedLink.FileId;
         }
+
+
     }
 
 }

@@ -38,15 +38,17 @@ namespace SafeShare.SERVICE
             return await _fileRepository.UpdateFileAsync(fileId, file);
         }
 
+
+
         public async Task<bool> UpdateFileCountAsync(int fileId)
         {
             return await _fileRepository.UpdateFileCountAsync(fileId);
 
         }
 
-        public async Task<int> UploadFileAsync(IFormFile file, string fileName, string passwordHash)
+        public async Task<int> UploadFileAsync(string pathInS3, string fileName, string passwordHash, int userId)
         {
-            return await _fileRepository.UploadFileAsync(file, fileName, passwordHash);
+            return await _fileRepository.UploadFileAsync(pathInS3, fileName, passwordHash,userId);
         }
     }
 }

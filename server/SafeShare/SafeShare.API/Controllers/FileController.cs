@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
 
@@ -8,6 +9,8 @@ namespace SafeShare.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class FileController : ControllerBase
     {
         private readonly IFileService _fileService;
@@ -16,10 +19,11 @@ namespace SafeShare.API.Controllers
             _fileService = fileService;
         }
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadFileAsync([FromForm] IFormFile file, [FromForm] string fileName, [FromForm] string passwordHash)
+        public async Task<IActionResult> UploadFileAsync([FromQuery] string pathInS3, [FromQuery] string fileName, [FromQuery] string passwordHash)
         {
-            var result = await _fileService.UploadFileAsync(file, fileName, passwordHash);
-            if (result>0)
+            var idClaim = User.FindFirst("id")?.Value;
+            var result = await _fileService.UploadFileAsync(pathInS3, fileName, passwordHash,int.Parse(idClaim));
+            if (result > 0)
                 return Ok(result);
             return BadRequest(result);
         }

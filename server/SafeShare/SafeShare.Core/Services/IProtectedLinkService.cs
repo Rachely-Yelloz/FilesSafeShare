@@ -9,7 +9,7 @@ namespace SafeShare.CORE.Services
 {
     public interface IProtectedLinkService
     {
-        Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit);
+        Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId);
         Task<int> DecipherProtectedLinkAsync(string link, string passwordhash);
     }
 }

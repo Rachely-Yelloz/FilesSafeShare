@@ -10,7 +10,7 @@ namespace SafeShare.CORE.Services
 {
     public interface IFileService
     {
-        Task<int> UploadFileAsync(IFormFile file, string fileName, string passwordHash);
+        Task<int> UploadFileAsync(string pathInS3, string fileName, string passwordHash, int userId);
 
         // Get file details by fileId
         Task<FileToUpload> GetFileAsync(int fileId);
@@ -19,7 +19,7 @@ namespace SafeShare.CORE.Services
         Task<FileDownload> GetFileForDownloadAsync(int fileId);
 
         // Update file details (not content, just metadata)
-        Task<bool> UpdateFileAsync(int fileId, FileToUpload file);
+        Task<bool> UpdateFileAsync(int fileId, FileToUpload pathInS3);
         Task<bool> DeleteFileAsync(int fileId);
         Task<bool> UpdateFileCountAsync(int fileId);
     }

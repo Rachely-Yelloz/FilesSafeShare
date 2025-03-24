@@ -10,7 +10,7 @@ namespace SafeShare.CORE.Repositories
 {
     public interface IFileRepository
     {
-        Task<int> UploadFileAsync(IFormFile file, string fileName, string passwordHash);
+        Task<int> UploadFileAsync(string pathInS3, string fileName, string passwordHash, int userId);
 
         // Get file details by fileId
         Task<FileToUpload> GetFileAsync(int fileId);
