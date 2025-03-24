@@ -1,16 +1,3 @@
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\bin\Debug\net8.0\SafeShare.CORE.deps.json
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\bin\Debug\net8.0\SafeShare.CORE.dll
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\bin\Debug\net8.0\SafeShare.CORE.pdb
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\SafeShare.CORE.csproj.AssemblyReference.cache
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\SafeShare.CORE.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\SafeShare.CORE.AssemblyInfoInputs.cache
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\SafeShare.CORE.AssemblyInfo.cs
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\SafeShare.CORE.csproj.CoreCompileInputs.cache
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\SafeShare.CORE.sourcelink.json
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\SafeShare.CORE.dll
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\refint\SafeShare.CORE.dll
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\SafeShare.CORE.pdb
-C:\Users\user1\Desktop\תכנות שנה ב\פרוייקט פרקטיקום\server\SafeShare\SafeShare.CORE\obj\Debug\net8.0\ref\SafeShare.CORE.dll
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.CORE\bin\Debug\net8.0\SafeShare.CORE.deps.json
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.CORE\bin\Debug\net8.0\SafeShare.CORE.dll
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare\SafeShare.CORE\bin\Debug\net8.0\SafeShare.CORE.pdb
