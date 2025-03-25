@@ -13,7 +13,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["SafeShare.API/SafeShare.API.csproj", "SafeShare.API/"]
-COPY ["SafeShare.CORE/SafeShare.CORE.csproj", "SafeShare.CORE/"]
+#COPY ["SafeShare.CORE/SafeShare.CORE.csproj", "SafeShare.CORE/"]
+COPY ["./server/SafeShare/SafeShare.Core/SafeShare.CORE.csproj", "./SafeShare.Core/"]
+
 COPY ["SafeShare.DATA/SafeShare.DATA.csproj", "SafeShare.DATA/"]
 COPY ["SafeShare.SERVICE/SafeShare.SERVICE.csproj", "SafeShare.SERVICE/"]
 RUN dotnet restore "./SafeShare.API/SafeShare.API.csproj"
