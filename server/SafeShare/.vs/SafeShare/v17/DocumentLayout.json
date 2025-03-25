@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "SafeShare.API\\Dockerfile",
               "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare\\SafeShare.API\\Dockerfile",
               "RelativeToolTip": "SafeShare.API\\Dockerfile",
-              "ViewState": "AgIAAAMAAACUAAAAAEAlwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-03-25T00:39:27.805Z",
               "EditorCaption": ""
@@ -47,8 +47,7 @@
               "RelativeToolTip": "SafeShare.API\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-24T23:15:00.135Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-24T23:15:00.135Z"
             }
           ]
         }
