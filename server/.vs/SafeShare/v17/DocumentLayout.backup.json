@@ -5,6 +5,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFC69620-E6CF-4650-B26A-11A41F3DC09E}|SafeShare.DATA\\SafeShare.DATA.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.data\\repositories\\filerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFC69620-E6CF-4650-B26A-11A41F3DC09E}|SafeShare.DATA\\SafeShare.DATA.csproj|solutionrelative:safeshare.data\\repositories\\filerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFC69620-E6CF-4650-B26A-11A41F3DC09E}|SafeShare.DATA\\SafeShare.DATA.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.data\\safeshare.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AFC69620-E6CF-4650-B26A-11A41F3DC09E}|SafeShare.DATA\\SafeShare.DATA.csproj|solutionrelative:safeshare.data\\safeshare.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED72CBB4-EF05-4757-8483-077D398E165F}|SafeShare.CORE\\SafeShare.CORE.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.core\\safeshare.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{ED72CBB4-EF05-4757-8483-077D398E165F}|SafeShare.CORE\\SafeShare.CORE.csproj|solutionrelative:safeshare.core\\safeshare.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,11 +26,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FileRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\Repositories\\FileRepository.cs",
+              "RelativeDocumentMoniker": "SafeShare.DATA\\Repositories\\FileRepository.cs",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\Repositories\\FileRepository.cs",
+              "RelativeToolTip": "SafeShare.DATA\\Repositories\\FileRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T13:01:57.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SafeShare.DATA",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\SafeShare.DATA.csproj",
+              "RelativeDocumentMoniker": "SafeShare.DATA\\SafeShare.DATA.csproj",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\SafeShare.DATA.csproj",
+              "RelativeToolTip": "SafeShare.DATA\\SafeShare.DATA.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-25T13:00:48.922Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SafeShare.CORE",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.CORE\\SafeShare.CORE.csproj",
+              "RelativeDocumentMoniker": "SafeShare.CORE\\SafeShare.CORE.csproj",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.CORE\\SafeShare.CORE.csproj",
+              "RelativeToolTip": "SafeShare.CORE\\SafeShare.CORE.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-25T12:41:35.474Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -28,7 +79,7 @@
               "RelativeDocumentMoniker": "SafeShare.API\\Dockerfile",
               "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Dockerfile",
               "RelativeToolTip": "SafeShare.API\\Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-03-25T10:13:31.937Z",
               "EditorCaption": ""
