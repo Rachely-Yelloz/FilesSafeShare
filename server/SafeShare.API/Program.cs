@@ -104,6 +104,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.Use(async (context, next) =>
+{
+    if (!context.Request.IsHttps)
+    {
+        var httpsUrl = $"https://{context.Request.Host}{context.Request.Path}{context.Request.QueryString}";
+        context.Response.Redirect(httpsUrl, permanent: true);
+        return;
+    }
+    await next();
+});
 
 
 app.UseAuthorization();
