@@ -11,5 +11,6 @@ namespace SafeShare.CORE.Services
     {
         Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId);
         Task<int> DecipherProtectedLinkAsync(string link, string passwordhash);
+        Task<IEnumerable<ProtectedLink>> GetProtectedLinksByFileIdAsync(int fileId);
     }
 }

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SafeShare.CORE.DTO_s;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
+using System.Data.SqlTypes;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,9 +17,12 @@ namespace SafeShare.API.Controllers
     public class FileController : ControllerBase
     {
         private readonly IFileService _fileService;
-        public FileController(IFileService fileService)
+        private readonly IMapper _mapper;  // הוספת המ mapper
+
+        public FileController(IFileService fileService, IMapper mapper)
         {
             _fileService = fileService;
+            _mapper = mapper;
         }
         [HttpPost("upload")]
         public async Task<IActionResult> UploadFileAsync([FromQuery] string pathInS3, [FromQuery] string fileName, [FromQuery] string passwordHash)
@@ -33,17 +39,19 @@ namespace SafeShare.API.Controllers
         public async Task<IActionResult> GetFileAsync(int fileId)
         {
             var file = await _fileService.GetFileAsync(fileId);
-            if (file != null)
-                return Ok(file);
-            return NotFound();
+            if (file == null)
+                return NotFound();
+            var fileDto = _mapper.Map<FileDTO>(file);  // שימוש ב AutoMapper למיפוי אוטומטי
+            return Ok(fileDto); 
         }
+      
 
         // Get encrypted file for download
         [HttpGet("download/{fileId}")]
         public async Task<IActionResult> DownloadFileAsync(int fileId)
         {
             var file = await _fileService.GetFileForDownloadAsync(fileId);
-            if (file != null)
+            if (file == null)
                 return Ok(file);
             return NotFound();
         }
@@ -72,7 +80,17 @@ namespace SafeShare.API.Controllers
             if (result) return Ok(result);
             return BadRequest(result);
         }
-
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetFilesByUserIdAsync(int userId)
+        {
+            var files = await _fileService.GetFilesByUserIdAsync(userId);
+            if (files != null && files.Any())
+            {
+                var fileDto = _mapper.Map<IEnumerable<FileDTO>>(files);  // שימוש ב AutoMapper למיפוי אוטומטי
+                return Ok(fileDto);
+            }
+            return NotFound(); // מחזיר 404 אם לא נמצאו קבצים
+        }
 
     }
 }

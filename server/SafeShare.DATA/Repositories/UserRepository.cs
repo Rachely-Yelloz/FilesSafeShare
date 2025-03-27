@@ -46,25 +46,7 @@ namespace SafeShare.DATA.Repositories
         }
 
 
-        public async Task<User?> LoginAsync(User user)
-        {
-            return await _dataContext.users
-                           .FirstOrDefaultAsync(u => u.Email == user.Email && u.PasswordHash == user.PasswordHash);
-        }
-
-        public async Task<User?> RegisterAsync(User user)
-        {
-            // Check if user already exists
-            var existingUser = await _dataContext.users
-                .FirstOrDefaultAsync(u => u.Email == user.Email);
-            if (existingUser != null) return null;  // Return null if user exists
-
-            // Add new user to the database
-            _dataContext.users.Add(user);
-            await _dataContext.SaveChangesAsync();
-
-            return user;
-        }
+   
 
         public async Task<User?> UpdateUserAsync(int userId, User user)
         {

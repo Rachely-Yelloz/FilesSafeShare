@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -10,26 +9,61 @@ import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Alert from '@mui/joy/Alert';
 import Link from '@mui/joy/Link';
-import Checkbox from '@mui/joy/Checkbox'; // ודא שאתה מייבא את ה-Checkbox מ-@mui/joy
-
-import { FaUser, FaLock, FaPhone, FaEnvelope, FaIdCard, FaShieldAlt } from 'react-icons/fa';
+import { FaUser, FaLock, FaEnvelope, FaShieldAlt } from 'react-icons/fa';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
+const saveUserdetails = (token: any) => {
+    try {
+        // פענוח הטוקן
+        interface DecodedToken {
+            id: string;
+            name: string;
+            email: string;
+        }
+
+        const decodedToken = jwtDecode<DecodedToken>(token);
+
+        // בדיקה אם ה-claims קיימים בטוקן, ושליפת הערכים
+        if (typeof window !== 'undefined' && decodedToken && decodedToken.id && decodedToken.name && decodedToken.email) {
+            sessionStorage.setItem('userId', decodedToken.id);
+            sessionStorage.setItem('username', decodedToken.name);
+            sessionStorage.setItem('useremail', decodedToken.email);
+        } else {
+            console.error('Some claims are missing in the decoded token');
+        }
+
+    } catch (error) {
+        console.error('Error decoding token:', error);
+        return null;
+    }
+}
 export default function Register() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = async (data: any) => {
-        const url = 'http://localhost:8080/api/user/signup'; // שנה לכתובת ה-API שלך
-        const requestData = {
-            UserName: data.Username,
-            Email: data.Email,
-            Password: data.Password,
-            IsAdmin: data.IsAdmin, // הוסף את הערך של תיבת הסימון כאן
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate(); // יצירת משתנה לניווט
+
+    const onSubmit = async (data: any) => {
+        const url = 'http://localhost:5141/api/Auth/register'; // שנה לכתובת ה-API שלך
+        const requestData = {
+            Username: data.Username,
+            Email: data.Email,
+            PasswordHash: data.Password
         };
 
         try {
             const response = await axios.post(url, requestData);
             console.log('User signed up successfully:', response.data);
+            const token = response.data.Token;
+ 
+            if (typeof window !== 'undefined') {
+                sessionStorage.setItem(token, 'authToken')
+                saveUserdetails(token);
+                console.log('user register secussfuly', token);
+                navigate('/files'); // הפניה לדף הקבצים אחרי התחברות מוצלחת
+
+            }
         } catch (error: any) {
             console.error('Error:', error.response?.data || error.message);
         }
@@ -190,16 +224,7 @@ export default function Register() {
                             </div>
                             {errors.Email && <Alert component="div">Valid email is required.</Alert>}
                         </FormControl>
-                        {/* הוספת תיבת סימון לאדמין */}
-                        <FormControl sx={{ mb: 2 }}>
-                            <FormLabel sx={{ color: '#bbb' }}>Is Admin</FormLabel>
-                            <Checkbox
-                                {...register('IsAdmin')}
-                                sx={{
-                                    color: '#ff416c',
-                                }}
-                            />
-                        </FormControl>
+
 
                         <Button
                             type="submit"

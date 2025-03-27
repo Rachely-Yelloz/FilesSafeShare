@@ -1,4 +1,5 @@
-﻿using SafeShare.CORE.Repositories;
+﻿using SafeShare.CORE.Entities;
+using SafeShare.CORE.Repositories;
 using SafeShare.CORE.Services;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace SafeShare.SERVICE
         public Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId)
         {
             return _protectedLinkRepository.GenerateProtectedLinkAsync(fileId, passwordhash, isOneTimeUse, downloadLimit, userId);
+        }
+
+        public Task<IEnumerable<ProtectedLink>> GetProtectedLinksByFileIdAsync(int fileId)
+        {
+            return _protectedLinkRepository.GetProtectedLinksByFileIdAsync(fileId);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace SafeShare.DATA.Repositories
             {
                 throw new FileNotFoundException("הקובץ לא נמצא במערכת");
             }
-           
+
 
             string storagePath = fileRecord.StoragePath;
             if (string.IsNullOrEmpty(storagePath))
@@ -60,7 +60,7 @@ namespace SafeShare.DATA.Repositories
             {
                 FileName = fileRecord.FileName,
                 FileType = fileRecord.FileType,
-                pathInS3=storagePath
+                pathInS3 = storagePath
             };
             fileRecord.DownloadCount++;
             await _dataContext.SaveChangesAsync();
@@ -69,6 +69,13 @@ namespace SafeShare.DATA.Repositories
 
         }
 
+        public async Task<IEnumerable<FileToUpload>> GetFilesByUserIdAsync(int userId)
+        {
+            var files = await _dataContext.filesToUpload
+                .Where(file => file.UserId == userId) // הנחה שיש שדה UserId ב-FileToUpload
+                .ToListAsync(); // מחזיר רשימה של קבצים
+            return files;
+        }
 
         public async Task<bool> UpdateFileAsync(int fileId, FileToUpload file)
         {
@@ -117,7 +124,7 @@ namespace SafeShare.DATA.Repositories
                 StoragePath = pathInS3, // נתיב מהאחסון
                 UploadDate = DateTime.Now,
                 FileType = fileExtension,
-                UserId=userId
+                UserId = userId
             };
 
             await _dataContext.filesToUpload.AddAsync(fileToUpload);
@@ -133,6 +140,7 @@ namespace SafeShare.DATA.Repositories
 
             return fileToUpload.FileId; // החזרת מזהה הקובץ
         }
+
 
     }
 

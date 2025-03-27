@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SafeShare.API.Models;
+using SafeShare.CORE.DTO_s;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
 namespace SafeShare.API.Controllers
@@ -12,10 +14,12 @@ namespace SafeShare.API.Controllers
     public class ProtectedLinkController : ControllerBase
     {
         private readonly IProtectedLinkService _protectedLinkService;
+        private readonly IMapper _mapper;  // הוספת המ mapper
 
-        public ProtectedLinkController(IProtectedLinkService protectedLinkService)
+        public ProtectedLinkController(IProtectedLinkService protectedLinkService, IMapper mapper)
         {
             _protectedLinkService = protectedLinkService;
+            _mapper = mapper;
         }
 
 
@@ -55,6 +59,27 @@ namespace SafeShare.API.Controllers
                 return BadRequest(new { message = ex.Message });
             }
 
+        }
+        [HttpGet("file/{fileId}")]
+        public async Task<IActionResult> GetProtectedLinksByFileIdAsync(int fileId)
+        {
+            try
+            {
+                var protectedLinks = await _protectedLinkService.GetProtectedLinksByFileIdAsync(fileId);
+
+                if (protectedLinks == null || !protectedLinks.Any())
+                {
+                    return NotFound("לא נמצאו לינקים מוגנים עבור הקובץ הזה.");
+                }
+
+                // אם מצאנו לינקים מוגנים, נמפה אותם ל-DTO ותחזיר אותם
+                var protectedLinksDto = _mapper.Map<IEnumerable<ProtectedLinkDTO>>(protectedLinks);
+                return Ok(protectedLinksDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
     }

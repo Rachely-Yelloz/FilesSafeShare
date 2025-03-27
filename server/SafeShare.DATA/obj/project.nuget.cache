@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sQDj/DVG3Ps=",
+  "dgSpecHash": "n40ii5MtYeE=",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\תכנות שנה ב\\‏‏פרוייקט פרקטיקום - בלי ברנצים\\server\\SafeShare.DATA\\SafeShare.DATA.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user1\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.3\\microsoft.entityframeworkcore.9.0.3.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.3\\microsoft.entityframeworkcore.abstractions.9.0.3.nupkg.sha512",

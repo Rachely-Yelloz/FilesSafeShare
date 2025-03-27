@@ -143,6 +143,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SafeShare.API.Controllers.FileController",
+    "Method": "GetFilesByUserIdAsync",
+    "RelativePath": "api/File/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SafeShare.API.Controllers.ProtectedLinkController",
     "Method": "DownloadFile",
     "RelativePath": "api/ProtectedLink/download/{encryptedLink}",
@@ -159,6 +175,22 @@
         "Name": "password",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SafeShare.API.Controllers.ProtectedLinkController",
+    "Method": "GetProtectedLinksByFileIdAsync",
+    "RelativePath": "api/ProtectedLink/file/{fileId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileId",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

@@ -147,7 +147,6 @@ C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקו�
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\SafeShare.API.dll
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\SafeShare.API.pdb
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\AutoMapper.dll
-C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll

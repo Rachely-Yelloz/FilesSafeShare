@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using SafeShare.API.Models;
+using SafeShare.CORE.DTO_s;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
 
@@ -15,12 +17,14 @@ namespace SafeShare.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UsersController(IUserService userService)
+        private readonly IMapper _mapper;
+        public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
-  
+
 
         // עדכון משתמש
         [HttpPut("{userId}")]
@@ -32,9 +36,12 @@ namespace SafeShare.API.Controllers
                 return Unauthorized();
             var userSend = new User() { Email = user.Email, PasswordHash = user.PasswordHash, IsAdmin = user.IsAdmin, Username = user.Username };
             var result = await _userService.UpdateUserAsync(userId, userSend);
-            if (result != null)  // אם העדכון הצליח
-                return Ok(result);
-            return BadRequest(new { message = "User update failed", errors = "Error during the update process" });
+            if (result == null)  // אם העדכון הצליח
+
+                return BadRequest(new { message = "User update failed", errors = "Error during the update process" });
+            var resultDTO = _mapper.Map<UserDTO>(result);
+            return Ok(resultDTO);
+
         }
 
         // קבלת כל המשתמשים
@@ -42,11 +49,14 @@ namespace SafeShare.API.Controllers
         public async Task<IActionResult> GetAllUsersAsync()
         {
             var isAdminClaim = User.FindFirst("isAdmin")?.Value;
-            if(isAdminClaim == "false")
+            if (isAdminClaim == "false")
                 return Unauthorized();
             var users = await _userService.GetAllUsersAsync();
             if (users != null && users.Any())
-                return Ok(users);
+            {
+                var resultDTO = _mapper.Map<IEnumerable<UserDTO>>(users);
+                return Ok(resultDTO);
+            }
             return NotFound(new { message = "No users found" });
         }
 
@@ -56,12 +66,15 @@ namespace SafeShare.API.Controllers
         {
             var isAdminClaim = User.FindFirst("isAdmin")?.Value;
             var idClaim = User.FindFirst("id")?.Value;
-            if (isAdminClaim == "false"||userId.ToString()!=idClaim)
+            if (isAdminClaim == "false" || userId.ToString() != idClaim)
                 return Unauthorized();
             var user = await _userService.GetUserByIdAsync(userId);
-            if (user != null)
-                return Ok(user);
-            return NotFound(new { message = "User not found" });
+            if (user == null)
+                return NotFound(new { message = "User not found" });
+            var resultDTO = _mapper.Map<UserDTO>(user);
+
+            return Ok(resultDTO);
+
         }
 
         // מחיקת משתמש

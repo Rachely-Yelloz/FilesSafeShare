@@ -32,16 +32,7 @@ namespace SafeShare.SERVICE
 
         }
 
-        public async Task<User?> LoginAsync(User user)
-        {
-            return await _userRepository.LoginAsync(user);
-        }
-
-        public async Task<User?> RegisterAsync(User user)
-        {
-            return await _userRepository.RegisterAsync(user);
-        }
-
+    
         public async Task<User?> UpdateUserAsync(int userId, User user)
         {
             return await _userRepository.UpdateUserAsync(userId, user);

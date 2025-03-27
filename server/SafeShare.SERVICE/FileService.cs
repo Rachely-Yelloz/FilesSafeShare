@@ -33,6 +33,11 @@ namespace SafeShare.SERVICE
             return await _fileRepository.GetFileForDownloadAsync(fileId);
         }
 
+        public async Task<IEnumerable<FileToUpload>> GetFilesByUserIdAsync(int userId)
+        {
+            return await _fileRepository.GetFilesByUserIdAsync(userId);
+        }
+
         public async Task<bool> UpdateFileAsync(int fileId, FileToUpload file)
         {
             return await _fileRepository.UpdateFileAsync(fileId, file);

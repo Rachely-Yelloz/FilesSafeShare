@@ -13,8 +13,7 @@ namespace SafeShare.CORE.Repositories
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User?> GetUserByIdAsync(int v, int userId);
         Task<User?> GetUserByIdAsync(int userId);
-        Task<User?> LoginAsync(User user);
-        Task<User?> RegisterAsync(User user);
+
         Task<User?> UpdateUserAsync(int userId, User user);
     }
 }

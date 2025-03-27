@@ -22,5 +22,8 @@ namespace SafeShare.CORE.Services
         Task<bool> UpdateFileAsync(int fileId, FileToUpload pathInS3);
         Task<bool> DeleteFileAsync(int fileId);
         Task<bool> UpdateFileCountAsync(int fileId);
+        Task<IEnumerable<FileToUpload>> GetFilesByUserIdAsync(int userId);
+
+
     }
 }

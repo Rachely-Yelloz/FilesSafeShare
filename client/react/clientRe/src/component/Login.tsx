@@ -9,18 +9,54 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import { FaUser, FaLock, FaShieldAlt } from 'react-icons/fa';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+const saveUserdetails = (token: any) => {
+    try {
+        // פענוח הטוקן
+        interface DecodedToken {
+            id: string;
+            name: string;
+            email: string;
+        }
 
+        const decodedToken = jwtDecode<DecodedToken>(token);
+
+        // בדיקה אם ה-claims קיימים בטוקן, ושליפת הערכים
+        if (typeof window !== 'undefined' && decodedToken && decodedToken.id && decodedToken.name && decodedToken.email) {
+            sessionStorage.setItem('userId', decodedToken.id);
+            sessionStorage.setItem('username', decodedToken.name);
+            sessionStorage.setItem('useremail', decodedToken.email);
+        } else {
+            console.error('Some claims are missing in the decoded token');
+        }
+
+    } catch (error) {
+        console.error('Error decoding token:', error);
+        return null;
+    }
+}
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // יצירת משתנה לניווט
 
     const handleLogin = async () => {
-        const url = 'http://localhost:8080/api/user/login';
-        const requestData = { UserName: email, Password: password };
+        const url = 'http://localhost:5141/api/Auth/login';
+        const requestData = { email: email, passwordHash: password };
 
         try {
             const response = await axios.post(url, requestData);
             console.log('User logged in successfully:', response.data);
+            const token = response.data.token;
+            debugger;
+            if (typeof window !== 'undefined') {
+                sessionStorage.setItem('authToken',token)
+                console.log('user login secussfuly', token);
+                saveUserdetails(token)
+                navigate('/files'); // הפניה לדף הקבצים אחרי התחברות מוצלחת
+
+            }
         } catch (error: any) {
             console.error('Login error:', error.response?.data || error.message);
         }

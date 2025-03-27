@@ -29,5 +29,5 @@ RUN dotnet publish "./SafeShare.API.csproj" -c $BUILD_CONFIGURATION -o /app/publ
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-#ENTRYPOINT ["dotnet", "SafeShare.API.dll"]
-CMD ["dotnet", "SafeShare.API.dll", "--urls", "http://*:${PORT:-10000}"]
+ENTRYPOINT ["dotnet", "SafeShare.API.dll"]
+#CMD ["dotnet", "SafeShare.API.dll", "--urls", "http://*:${PORT:-10000}"]

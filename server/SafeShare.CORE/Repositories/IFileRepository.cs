@@ -22,5 +22,7 @@ namespace SafeShare.CORE.Repositories
         Task<bool> UpdateFileAsync(int fileId, FileToUpload file);
         Task<bool> DeleteFileAsync(int fileId);
         Task<bool> UpdateFileCountAsync(int fileId);
+        Task<IEnumerable<FileToUpload>> GetFilesByUserIdAsync(int userId);
+
     }
 }

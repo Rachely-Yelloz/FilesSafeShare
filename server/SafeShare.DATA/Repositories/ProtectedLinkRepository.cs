@@ -1,4 +1,5 @@
-﻿using SafeShare.CORE.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SafeShare.CORE.Entities;
 using SafeShare.CORE.Repositories;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace SafeShare.DATA.Repositories
                 IsOneTimeUse = isOneTimeUse,
                 DownloadLimit = downloadLimit,
                 CurrentDownloadCount = 0,
-                UserId =userId
+                UserId = userId
             };
 
             await _dataContext.protectedLinks.AddAsync(protectedLink);
@@ -93,7 +94,17 @@ namespace SafeShare.DATA.Repositories
         }
 
 
-    }
+        public async Task<IEnumerable<ProtectedLink>> GetProtectedLinksByFileIdAsync(int fileId)
+        {
+            // חיפוש כל הלינקים המוגנים הקשורים ל- fileId
+            var protectedLinks = await _dataContext.protectedLinks
+                .Where(link => link.FileId == fileId)
+                .ToListAsync();
 
+            return protectedLinks;
+        }
+    }
 }
+
+
 

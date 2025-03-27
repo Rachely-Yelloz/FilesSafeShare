@@ -9,11 +9,7 @@ namespace SafeShare.CORE.Services
 {
     public interface IUserService
     {
-        Task<User?> RegisterAsync(User user);
-
-        // פונקציה להתחברות
-        Task<User?> LoginAsync(User user);
-
+        
         // פונקציה לעדכון משתמש
         Task<User?> UpdateUserAsync(int userId, User user);
 

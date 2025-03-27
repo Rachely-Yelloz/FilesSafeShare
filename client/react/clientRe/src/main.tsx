@@ -6,6 +6,8 @@ import './index.css'
 import App from './App.tsx'
 import Login from './component/Login.tsx';
 import Register from './component/Register.tsx';
+import Files from './component/Files.tsx';
+import UploadFile from './component/Uploadfile.tsx';
 const Routes = createBrowserRouter([
 {path: "login",
   element: <Login />,
@@ -26,7 +28,19 @@ const Routes = createBrowserRouter([
     {path :'register', element:<Register/>}
 
   ]
+},{path: "files",
+  element: <Files/>,
+  children:[
+
+  ]
 }
+// },{path: "upload",
+//   element: <UploadFile/>,
+//   children:[
+
+//   ]
+  
+// },
 ])
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
