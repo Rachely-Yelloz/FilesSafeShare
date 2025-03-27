@@ -3,7 +3,7 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using System.Threading.Tasks;
 
-namespace Pictures.Api.Controllers
+namespace SafeShare.API.Controllers
 {
     [Route("api/UploadFile")]
     [ApiController]
