@@ -7,7 +7,6 @@ import App from './App.tsx'
 import Login from './component/Login.tsx';
 import Register from './component/Register.tsx';
 import Files from './component/Files.tsx';
-import UploadFile from './component/Uploadfile.tsx';
 const Routes = createBrowserRouter([
 {path: "login",
   element: <Login />,

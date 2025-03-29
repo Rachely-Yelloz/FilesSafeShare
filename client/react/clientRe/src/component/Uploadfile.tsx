@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { TextField, Button, FormControlLabel, Checkbox, Box, Typography } from "@mui/material";
-import { FaFileUpload, FaLink, FaShieldAlt } from "react-icons/fa";
+import { FaFileUpload, FaLink } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export default function UploadFile({ onClose }: { onClose: () => void }) {
