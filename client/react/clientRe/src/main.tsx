@@ -8,42 +8,40 @@ import Login from './component/Login.tsx';
 import Register from './component/Register.tsx';
 import Files from './component/Files.tsx';
 const Routes = createBrowserRouter([
-{path: "login",
-  element: <Login />,
-  children:[
-    {path :'register', element:<Register/>}
-  ]
-},
-{path: "register",
-  element: <Register/>,
-  children:[
-    {path :'login', element:<Login/>}
-  ]
-},
-{path: "/",
-  element: <App/>,
-  children:[
-    {path :'login', element:<Login/>},
-    {path :'register', element:<Register/>}
+  {
+    path: "login",
+    element: <Login />,
+    children: [
+      { path: 'register', element: <Register /> }
+    ]
+  },
+  {
+    path: "register",
+    element: <Register />,
+    children: [
+      { path: 'login', element: <Login /> }
+    ]
+  },
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: 'login', element: <Login /> },
+      { path: 'register', element: <Register /> }
 
-  ]
-},{path: "files",
-  element: <Files/>,
-  children:[
+    ]
+  }, 
+  {
+    path: "files",
+    element: <Files />,
+    children: [
 
-  ]
-}
-// },{path: "upload",
-//   element: <UploadFile/>,
-//   children:[
+    ]
+  }
 
-//   ]
-  
-// },
 ])
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* <App /> */}
     <RouterProvider router={Routes} />
   </StrictMode>,
 )
