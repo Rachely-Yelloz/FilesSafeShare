@@ -26,7 +26,7 @@ export default function Files() {
             return;
         }
 
-        axios.get(`http://localhost:5141/api/File/user/${userId}`, {
+        axios.get(`https://filessafeshare-1.onrender.com/api/File/user/${userId}`, {
             headers: { Authorization: `Bearer ${authToken}` }
         })
             .then(response => setFiles(response.data))
@@ -73,7 +73,10 @@ export default function Files() {
             </Box>
 
             <Divider sx={{ background: "#ff416c", mb: 2 }} />
-
+            {files.length === 0 &&
+                <Typography variant="body1" sx={{ mb: 3, color: '#ddd', textAlign: 'center' }}>
+                    You still don't have files. Press "Upload File" to add one.
+                </Typography>}
             {/* רשימת הקבצים */}
             <List>
                 {files.map((file) => (
@@ -113,7 +116,7 @@ export default function Files() {
 
             {/* מודאל להעלאת קובץ */}
             <Modal open={openUploadModal} onClose={() => setOpenUploadModal(false)}>
-               
+
                 <Modal open={openUploadModal} onClose={() => setOpenUploadModal(false)}>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}

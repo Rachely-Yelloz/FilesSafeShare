@@ -42,7 +42,7 @@ export default function Login() {
     const navigate = useNavigate(); // יצירת משתנה לניווט
 
     const handleLogin = async () => {
-        const url = 'http://localhost:5141/api/Auth/login';
+        const url = 'https://filessafeshare-1.onrender.com/api/Auth/login';
         const requestData = { email: email, passwordHash: password };
 
         try {

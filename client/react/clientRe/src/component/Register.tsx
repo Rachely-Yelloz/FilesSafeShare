@@ -45,7 +45,7 @@ export default function Register() {
     const navigate = useNavigate(); // יצירת משתנה לניווט
 
     const onSubmit = async (data: any) => {
-        const url = 'http://localhost:5141/api/Auth/register'; // שנה לכתובת ה-API שלך
+        const url = 'https://filessafeshare-1.onrender.com/api/Auth/register'; // שנה לכתובת ה-API שלך
         const requestData = {
             Username: data.Username,
             Email: data.Email,
