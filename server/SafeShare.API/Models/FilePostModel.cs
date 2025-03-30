@@ -4,8 +4,14 @@
     {
         public string FileName { get; set; }
         public string StoragePath { get; set; }
-        public byte[] EncryptionKey { get; set; }  // מפתח ההצפנה (בינארי)
-        public byte[] Nonce { get; set; }  // nonce (בינארי)
+
+        // קליטה כ-Base64 (כדי למנוע בעיות המרה)
+        public string EncryptionKey { get; set; }
+        public string Nonce { get; set; }
+
+        // המרת Base64 ל-byte[]
+        public byte[] GetEncryptionKey() => Convert.FromBase64String(EncryptionKey);
+        public byte[] GetNonce() => Convert.FromBase64String(Nonce);
 
     }
 }

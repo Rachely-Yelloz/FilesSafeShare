@@ -29,7 +29,13 @@ namespace SafeShare.API.Controllers
         public async Task<IActionResult> UploadFileAsync([FromBody] FilePostModel file)
         {
             var idClaim = User.FindFirst("id")?.Value;
-            var result = await _fileService.UploadFileAsync(file.StoragePath,file.FileName,int.Parse(idClaim),file.EncryptionKey,file.Nonce);
+            var result = await _fileService.UploadFileAsync(
+                file.StoragePath,
+                file.FileName,
+                int.Parse(idClaim),
+                file.GetEncryptionKey(),  // שימוש בפונקציה להמרת Base64 ל-byte[]
+                file.GetNonce()           // שימוש בפונקציה להמרת Base64 ל-byte[]
+            );
             if (result > 0)
                 return Ok(result);
             return BadRequest(result);

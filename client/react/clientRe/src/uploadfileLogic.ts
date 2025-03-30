@@ -11,9 +11,8 @@ export async function getPresignedUrl(fileName: string): Promise<PresignedUrlRes
     const authToken = sessionStorage.getItem("authToken"); // 🔐 קבלת הטוקן מה-Session Storage
 
     const response = await axios.get<PresignedUrlResponse>(
-        "http://localhost:5141/api/UploadFile/presigned-url",
+        `https://filessafeshare-1.onrender.com/api/UploadFile/presigned-url?fileName=${fileName}`,
         {
-            params: { fileName }, // 📂 שליחת שם הקובץ כפרמטר
             headers: { Authorization: `Bearer ${authToken}` }, // 🔑 שליחת הטוקן בכותרת
         }
     );
@@ -28,34 +27,64 @@ export async function uploadFileToS3(uploadUrl: string, encryptedFile: Blob): Pr
     return uploadUrl.split("?")[0]; // מחזיר את הנתיב ללא הפרמטרים
 }
 
-export async function uploadFileToDb(fileName:string, storagePath:string, encryptionKey:any, nonce:any) {
-    const authToken = sessionStorage.getItem("authToken"); // 🔐 קבלת הטוקן מה-Session Storage
+// export async function uploadFileToDb(fileName:string, storagePath:string, encryptionKey:any, nonce:any) {
+//     const authToken = sessionStorage.getItem("authToken"); // 🔐 קבלת הטוקן מה-Session Storage
 
-    // המידע שאנחנו רוצים לשלוח לשרת
+//     // המידע שאנחנו רוצים לשלוח לשרת
+//     const fileData = {
+//         fileName: fileName,
+//         storagePath: storagePath,
+//         encryptionKey: encryptionKey,  // זה יכול להיות בייט-אריי (Uint8Array או Buffer)
+//         nonce: nonce                  // גם כן בייט-אריי
+//     };
+
+//     try {
+//         // קריאה ל-API ב-POST
+//         const response = await axios.post('https://filessafeshare-1.onrender.com/api/File/upload', fileData, {
+//             headers: {
+//                 'Content-Type': 'application/json', // טוען את המידע כ-JSON
+//                  Authorization: `Bearer ${authToken}` // 🔑 שליחת הטוקן בכותרת
+
+//             }
+//         });
+
+//         console.log('File uploaded successfully:', response.data);
+//         return response.data;
+//     } catch (error) {
+//         console.error('Error uploading file:', error);
+//         throw error; // מאפשר טיפול בשגיאות אחר כך
+//     }
+// }
+export async function uploadFileToDb(fileName: string, storagePath: string, encryptionKey: Uint8Array, nonce: Uint8Array) {
+    const authToken = sessionStorage.getItem("authToken"); 
+
+    // המרה ל-Base64
+    const encryptionKeyBase64 = btoa(String.fromCharCode(...encryptionKey));
+    const nonceBase64 = btoa(String.fromCharCode(...nonce));
+
     const fileData = {
         fileName: fileName,
         storagePath: storagePath,
-        encryptionKey: encryptionKey,  // זה יכול להיות בייט-אריי (Uint8Array או Buffer)
-        nonce: nonce                  // גם כן בייט-אריי
+        encryptionKey: encryptionKeyBase64,  
+        nonce: nonceBase64                 
     };
 
     try {
-        // קריאה ל-API ב-POST
-        const response = await axios.post('http://localhost:5141/api/upload', fileData, {
+        const response = await axios.post('https://filessafeshare-1.onrender.com/api/File/upload', fileData, {
             headers: {
-                'Content-Type': 'application/json', // טוען את המידע כ-JSON
-                 Authorization: `Bearer ${authToken}` // 🔑 שליחת הטוקן בכותרת
-
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${authToken}` 
             }
         });
 
-        console.log('File uploaded successfully:', response.data);
+        console.log('✅ File uploaded successfully:', response.data);
         return response.data;
-    } catch (error) {
-        console.error('Error uploading file:', error);
-        throw error; // מאפשר טיפול בשגיאות אחר כך
+    } catch (error:any) {
+        console.error('❌ Error uploading file:', error.response ? error.response.data : error);
+        throw error; 
     }
 }
+
 export async function generateProtectedLink(fileId:any, password:any, isOneTimeUse:boolean, downloadLimit:number) {
     try {
         // קבלת הטוקן מ-localStorage (או מהיכן שאתה שומר אותו)

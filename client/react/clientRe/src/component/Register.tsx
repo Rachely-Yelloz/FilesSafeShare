@@ -20,8 +20,9 @@ const saveUserdetails = (token: any) => {
             id: string;
             name: string;
             email: string;
+            isAdmin: boolean;
         }
-
+        debugger;
         const decodedToken = jwtDecode<DecodedToken>(token);
 
         // בדיקה אם ה-claims קיימים בטוקן, ושליפת הערכים
@@ -55,7 +56,7 @@ export default function Register() {
             const response = await axios.post(url, requestData);
             console.log('User signed up successfully:', response.data);
             const token = response.data.Token;
- 
+
             if (typeof window !== 'undefined') {
                 sessionStorage.setItem(token, 'authToken')
                 saveUserdetails(token);
