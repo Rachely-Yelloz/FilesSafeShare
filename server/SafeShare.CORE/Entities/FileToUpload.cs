@@ -36,6 +36,12 @@ namespace SafeShare.CORE.Entities
         [Column("storage_path")]
 
         public string StoragePath { get; set; }
+        [Column("encryption_key")]
+        public byte[] EncryptionKey { get; set; }  // מפתח ההצפנה (בינארי)
+
+        [Column("nonce")]
+        public byte[] Nonce { get; set; }  // nonce (בינארי)
+
         public ICollection<ProtectedLink> ProtectedLinks { get; set; } = new List<ProtectedLink>();
 
 

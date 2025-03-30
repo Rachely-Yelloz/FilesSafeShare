@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace SafeShare.DATA.Repositories
 {
@@ -110,9 +111,9 @@ namespace SafeShare.DATA.Repositories
 
         }
 
-        public async Task<int> UploadFileAsync(string pathInS3, string fileName, string passwordHash, int userId)
+        public async Task<int> UploadFileAsync(string pathInS3, string fileName, int userId, byte[] EncryptionKey1, byte[] Nonce1)
         {
-            if (string.IsNullOrWhiteSpace(fileName) || string.IsNullOrWhiteSpace(passwordHash))
+            if (string.IsNullOrWhiteSpace(fileName))
                 throw new ArgumentException("שם הקובץ והסיסמה חובה!");
             var fileExtension = Path.GetExtension(fileName).ToLower();
 
@@ -124,7 +125,10 @@ namespace SafeShare.DATA.Repositories
                 StoragePath = pathInS3, // נתיב מהאחסון
                 UploadDate = DateTime.Now,
                 FileType = fileExtension,
-                UserId = userId
+                UserId = userId,
+                EncryptionKey = EncryptionKey1,
+                Nonce = Nonce1
+
             };
 
             await _dataContext.filesToUpload.AddAsync(fileToUpload);
@@ -142,7 +146,7 @@ namespace SafeShare.DATA.Repositories
         }
 
 
-    }
+    } 
 
 
 

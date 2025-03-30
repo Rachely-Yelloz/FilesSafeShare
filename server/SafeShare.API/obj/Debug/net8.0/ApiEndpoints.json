@@ -125,19 +125,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "pathInS3",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "fileName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "passwordHash",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "file",
+        "Type": "SafeShare.API.Models.FilePostModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -221,6 +211,38 @@
       {
         "Name": "downloadLimit",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SafeShare.API.Controllers.ConectToS3",
+    "Method": "GetDownloadUrl",
+    "RelativePath": "api/UploadFile/download-url",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileKey",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SafeShare.API.Controllers.ConectToS3",
+    "Method": "GetPresignedUrl",
+    "RelativePath": "api/UploadFile/presigned-url",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],

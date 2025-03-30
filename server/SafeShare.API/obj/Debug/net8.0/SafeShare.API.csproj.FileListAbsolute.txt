@@ -207,3 +207,6 @@ C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקו�
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\obj\Debug\net8.0\SafeShare.API.pdb
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\obj\Debug\net8.0\SafeShare.API.genruntimeconfig.cache
 C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\obj\Debug\net8.0\ref\SafeShare.API.dll
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\AWSSDK.Core.dll
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\AWSSDK.S3.dll
+C:\Users\user1\Desktop\תכנות שנה ב\‏‏פרוייקט פרקטיקום - בלי ברנצים\server\SafeShare.API\bin\Debug\net8.0\AWSSDK.Extensions.NETCore.Setup.dll

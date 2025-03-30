@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SafeShare.API.Models;
 using SafeShare.CORE.DTO_s;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
@@ -25,10 +26,10 @@ namespace SafeShare.API.Controllers
             _mapper = mapper;
         }
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadFileAsync([FromQuery] string pathInS3, [FromQuery] string fileName, [FromQuery] string passwordHash)
+        public async Task<IActionResult> UploadFileAsync([FromBody] FilePostModel file)
         {
             var idClaim = User.FindFirst("id")?.Value;
-            var result = await _fileService.UploadFileAsync(pathInS3, fileName, passwordHash,int.Parse(idClaim));
+            var result = await _fileService.UploadFileAsync(file.StoragePath,file.FileName,int.Parse(idClaim),file.EncryptionKey,file.Nonce);
             if (result > 0)
                 return Ok(result);
             return BadRequest(result);

@@ -1,3 +1,4 @@
+using Amazon;
 using Amazon.Runtime;
 using Amazon.S3;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -40,6 +41,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
 //builder.Services.AddAWSService<IAmazonS3>();
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -66,19 +70,19 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-//builder.Services.AddSingleton<IAmazonS3>(sp => 
-//{
-//    var configuration = sp.GetRequiredService<IConfiguration>();
-//    var credentials = new BasicAWSCredentials(
-//        configuration["AWS:AccessKey"],
-//        configuration["AWS:SecretKey"]
-//    );
-//    var clientConfig = new AmazonS3Config
-//    {
-//        RegionEndpoint = RegionEndpoint.GetBySystemName(configuration["AWS:Region"])
-//    };
-//    return new AmazonS3Client(credentials, clientConfig);
-//});
+builder.Services.AddSingleton<IAmazonS3>(sp =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    var credentials = new BasicAWSCredentials(
+        configuration["AWS:AccessKey"],
+        configuration["AWS:SecretKey"]
+    );
+    var clientConfig = new AmazonS3Config
+    {
+        RegionEndpoint = RegionEndpoint.GetBySystemName(configuration["AWS:Region"])
+    };
+    return new AmazonS3Client(credentials, clientConfig);
+});
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -119,15 +123,15 @@ app.UseCors("AllowAll");
 
 
 
-//app.UseSwagger();
-//app.UseSwaggerUI();
-
 app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-    c.RoutePrefix = string.Empty; // גורם לטעינת Swagger כברירת מחדל בכתובת הראשית
-});
+app.UseSwaggerUI();
+
+//app.UseSwagger();
+//app.UseSwaggerUI(c =>
+//{
+//    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+//    c.RoutePrefix = string.Empty; // גורם לטעינת Swagger כברירת מחדל בכתובת הראשית
+//});
 
 
 app.UseHttpsRedirection();

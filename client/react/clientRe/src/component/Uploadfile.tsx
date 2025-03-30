@@ -3,6 +3,9 @@ import { useState } from "react";
 import { TextField, Button, FormControlLabel, Checkbox, Box, Typography } from "@mui/material";
 import { FaFileUpload, FaLink } from "react-icons/fa";
 import { motion } from "framer-motion";
+import encryptFile from "../encryptFile";
+import axios from "axios";
+import { generateProtectedLink, uploadFileToDb, uploadFileToS3 } from "../uploadfileLogic";
 
 export default function UploadFile({ onClose }: { onClose: () => void }) {
     const [fileName, setFileName] = useState("");
@@ -10,43 +13,67 @@ export default function UploadFile({ onClose }: { onClose: () => void }) {
     const [password, setPassword] = useState("");
     const [expirationDate, setExpirationDate] = useState("");
     const [isOneTimeUse, setIsOneTimeUse] = useState(false);
-    const [downloadLimit, setDownloadLimit] = useState<number | "">("");
+    const [downloadLimit, setDownloadLimit] = useState<number | 1>(1);
     const [generatedLink, setGeneratedLink] = useState("");
     const [error, setError] = useState<boolean>(false);
 
-    const handleFileUpload = () => {
+    const handleFileUpload = async () => {
         if (!fileName || !selectedFile || !password || !expirationDate) {
             setError(true);
             return;
         }
-
         console.log("Uploading file:", fileName);
-        setGeneratedLink(`https://safeshare.com/download/${fileName.replace(/\s+/g, "-")}`);
+        const fileandkeys = await encryptFile(selectedFile)
+        try {
+            const response = await axios.get('https://filessafeshare-1.onrender.com/api/UploadFile/presigned-url', {
+                params: {
+                    fileName: fileName, // שליחה של שם הקובץ
+                },
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('authToken')}` // הוספת טוקן מהסשן או המקומי, תלוי בהגדרות
+                }
+            });
+            const { uploadUrl, fileUrl, fileKey } = response.data;
+            const encryptedBlob = new Blob([fileandkeys.ciphertext], { type: "application/octet-stream" });
+            const s3url = await uploadFileToS3(uploadUrl, encryptedBlob);
+            const fileId = await uploadFileToDb(fileName, s3url, fileandkeys.key, fileandkeys.nonce);
+
+            const generatedLink = await generateProtectedLink(fileId, password, isOneTimeUse, downloadLimit);
+            setGeneratedLink(generatedLink);
+            console.log("File uploaded successfully:", fileId);
+
+
+        }
+        catch (error) {
+            console.error('Error fetching presigned URL:', error);
+            return null;
+        }
+
         setError(false);
     };
 
     return (
-        <Box 
-            sx={{ 
-                position: "fixed", 
-                top: 0, 
-                left: 0, 
-                width: "100vw", 
-                height: "100vh", 
-                background: "rgba(0, 0, 0, 0.5)", 
-                backdropFilter: "blur(10px)", 
-                display: "flex", 
-                alignItems: "center", 
+        <Box
+            sx={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "100vh",
+                background: "rgba(0, 0, 0, 0.5)",
+                backdropFilter: "blur(10px)",
+                display: "flex",
+                alignItems: "center",
                 justifyContent: "center",
                 zIndex: 1300
             }}
             onClick={onClose} // סגירה בלחיצה מחוץ לפופאפ
         >
-            <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }} 
-                animate={{ opacity: 1, scale: 1 }} 
-                exit={{ opacity: 0, scale: 0.8 }} 
-                transition={{ duration: 0.3, ease: "easeOut" }} 
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={(e) => e.stopPropagation()} // מונע סגירה בלחיצה בתוך הפופאפ
             >
                 <Box sx={{
@@ -129,7 +156,7 @@ export default function UploadFile({ onClose }: { onClose: () => void }) {
                             variant="outlined"
                             fullWidth
                             value={downloadLimit}
-                            onChange={(e) => setDownloadLimit(e.target.value === "" ? "" : parseInt(e.target.value))}
+                            onChange={(e) => setDownloadLimit(e.target.value === "" ? 1 : parseInt(e.target.value, 10))}
                         />
                     )}
 

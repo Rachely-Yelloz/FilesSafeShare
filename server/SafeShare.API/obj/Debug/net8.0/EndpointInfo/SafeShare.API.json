@@ -67,34 +67,72 @@
         }
       }
     },
-    "/api/File/upload": {
-      "post": {
+    "/api/UploadFile/presigned-url": {
+      "get": {
         "tags": [
-          "File"
+          "ConectToS3"
         ],
         "parameters": [
-          {
-            "name": "pathInS3",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "fileName",
             "in": "query",
             "schema": {
               "type": "string"
             }
-          },
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UploadFile/download-url": {
+      "get": {
+        "tags": [
+          "ConectToS3"
+        ],
+        "parameters": [
           {
-            "name": "passwordHash",
+            "name": "fileKey",
             "in": "query",
             "schema": {
               "type": "string"
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/File/upload": {
+      "post": {
+        "tags": [
+          "File"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FilePostModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FilePostModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FilePostModel"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -451,6 +489,30 @@
   },
   "components": {
     "schemas": {
+      "FilePostModel": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "storagePath": {
+            "type": "string",
+            "nullable": true
+          },
+          "encryptionKey": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "nonce": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "FileToUpload": {
         "type": "object",
         "properties": {
@@ -483,6 +545,16 @@
           },
           "storagePath": {
             "type": "string",
+            "nullable": true
+          },
+          "encryptionKey": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "nonce": {
+            "type": "string",
+            "format": "byte",
             "nullable": true
           },
           "protectedLinks": {
