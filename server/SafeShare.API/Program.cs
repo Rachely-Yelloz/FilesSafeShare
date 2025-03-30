@@ -114,8 +114,10 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseMySql(
-        builder.Configuration.GetConnectionString("ConnectionStrings:DefaultConnection"),
-              new MySqlServerVersion(new Version(8, 0, 0))
+builder.Configuration["ConnectionStrings:DefaultConnection"],
+              new MySqlServerVersion(new Version(8, 0, 0)),
+                      mySqlOptions => mySqlOptions.EnableRetryOnFailure()
+
     //ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
     ));
 
