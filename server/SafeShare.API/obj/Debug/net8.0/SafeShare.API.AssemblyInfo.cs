@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SafeShare.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47e353067d1b5f9d98b5a99a1f3d4e4f9eaf5ed0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+365c980b2eaca337d9ca7d059c510fdf2a62204b")]
 [assembly: System.Reflection.AssemblyProductAttribute("SafeShare.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SafeShare.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -27,34 +27,6 @@ export async function uploadFileToS3(uploadUrl: string, encryptedFile: Blob): Pr
     return uploadUrl.split("?")[0]; // מחזיר את הנתיב ללא הפרמטרים
 }
 
-// export async function uploadFileToDb(fileName:string, storagePath:string, encryptionKey:any, nonce:any) {
-//     const authToken = sessionStorage.getItem("authToken"); // 🔐 קבלת הטוקן מה-Session Storage
-
-//     // המידע שאנחנו רוצים לשלוח לשרת
-//     const fileData = {
-//         fileName: fileName,
-//         storagePath: storagePath,
-//         encryptionKey: encryptionKey,  // זה יכול להיות בייט-אריי (Uint8Array או Buffer)
-//         nonce: nonce                  // גם כן בייט-אריי
-//     };
-
-//     try {
-//         // קריאה ל-API ב-POST
-//         const response = await axios.post('https://filessafeshare-1.onrender.com/api/File/upload', fileData, {
-//             headers: {
-//                 'Content-Type': 'application/json', // טוען את המידע כ-JSON
-//                  Authorization: `Bearer ${authToken}` // 🔑 שליחת הטוקן בכותרת
-
-//             }
-//         });
-
-//         console.log('File uploaded successfully:', response.data);
-//         return response.data;
-//     } catch (error) {
-//         console.error('Error uploading file:', error);
-//         throw error; // מאפשר טיפול בשגיאות אחר כך
-//     }
-// }
 export async function uploadFileToDb(fileName: string, storagePath: string, encryptionKey: Uint8Array, nonce: Uint8Array) {
     const authToken = sessionStorage.getItem("authToken"); 
 
@@ -85,27 +57,31 @@ export async function uploadFileToDb(fileName: string, storagePath: string, encr
     }
 }
 
-export async function generateProtectedLink(fileId:any, password:any, isOneTimeUse:boolean, downloadLimit:number) {
+
+export async function generateProtectedLink(fileId: number, password: string, isOneTimeUse: boolean, downloadLimit: number) {
     try {
-        // קבלת הטוקן מ-localStorage (או מהיכן שאתה שומר אותו)
-        const token = localStorage.getItem('jwtToken'); // או sessionStorage.getItem('jwtToken')
+        const token = sessionStorage.getItem('authToken'); 
 
-        // יצירת ה-URL עם הפרמטרים
-        const url = `https://filessafeshare-1.onrender.com/api/ProtectedLink/generate?fileId=${fileId}&password=${password}&isOneTimeUse=${isOneTimeUse}&downloadLimit=${downloadLimit}`;
+        // יצירת הנתונים לגוף הבקשה
+        const requestData = {
+            fileId,
+            password,
+            isOneTimeUse,
+            downloadLimit
+        };
 
-        // שליחת הבקשה עם הטוקן בהכרה (Authorization header)
-        const response = await axios.get(url, {
+        // שליחת הבקשה עם `POST`
+        const response = await axios.post('https://filessafeshare-1.onrender.com/api/ProtectedLink/generate', requestData, {
             headers: {
-                'Authorization': `Bearer ${token}`  // הוספת הטוקן ל-headers
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json' // שליחת הנתונים בפורמט JSON
             }
         });
 
-        // אם הכל בסדר, הצגת הקישור
         console.log('Generated Protected Link:', response.data.link);
         return response.data.link;
-    } catch (error:any) {
+    } catch (error: any) {
         console.error('Error generating protected link:', error.response ? error.response.data : error);
-        throw error;  // אפשר להחזיר שגיאה או לבצע טיפול נוסף
+        throw error;
     }
 }
-

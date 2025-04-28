@@ -30,7 +30,8 @@ namespace SafeShare.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel loginModel)
         {
-            var user = await _dataContext.users.FirstOrDefaultAsync(u => u.Email == loginModel.Email && u.PasswordHash == loginModel.PasswordHash);
+            var email = loginModel.Email.ToLower();
+            var user = await _dataContext.users.FirstOrDefaultAsync(u => u.Email == email && u.PasswordHash == loginModel.PasswordHash);
             if (user is not null)
             {
                 var jwt = CreateJWT(user);
@@ -43,11 +44,11 @@ namespace SafeShare.API.Controllers
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel registerModel)
         {
 
-            var newUser = new User { Username = registerModel.Username, Email = registerModel.Email, PasswordHash = registerModel.PasswordHash, IsAdmin = false};
+            var newUser = new User { Username = registerModel.Username, Email = registerModel.Email.ToLower(), PasswordHash = registerModel.PasswordHash, IsAdmin = false};
             var existingUser = await _dataContext.users
                 .FirstOrDefaultAsync(u => u.Email == newUser.Email);
             if (existingUser != null)
-                return Conflict(new { message = "User already exists." });
+                return Conflict(new { message = "UserMail already in use." });
 
 
             _dataContext.users.Add(newUser);
