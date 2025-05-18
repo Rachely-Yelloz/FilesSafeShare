@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\controllers\\protectedlinkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\controllers\\protectedlinkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\models\\protectedlinkgenerate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\models\\protectedlinkgenerate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\models\\filepostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\models\\filepostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\models\\protectedlinkpostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\models\\protectedlinkpostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,20 +43,8 @@
       "RelativeMoniker": "D:0:0:{AFC69620-E6CF-4650-B26A-11A41F3DC09E}|SafeShare.DATA\\SafeShare.DATA.csproj|solutionrelative:safeshare.data\\repositories\\protectedlinkrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\models\\protectedlinkpostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\models\\protectedlinkpostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\controllers\\protectedlinkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\controllers\\protectedlinkcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\controllers\\filecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\controllers\\filecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.api\\models\\filepostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D383B46-44CC-4FFA-B9C0-C026B10F9EFB}|SafeShare.API\\SafeShare.API.csproj|solutionrelative:safeshare.api\\models\\filepostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFC69620-E6CF-4650-B26A-11A41F3DC09E}|SafeShare.DATA\\SafeShare.DATA.csproj|c:\\users\\user1\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\safeshare.data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -86,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -95,55 +99,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "SafeShare.API\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Title": "protectedLinkGenerate.cs",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\protectedLinkGenerate.cs",
+              "RelativeDocumentMoniker": "SafeShare.API\\Models\\protectedLinkGenerate.cs",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\protectedLinkGenerate.cs",
+              "RelativeToolTip": "SafeShare.API\\Models\\protectedLinkGenerate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T08:29:30.02Z",
+              "WhenOpened": "2025-05-18T11:16:07.306Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "ProtectedLinkController.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\ProtectedLinkController.cs",
               "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\ProtectedLinkController.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\ProtectedLinkController.cs",
               "RelativeToolTip": "SafeShare.API\\Controllers\\ProtectedLinkController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAmwCIAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T00:46:14.777Z"
+              "WhenOpened": "2025-03-30T00:46:14.777Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "FileController.cs",
-              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\FileController.cs",
-              "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\FileController.cs",
-              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\FileController.cs",
-              "RelativeToolTip": "SafeShare.API\\Controllers\\FileController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAmwCEAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T19:23:27.633Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "FileRepository.cs",
-              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\Repositories\\FileRepository.cs",
-              "RelativeDocumentMoniker": "SafeShare.DATA\\Repositories\\FileRepository.cs",
-              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\Repositories\\FileRepository.cs",
-              "RelativeToolTip": "SafeShare.DATA\\Repositories\\FileRepository.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T19:24:45.051Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Program.cs",
               "RelativeDocumentMoniker": "SafeShare.API\\Program.cs",
@@ -151,12 +132,11 @@
               "RelativeToolTip": "SafeShare.API\\Program.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAAAAAAMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T20:11:31.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-29T20:11:31.646Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "ProtectedLinkRepository.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\Repositories\\ProtectedLinkRepository.cs",
               "RelativeDocumentMoniker": "SafeShare.DATA\\Repositories\\ProtectedLinkRepository.cs",
@@ -168,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\appsettings.json",
               "RelativeDocumentMoniker": "SafeShare.API\\appsettings.json",
@@ -180,20 +160,82 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\AuthController.cs",
               "RelativeToolTip": "SafeShare.API\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAIwFkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-29T18:31:03.604Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "FilePostModel.cs",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\FilePostModel.cs",
+              "RelativeDocumentMoniker": "SafeShare.API\\Models\\FilePostModel.cs",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\FilePostModel.cs",
+              "RelativeToolTip": "SafeShare.API\\Models\\FilePostModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T00:24:55.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "FileRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\Repositories\\FileRepository.cs",
+              "RelativeDocumentMoniker": "SafeShare.DATA\\Repositories\\FileRepository.cs",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\Repositories\\FileRepository.cs",
+              "RelativeToolTip": "SafeShare.DATA\\Repositories\\FileRepository.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T19:24:45.051Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProtectedLinkPostModel.cs",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
+              "RelativeDocumentMoniker": "SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
+              "RelativeToolTip": "SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T21:53:03.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FileController.cs",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\FileController.cs",
+              "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\FileController.cs",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\FileController.cs",
+              "RelativeToolTip": "SafeShare.API\\Controllers\\FileController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAmwCEAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T19:23:27.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "SafeShare.API\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T08:29:30.02Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ProtectedLinkDTO.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.CORE\\DTO\u0027s\\ProtectedLinkDTO.cs",
               "RelativeDocumentMoniker": "SafeShare.CORE\\DTO\u0027s\\ProtectedLinkDTO.cs",
@@ -205,19 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ProtectedLinkPostModel.cs",
-              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
-              "RelativeDocumentMoniker": "SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
-              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
-              "RelativeToolTip": "SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T21:53:03.145Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "IFileRepository.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.CORE\\Repositories\\IFileRepository.cs",
               "RelativeDocumentMoniker": "SafeShare.CORE\\Repositories\\IFileRepository.cs",
@@ -229,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "IFileService.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.CORE\\Services\\IFileService.cs",
               "RelativeDocumentMoniker": "SafeShare.CORE\\Services\\IFileService.cs",
@@ -241,19 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "FilePostModel.cs",
-              "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\FilePostModel.cs",
-              "RelativeDocumentMoniker": "SafeShare.API\\Models\\FilePostModel.cs",
-              "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\FilePostModel.cs",
-              "RelativeToolTip": "SafeShare.API\\Models\\FilePostModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T00:24:55.291Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "DataContext.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.DATA\\DataContext.cs",
               "RelativeDocumentMoniker": "SafeShare.DATA\\DataContext.cs",
@@ -265,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "UserPostModel.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Models\\UserPostModel.cs",
               "RelativeDocumentMoniker": "SafeShare.API\\Models\\UserPostModel.cs",
@@ -277,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "FileService.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.SERVICE\\FileService.cs",
               "RelativeDocumentMoniker": "SafeShare.SERVICE\\FileService.cs",
@@ -289,7 +307,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "FileToUpload.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.CORE\\Entities\\FileToUpload.cs",
               "RelativeDocumentMoniker": "SafeShare.CORE\\Entities\\FileToUpload.cs",
@@ -301,7 +319,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "ConectToS3.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\ConectToS3.cs",
               "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\ConectToS3.cs",
@@ -313,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "IProtectedLinkRepository.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.CORE\\Repositories\\IProtectedLinkRepository.cs",
               "RelativeDocumentMoniker": "SafeShare.CORE\\Repositories\\IProtectedLinkRepository.cs",

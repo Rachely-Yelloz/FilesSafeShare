@@ -24,12 +24,12 @@ namespace SafeShare.API.Controllers
 
 
         [HttpPost("generate")]
-        public async Task<IActionResult> GenerateProtectedLink([FromQuery] int fileId, [FromQuery] string password, [FromQuery] bool isOneTimeUse, [FromQuery] int? downloadLimit)
+        public async Task<IActionResult> GenerateProtectedLink([FromBody] protectedLinkGenerate linkToGernerate)
         {
             var idClaim = User.FindFirst("id")?.Value;
             try
             {
-                string link = await _protectedLinkService.GenerateProtectedLinkAsync(fileId, password, isOneTimeUse, downloadLimit,int.Parse(idClaim));
+                string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGernerate.fileId , linkToGernerate.password, linkToGernerate. isOneTimeUse, linkToGernerate. downloadLimit,int.Parse(idClaim));
                 return Ok(new { link });
             }
             catch (Exception ex)

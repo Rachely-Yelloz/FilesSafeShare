@@ -7,6 +7,7 @@ import App from './App.tsx'
 import Login from './component/Login.tsx';
 import Register from './component/Register.tsx';
 import Files from './component/Files.tsx';
+import UploadFile from './component/Uploadfile.tsx';
 const Routes = createBrowserRouter([
   {
     path: "login",
@@ -35,7 +36,7 @@ const Routes = createBrowserRouter([
     path: "files",
     element: <Files />,
     children: [
-
+  {path: 'upload', element: <UploadFile /> },
     ]
   }
 
