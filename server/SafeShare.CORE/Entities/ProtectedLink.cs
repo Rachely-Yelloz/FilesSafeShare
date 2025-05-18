@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SafeShare.CORE.Entities
 {
-    [Table("protected_links")]  // שם הטבלה במסד הנתונים
+    [Table("protected_link")]  // שם הטבלה במסד הנתונים
 
     public class ProtectedLink
     {
