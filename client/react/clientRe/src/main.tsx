@@ -31,12 +31,12 @@ const Routes = createBrowserRouter([
       { path: 'register', element: <Register /> }
 
     ]
-  }, 
+  },
   {
     path: "files",
     element: <Files />,
     children: [
-  {path: 'upload', element: <UploadFile /> },
+      { path: 'upload', element: <UploadFile /> },
     ]
   }
 

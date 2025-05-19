@@ -10,7 +10,7 @@ import Alert from '@mui/joy/Alert';
 import Link from '@mui/joy/Link';
 import { FaUser, FaLock, FaEnvelope, FaShieldAlt } from 'react-icons/fa';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { useState } from 'react';
 import CircularProgress from '@mui/joy/CircularProgress';
@@ -241,6 +241,8 @@ export default function Register() {
           </form>
         </Sheet>
       </div>
+      <Outlet />
+
     </CssVarsProvider>
   );
 }

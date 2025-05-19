@@ -10,7 +10,7 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import { FaUser, FaLock, FaShieldAlt } from 'react-icons/fa';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import CircularProgress from '@mui/joy/CircularProgress';
 
@@ -233,6 +233,8 @@ export default function Login() {
           </Typography>
         </Sheet>
       </div>
+      <Outlet />
+
     </CssVarsProvider>
   );
 }
