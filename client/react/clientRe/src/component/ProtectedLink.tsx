@@ -45,7 +45,8 @@ const ProtectedLink = ({ fileId }: Props) => {
 
   const addLink = async () => {
     try {
-      const response = await axios.post(
+      //const response = 
+      await axios.post(
         `https://filessafeshare-1.onrender.com/api/ProtectedLink/generate`,
         null,
         {

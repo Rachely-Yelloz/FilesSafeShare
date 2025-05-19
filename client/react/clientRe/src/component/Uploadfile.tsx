@@ -3,7 +3,8 @@ import type React from "react"
 import { useState, useRef } from "react"
 import {
   TextField, Button, FormControlLabel, Checkbox, Box, Typography, CircularProgress, Tooltip, IconButton, InputAdornment,
-  Slider, Paper, Fade, Stepper, Step, StepLabel, Divider, Alert, Chip, useMediaQuery, useTheme,
+  Slider, Paper, Fade, Stepper, Step, StepLabel, Divider, Alert, Chip, 
+  //useMediaQuery, useTheme,
 } from "@mui/material"
 import {
   FaFileUpload, FaLink, FaEye, FaEyeSlash, FaCopy, FaLock, FaCalendarAlt, FaKey, FaFileAlt, FaCheck,
@@ -36,8 +37,8 @@ export default function UploadFile() {
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+  //const theme = useTheme()
+  // const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
 
   const steps = ["File Selection", "Security Settings", "Upload & Share"]
 
@@ -116,7 +117,9 @@ export default function UploadFile() {
 
       setUploadProgress(60)
 
-      const { uploadUrl, fileUrl, fileKey } = response.data
+      const { uploadUrl
+        // ,  fileUrl, fileKey 
+      } = response.data
       const encryptedBlob = new Blob([fileandkeys.ciphertext], {
         type: "application/octet-stream",
       })
@@ -167,6 +170,7 @@ export default function UploadFile() {
   }
 
   const getPasswordStrengthColor = () => {
+    if(error){}
     if (passwordStrength === 0) return "#ff4b2b"
     if (passwordStrength === 1) return "#ff4b2b"
     if (passwordStrength === 2) return "#ff9800"
