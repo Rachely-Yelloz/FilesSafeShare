@@ -85,6 +85,41 @@ export async function uploadFileToDb(fileName: string, storagePath: string, encr
 //         throw error;
 //     }
 // }
+// export async function generateProtectedLink(
+//   fileId: number,
+//   password: string,
+//   isOneTimeUse: boolean,
+//   downloadLimit?: number // אופציונלי
+// ) {
+//   try {
+//     const token = sessionStorage.getItem('authToken');
+
+//     const response = await axios.post(
+//       'https://filessafeshare-1.onrender.com/api/ProtectedLink/generate',
+//       null, // אין גוף כי הכל ב־query string
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//         params: {
+//           fileId,
+//           password,
+//           isOneTimeUse,
+//           downloadLimit,
+//         },
+//       }
+//     );
+
+//     console.log('Generated Protected Link:', response.data.link);
+//     return response.data.link;
+//   } catch (error: any) {
+//     console.error(
+//       'Error generating protected link:',
+//       error.response ? error.response.data : error
+//     );
+//     throw error;
+//   }
+// }
 export async function generateProtectedLink(
   fileId: number,
   password: string,
@@ -94,18 +129,20 @@ export async function generateProtectedLink(
   try {
     const token = sessionStorage.getItem('authToken');
 
+    const requestData = {
+      fileId,
+      password,
+      isOneTimeUse,
+      downloadLimit, // אם undefined, זה עדיין חוקי כי זה nullable בצד שרת
+    };
+
     const response = await axios.post(
       'https://filessafeshare-1.onrender.com/api/ProtectedLink/generate',
-      null, // אין גוף כי הכל ב־query string
+      requestData, // נשלח בגוף הבקשה
       {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
-        params: {
-          fileId,
-          password,
-          isOneTimeUse,
-          downloadLimit,
+          'Content-Type': 'application/json',
         },
       }
     );
