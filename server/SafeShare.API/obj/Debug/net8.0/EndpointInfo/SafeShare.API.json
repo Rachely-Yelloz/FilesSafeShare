@@ -299,38 +299,25 @@
         "tags": [
           "ProtectedLink"
         ],
-        "parameters": [
-          {
-            "name": "fileId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "isOneTimeUse",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "downloadLimit",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/protectedLinkGenerate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/protectedLinkGenerate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/protectedLinkGenerate"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -502,12 +489,10 @@
           },
           "encryptionKey": {
             "type": "string",
-            "format": "byte",
             "nullable": true
           },
           "nonce": {
             "type": "string",
-            "format": "byte",
             "nullable": true
           }
         },
@@ -618,6 +603,10 @@
           "isOneTimeUse": {
             "type": "boolean"
           },
+          "linkid_hash": {
+            "type": "string",
+            "nullable": true
+          },
           "downloadLimit": {
             "type": "integer",
             "format": "int32",
@@ -690,6 +679,28 @@
           },
           "isAdmin": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "protectedLinkGenerate": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOneTimeUse": {
+            "type": "boolean"
+          },
+          "downloadLimit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false

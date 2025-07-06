@@ -1,169 +1,3 @@
-// // Description: This component manages the file upload and display functionality for the SafeShare application.
-// // It allows users to upload files, view their uploaded files, and generate protected links for sharing.
-// import { useState, useEffect } from "react";
-// import {
-//   Container, Box, Typography, Button, List, IconButton, Divider, Modal
-// } from "@mui/material";
-// import { FaFileUpload, FaShieldAlt, FaTrash, FaEdit, FaLink } from "react-icons/fa";
-// import axios from "axios";
-// import Uploadfile from "./Uploadfile";
-// import ProtectedLink from "./ProtectedLink"; // ייבוא הקומפוננטה של הלינקים
-// import { motion } from "framer-motion";
-// import { Outlet, useNavigate } from "react-router-dom";
-
-// interface FileItem {
-//   fileId: number;
-//   fileName: string;
-//   downloadCount: number;
-// }
-
-// export default function Files() {
-//   const [files, setFiles] = useState<FileItem[]>([]);
-//   const [openUploadModal, setOpenUploadModal] = useState(false);
-//   const [openLinksModal, setOpenLinksModal] = useState(false);
-//   const [selectedFileId, setSelectedFileId] = useState<number | null>(null);
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const userId = sessionStorage.getItem("userId");
-//     const authToken = sessionStorage.getItem("authToken");
-
-//     if (!authToken) {
-//       console.error("No auth token found");
-//       return;
-//     }
-
-//     axios.get(`https://filessafeshare-1.onrender.com/api/File/user/${userId}`, {
-//       headers: { Authorization: `Bearer ${authToken}` }
-//     })
-//       .then(response => setFiles(response.data))
-//       .catch(error => console.error("Error fetching files:", error));
-//   }, []);
-
-//   const handleOpenLinks = (fileId: number) => {
-//     setSelectedFileId(fileId);
-//     setOpenLinksModal(true);
-//   };
-
-//   return (
-//     <Container maxWidth="lg" sx={{
-//       background: "#121212",
-//       color: "white",
-//       p: 4,
-//       boxShadow: "0px 0px 20px rgba(255, 65, 108, 0.5)",
-//       height: "100vh",
-//       minWidth: "100%",
-//       display: "flex",
-//       flexDirection: "column",
-//       borderRadius: 0,
-//       margin: 0,
-//     }}>
-//       <Typography component="h1" variant="h4" sx={{
-//         mb: 3,
-//         fontWeight: 'bold',
-//         color: '#ff416c',
-//         display: 'flex',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         gap: 1
-//       }}>
-//         <FaShieldAlt /> SafeShare - File Manager
-//       </Typography>
-
-//       {/* כפתור לפתיחת הפופאפ */}
-//       <Box display="flex" justifyContent="center" sx={{ mb: 3 }}>
-//         <Button
-//           variant="contained"
-//           sx={{
-//             background: "linear-gradient(135deg, #ff416c, #ff4b2b)",
-//             "&:hover": { opacity: 0.85 }
-//           }}
-//           onClick={() => navigate("upload")}
-
-//         >
-
-//           <FaFileUpload style={{ marginRight: "8px" }} /> Upload File
-//         </Button>
-
-//       </Box>
-//       <Divider sx={{ background: "#ff416c", mb: 2 }} />
-//       {files.length === 0 &&
-//         <Typography variant="body1" sx={{ mb: 3, color: '#ddd', textAlign: 'center' }}>
-//           You still don't have files. Press "Upload File" to add one.
-//         </Typography>}
-
-//       {/* רשימת הקבצים */}
-//       <List>
-//         {files.map((file) => (
-//           <Box key={file.fileId} sx={{
-//             background: "rgba(255, 255, 255, 0.1)",
-//             borderRadius: "8px",
-//             p: 2,
-//             mb: 2,
-//             display: "flex",
-//             alignItems: "center",
-//             justifyContent: "space-between"
-//           }}>
-//             <Box>
-//               <Typography variant="h6" sx={{ color: "white", fontWeight: "bold" }}>
-//                 {file.fileName}
-//               </Typography>
-//               <Typography variant="body2" sx={{ color: "#ff416c" }}>
-//                 Downloads: {file.downloadCount}
-//               </Typography>
-//             </Box>
-
-//             {/* כפתורים */}
-//             <Box display="flex" gap={1}>
-//               <IconButton sx={{ color: "#ff416c" }} onClick={() => handleOpenLinks(file.fileId)}>
-//                 <FaLink />
-//               </IconButton>
-//               <IconButton sx={{ color: "#ff416c" }} onClick={() => console.log("Editing", file.fileId)}>
-//                 <FaEdit />
-//               </IconButton>
-//               <IconButton sx={{ color: "#ff4b2b" }} onClick={() => console.log("Deleting", file.fileId)}>
-//                 <FaTrash />
-//               </IconButton>
-//             </Box>
-//           </Box>
-//         ))}
-//       </List>
-
- 
-//       {/* מודאל להצגת הלינקים */}
-//       <Modal open={openLinksModal} onClose={() => setOpenLinksModal(false)}>
-//         <motion.div
-//           initial={{ opacity: 0, scale: 0.8 }}
-//           animate={{ opacity: 1, scale: 1 }}
-//           exit={{ opacity: 0, scale: 0.8 }}
-//           transition={{ duration: 0.3 }}
-//           style={{
-//             position: "absolute",
-//             top: "50%",
-//             left: "50%",
-//             transform: "translate(-50%, -50%)", // שומר על המודאל במרכז המסך
-//             background: "#121212",
-//             padding: "20px",
-//             borderRadius: "10px",
-//             boxShadow: "0px 0px 10px rgba(255, 65, 108, 0.5)",
-//             width: "90%",
-//             maxWidth: "500px",
-//           }}
-//         >
-
-//           {selectedFileId && <ProtectedLink fileId={selectedFileId} />}
-//           <Box display="flex" justifyContent="center" mt={2}>
-//             <Button variant="contained" onClick={() => setOpenLinksModal(false)} sx={{ background: "#ff416c" }}>
-//               Close
-//             </Button>
-//           </Box>
-//         </motion.div>
-//       </Modal>
-//       <Outlet />
-
-//     </Container>
-//   );
-// }
 "use client"
 
 import { useState, useEffect } from "react"
@@ -200,6 +34,7 @@ import {
   FaDownload,
   FaEye,
   FaLock,
+  FaListUl,
 } from "react-icons/fa"
 import axios from "axios"
 import ProtectedLink from "./ProtectedLink"
@@ -285,10 +120,10 @@ export default function Files() {
     if (!deleteConfirmId) return
 
     try {
-      // Implement actual delete API call here
-      // await axios.delete(`https://filessafeshare-1.onrender.com/api/File/${deleteConfirmId}`, {
-      //   headers: { Authorization: `Bearer ${sessionStorage.getItem("authToken")}` }
-      // });
+
+      await axios.delete(`https://filessafeshare-1.onrender.com/api/File?fileId=${deleteConfirmId}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.getItem("authToken")}` }
+      });
 
       // Optimistic UI update
       setFiles((prev) => prev.filter((file) => file.fileId !== deleteConfirmId))
@@ -401,6 +236,22 @@ export default function Files() {
                   </Box>
 
                   <Box display="flex" gap={1}>
+                    <Tooltip title="Show protected links" arrow>
+                      <IconButton
+                        sx={{
+                          color: "#ff416c",
+                          transition: "all 0.2s",
+                          "&:hover": {
+                            background: "rgba(255, 65, 108, 0.2)",
+                            transform: "scale(1.1)",
+                          },
+                        }}
+                        onClick={() => handleOpenLinks(file.fileId)}
+                      >
+                        <FaListUl /> {/* או FaLink גם בסדר אם רוצים משהו שמזכיר קישורים */}
+                      </IconButton>
+                    </Tooltip>
+
                     <Tooltip title="Generate Link" arrow>
                       <IconButton
                         sx={{
@@ -919,7 +770,7 @@ export default function Files() {
 }
 
 // Helper component for the FaList icon
-function FaList(props:any) {
+function FaList(props: any) {
   return (
     <svg
       stroke="currentColor"

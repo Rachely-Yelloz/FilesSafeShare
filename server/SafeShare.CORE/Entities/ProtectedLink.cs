@@ -29,16 +29,19 @@ namespace SafeShare.CORE.Entities
         public User User { get; set; }
         [Column("creation_date")]
 
-        public DateTime CreationDate { get; set;}
+        public DateTime CreationDate { get; set; }
         [Column("password_hash")]
 
-        public string PasswordHash { get; set;}
+        public string PasswordHash { get; set; }
         [Column("expiration_date")]
 
-        public DateTime? ExpirationDate { get; set;}
+        public DateTime? ExpirationDate { get; set; }
         [Column("is_one_time_use")]
 
         public bool IsOneTimeUse { get; set; }
+        [Column("linkid_hash")]
+        public string linkid_hash { get; set; }
+
         [Column("download_limit")]
 
         public int? DownloadLimit { get; set; }

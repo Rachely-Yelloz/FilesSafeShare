@@ -9,6 +9,7 @@ namespace SafeShare.CORE.DTO_s
     public class ProtectedLinkDTO
     {
         public int LinkId { get; set; }
+        public string linkid_hash { get; set; }
         public int FileId { get; set; }
         public int UserId { get; set; }
         public DateTime CreationDate { get; set; }

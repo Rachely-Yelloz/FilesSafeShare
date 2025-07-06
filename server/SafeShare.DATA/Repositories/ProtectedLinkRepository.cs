@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using static System.Net.WebRequestMethods;
 
 namespace SafeShare.DATA.Repositories
@@ -42,9 +43,11 @@ namespace SafeShare.DATA.Repositories
 
             // הצפנת ה- fileId לייצור קישור מוגן
             string encryptedId = EncryptionHelper.Encrypt(protectedLink.LinkId.ToString());
+            protectedLink.linkid_hash = encryptedId; // שמירת ה- hash בקישור המוגן
+            await _dataContext.SaveChangesAsync();
 
             // זה יכול להיות מוגדר בפרופרטי או בקובץ קונפיגורציה
-            string downloadLink = $"https://yourapp.com/download/{encryptedId}";  // TODO: לשנות את ה-URL
+            string downloadLink = $"https://safesharereact.onrender.com/download/{encryptedId}";  // TODO: לשנות את ה-URL
 
             return downloadLink;
         }
@@ -52,10 +55,10 @@ namespace SafeShare.DATA.Repositories
         public async Task<int> DecipherProtectedLinkAsync(string link, string passwordhash)
         {
             // כתובת תקנית של השרת (ללא קידוד)
-            var url = "https://yourapp.com/download/";
+            var url = "https://safesharereact.onrender.com/download/";
 
             // פענוח הכתובת המקודדת
-            string decodedLink = Uri.UnescapeDataString(link);
+            string decodedLink = HttpUtility.UrlDecode(link);
 
             // בדיקה אם הקישור באמת מתחיל בכתובת הרצויה
             if (!decodedLink.StartsWith(url))
@@ -103,6 +106,7 @@ namespace SafeShare.DATA.Repositories
 
             return protectedLinks;
         }
+   
     }
 }
 
