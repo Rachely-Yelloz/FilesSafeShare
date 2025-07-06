@@ -10,6 +10,7 @@ interface ProtectedLink {
   isOneTimeUse: boolean;
   downloadLimit?: number;
   currentDownloadCount: number;
+  linkid_hash: string; // Assuming this is a string based on your previous code
 }
 
 interface Props {
@@ -174,6 +175,10 @@ const ProtectedLink = ({ fileId }: Props) => {
                 <p>
                   <span className="text-red-400">מספר הורדות:</span>{" "}
                   {link.currentDownloadCount}
+                </p>
+                   <p>
+                  <span className="text-red-400">לינק:</span>{" "}
+                 https://safesharereact.onrender.com/download/{link.linkid_hash}
                 </p>
               </div>
               <div className="flex gap-2">
