@@ -21,6 +21,11 @@ namespace SafeShare.SERVICE
             return _protectedLinkRepository.DecipherProtectedLinkAsync(link, passwordhash);
         }
 
+        public Task<bool> DeleteProtectedLinkAsync(int linkId, int userId)
+        {
+            return _protectedLinkRepository.DeleteProtectedLinkAsync(linkId, userId);
+        }
+
         public Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId)
         {
             return _protectedLinkRepository.GenerateProtectedLinkAsync(fileId, passwordhash, isOneTimeUse, downloadLimit, userId);
@@ -30,5 +35,11 @@ namespace SafeShare.SERVICE
         {
             return _protectedLinkRepository.GetProtectedLinksByFileIdAsync(fileId);
         }
+
+        public Task<bool> UpdateProtectedLinkAsync(int linkId, int fileId, bool isOneTimeUse, int downloadLimit, int userId)
+        {
+            return _protectedLinkRepository.UpdateProtectedLinkAsync(linkId, fileId, isOneTimeUse, downloadLimit, userId);
+        }
+
     }
 }

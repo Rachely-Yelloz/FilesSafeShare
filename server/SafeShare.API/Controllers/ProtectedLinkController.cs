@@ -29,7 +29,7 @@ namespace SafeShare.API.Controllers
             var idClaim = User.FindFirst("id")?.Value;
             try
             {
-                string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGernerate.fileId , linkToGernerate.password, linkToGernerate. isOneTimeUse, linkToGernerate. downloadLimit,int.Parse(idClaim));
+                string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGernerate.fileId, linkToGernerate.password, linkToGernerate.isOneTimeUse, linkToGernerate.downloadLimit, int.Parse(idClaim));
                 return Ok(new { link });
             }
             catch (Exception ex)
@@ -43,8 +43,8 @@ namespace SafeShare.API.Controllers
         {
             try
             {
-                int fileId = await _protectedLinkService.DecipherProtectedLinkAsync(encryptedLink,password);
-                return Ok(fileId); 
+                int fileId = await _protectedLinkService.DecipherProtectedLinkAsync(encryptedLink, password);
+                return Ok(fileId);
             }
             catch (UnauthorizedAccessException)
             {
@@ -75,6 +75,35 @@ namespace SafeShare.API.Controllers
                 // אם מצאנו לינקים מוגנים, נמפה אותם ל-DTO ותחזיר אותם
                 var protectedLinksDto = _mapper.Map<IEnumerable<ProtectedLinkDTO>>(protectedLinks);
                 return Ok(protectedLinksDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [HttpDelete("delete/{linkId}")]
+        public async Task<IActionResult> DeleteProtectedLink(int linkId)
+        {
+            try
+            {
+                var idClaim = User.FindFirst("id")?.Value;
+
+                await _protectedLinkService.DeleteProtectedLinkAsync(linkId, int.Parse(idClaim));
+                return Ok("your link deleted secussfuly");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [HttpPut("update/{linkId}")]
+        public async Task<IActionResult> UpdateProtectedLink(int linkId, [FromBody] protectedLinkGenerate linkToUpdate)
+        {
+            try
+            {
+                var idClaim = User.FindFirst("id")?.Value;
+                await _protectedLinkService.UpdateProtectedLinkAsync(linkId, linkToUpdate.fileId, linkToUpdate.isOneTimeUse, linkToUpdate.downloadLimit, int.Parse(idClaim));
+                return Ok("your link updated secussfuly");
             }
             catch (Exception ex)
             {
