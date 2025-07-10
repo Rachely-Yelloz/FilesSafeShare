@@ -106,9 +106,81 @@ namespace SafeShare.DATA.Repositories
 
             return protectedLinks;
         }
-   
+
+        //    public async Task<bool> DeleteProtectedLinkAsync(int linkId, int userId)
+        //    {
+        //        var link = await _dataContext.protectedLinks.FindAsync(linkId);
+        //        if (link == null)
+        //        {
+        //            throw new FileNotFoundException($"קישור עם מזהה {linkId} לא נמצא.");
+        //        }
+        //        if (link.UserId == userId)
+        //        {
+        //            _dataContext.protectedLinks.Remove(link);
+        //            int changes = await _dataContext.SaveChangesAsync();
+        //            return changes > 0;
+        //        }
+        //        else
+        //        {
+        //            throw new UnauthorizedAccessException("you not alllowd to delete the link.");
+        //        }
+        //    }
+
+        //    public async Task<bool> UpdateProtectedLinkAsync(int linkId, int fileId, bool isOneTimeUse, int downloadLimit, int userId)
+        //    {
+        //        var link =await _dataContext.protectedLinks.FindAsync(linkId);
+        //        if (link == null)
+        //        {
+        //            throw new FileNotFoundException($"קישור עם מזהה {linkId} לא נמצא.");
+        //        }
+        //        if (link.UserId == userId)
+        //        {
+        //            link.FileId = fileId;
+        //            link.IsOneTimeUse = isOneTimeUse;
+        //            link.DownloadLimit = downloadLimit;
+        //            _dataContext.protectedLinks.Update(link);
+        //            int changes = await _dataContext.SaveChangesAsync();
+        //            return changes > 0;
+        //        }
+        //        else
+        //        {
+        //            throw new UnauthorizedAccessException("you not alllowd to update the link.");
+        //        }
+        //    }
+        //}
+        public async Task<bool> DeleteProtectedLinkAsync(int linkId, int userId)
+        {
+            var link = await _dataContext.protectedLinks.FindAsync(linkId);
+            if (link == null)
+                throw new FileNotFoundException($"linkId {linkId} not found.");
+
+            if (link.UserId != userId)
+                throw new UnauthorizedAccessException("You are not allowed to delete the link.");
+
+            _dataContext.protectedLinks.Remove(link);
+            int changes = await _dataContext.SaveChangesAsync();
+            return changes > 0;
+        }
+
+        public async Task<bool> UpdateProtectedLinkAsync(int linkId, int fileId, bool isOneTimeUse, int downloadLimit, int userId)
+        {
+            var link = await _dataContext.protectedLinks.FindAsync(linkId);
+            if (link == null)
+                throw new FileNotFoundException($"linkId {linkId} not found.");
+
+            if (link.UserId != userId)
+                throw new UnauthorizedAccessException("You are not allowed to update the link.");
+
+            link.FileId = fileId;
+            link.IsOneTimeUse = isOneTimeUse;
+            link.DownloadLimit = downloadLimit;
+
+            // אין צורך לקרוא ל-Update כי EF עוקב אחרי האובייקט
+            int changes = await _dataContext.SaveChangesAsync();
+            return changes > 0;
+        }
     }
-}
+    }
 
 
 
