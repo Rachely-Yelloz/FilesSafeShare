@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SafeShare.API.Models;
 using SafeShare.CORE.DTO_s;
-using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
 namespace SafeShare.API.Controllers
 {
