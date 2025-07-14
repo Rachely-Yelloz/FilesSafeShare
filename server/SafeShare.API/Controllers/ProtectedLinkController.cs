@@ -97,12 +97,12 @@ namespace SafeShare.API.Controllers
             }
         }
         [HttpPut("update/{linkId}")]
-        public async Task<IActionResult> UpdateProtectedLink(int linkId, [FromBody] protectedLinkGenerate linkToUpdate)
+        public async Task<IActionResult> UpdateProtectedLink(int linkId, [FromBody] ProtectedLinkPutModel linkToUpdate)
         {
             try
             {
                 var idClaim = User.FindFirst("id")?.Value;
-                await _protectedLinkService.UpdateProtectedLinkAsync(linkId, linkToUpdate.fileId, linkToUpdate.isOneTimeUse, linkToUpdate.downloadLimit, int.Parse(idClaim));
+                await _protectedLinkService.UpdateProtectedLinkAsync(linkId, linkToUpdate.FileId, linkToUpdate.IsOneTimeUse, linkToUpdate.DownloadLimit,linkToUpdate.ExpirationDate, int.Parse(idClaim));
                 return Ok("your link updated secussfuly");
             }
             catch (Exception ex)

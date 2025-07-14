@@ -332,7 +332,7 @@ const ProtectedLink = ({ fileId }: Props) => {
   const deleteLink = async (linkId: number) => {
     try {
       await axios.delete(
-        `https://filessafeshare-1.onrender.com/api/ProtectedLink/${linkId}`,
+        `https://filessafeshare-1.onrender.com/api/ProtectedLink/delete/${linkId}`,
         { headers: { Authorization: `Bearer ${authToken}` } }
       )
       fetchLinks()
@@ -346,9 +346,11 @@ const ProtectedLink = ({ fileId }: Props) => {
 
     try {
       await axios.put(
-        `https://filessafeshare-1.onrender.com/api/ProtectedLink/${editingLink.linkId}`,
+        `https://filessafeshare-1.onrender.com/api/ProtectedLink/update/${editingLink.linkId}`,
         {
+          fileId: editingLink.fileId,
           expirationDate: editingLink.expirationDate,
+          isOneTimeUse: editingLink.isOneTimeUse,
           downloadLimit: editingLink.downloadLimit,
         },
         { headers: { Authorization: `Bearer ${authToken}` } }

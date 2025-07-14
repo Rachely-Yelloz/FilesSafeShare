@@ -162,7 +162,7 @@ namespace SafeShare.DATA.Repositories
             return changes > 0;
         }
 
-        public async Task<bool> UpdateProtectedLinkAsync(int linkId, int fileId, bool isOneTimeUse, int? downloadLimit, int userId)
+        public async Task<bool> UpdateProtectedLinkAsync(int linkId, int fileId, bool isOneTimeUse, int? downloadLimit, DateTime? ExpirationDate , int userId)
         {
             var link = await _dataContext.protectedLinks.FindAsync(linkId);
             if (link == null)
@@ -174,6 +174,7 @@ namespace SafeShare.DATA.Repositories
             link.FileId = fileId;
             link.IsOneTimeUse = isOneTimeUse;
             link.DownloadLimit = downloadLimit;
+            link.ExpirationDate = ExpirationDate;
 
             // אין צורך לקרוא ל-Update כי EF עוקב אחרי האובייקט
             int changes = await _dataContext.SaveChangesAsync();
