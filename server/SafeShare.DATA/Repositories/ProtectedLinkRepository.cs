@@ -162,7 +162,7 @@ namespace SafeShare.DATA.Repositories
             return changes > 0;
         }
 
-        public async Task<bool> UpdateProtectedLinkAsync(int linkId, int fileId, bool isOneTimeUse, int downloadLimit, int userId)
+        public async Task<bool> UpdateProtectedLinkAsync(int linkId, int fileId, bool isOneTimeUse, int? downloadLimit, int userId)
         {
             var link = await _dataContext.protectedLinks.FindAsync(linkId);
             if (link == null)
