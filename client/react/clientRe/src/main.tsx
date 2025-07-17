@@ -8,6 +8,7 @@ import Login from './component/Login.tsx';
 import Register from './component/Register.tsx';
 import Files from './component/Files.tsx';
 import UploadFile from './component/Uploadfile.tsx';
+import Download from './component/Download.tsx';
 const Routes = createBrowserRouter([
   {
     path: "login",
@@ -38,6 +39,9 @@ const Routes = createBrowserRouter([
     children: [
       { path: 'upload', element: <UploadFile /> },
     ]
+  },{
+    path: "download",
+    element:<Download />
   }
 
 ])

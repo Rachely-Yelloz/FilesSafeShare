@@ -46,47 +46,34 @@ namespace SafeShare.DATA.Repositories
             protectedLink.linkid_hash = encryptedId; // שמירת ה- hash בקישור המוגן
             await _dataContext.SaveChangesAsync();
 
-            // זה יכול להיות מוגדר בפרופרטי או בקובץ קונפיגורציה
-            string downloadLink = $"https://safesharereact.onrender.com/download/{encryptedId}";  // TODO: לשנות את ה-URL
 
-            return downloadLink;
+            return encryptedId;
         }
 
-        public async Task<int> DecipherProtectedLinkAsync(string link, string passwordhash)
+        public async Task<int> DecipherProtectedLinkAsync(string fileId, string passwordhash)
         {
-            // כתובת תקנית של השרת (ללא קידוד)
-            var url = "https://safesharereact.onrender.com/download/";
+           
 
-            // פענוח הכתובת המקודדת
-            string decodedLink = HttpUtility.UrlDecode(link);
-
-            // בדיקה אם הקישור באמת מתחיל בכתובת הרצויה
-            if (!decodedLink.StartsWith(url))
-                throw new InvalidOperationException("הקישור אינו תקין.");
-
-            // חיתוך החלק של ה-ID המוצפן
-            var changeLink = decodedLink.Substring(url.Length);
-
-            if (!int.TryParse(EncryptionHelper.Decrypt(changeLink), out int linkId))
-                throw new InvalidOperationException("הקישור המוצפן לא מכיל מזהה תקין.");
+            if (!int.TryParse(EncryptionHelper.Decrypt(fileId), out int linkId))
+                throw new InvalidOperationException("invalid link "+fileId);
 
             ProtectedLink protectedLink = await _dataContext.protectedLinks.FindAsync(linkId);
             if (protectedLink == null)
-                throw new FileNotFoundException("הקישור לא נמצא במסד הנתונים.");
+                throw new FileNotFoundException("there isnt link with this id "+fileId);
 
             // השוואת סיסמה מאובטחת
             if (!CryptographicOperations.FixedTimeEquals(
                 Encoding.UTF8.GetBytes(protectedLink.PasswordHash),
                 Encoding.UTF8.GetBytes(passwordhash)))
             {
-                throw new UnauthorizedAccessException("הסיסמה שהוזנה אינה תואמת.");
+                throw new UnauthorizedAccessException("invalid password ");
             }
 
             // בדיקה אם הגעת למגבלת ההורדות
             if ((protectedLink.IsOneTimeUse && protectedLink.CurrentDownloadCount >= 1) ||
                 (protectedLink.DownloadLimit.HasValue && protectedLink.DownloadLimit == protectedLink.CurrentDownloadCount))
             {
-                throw new InvalidOperationException("הגעת למגבלת ההורדות של הקישור.");
+                throw new InvalidOperationException("you cant dawnload more");
             }
 
             // עדכון מספר ההורדות

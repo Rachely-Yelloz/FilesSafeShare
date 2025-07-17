@@ -38,11 +38,11 @@ namespace SafeShare.API.Controllers
         }
 
         [HttpGet("download/{encryptedLink}")]
-        public async Task<IActionResult> DownloadFile(string encryptedLink, [FromQuery] string password)
+        public async Task<IActionResult> DownloadFile([FromBody] ProtectedLinkDownloadModel link)
         {
             try
             {
-                int fileId = await _protectedLinkService.DecipherProtectedLinkAsync(encryptedLink, password);
+                int fileId = await _protectedLinkService.DecipherProtectedLinkAsync(link.LinkIdDecoded, link.Password);
                 return Ok(fileId);
             }
             catch (UnauthorizedAccessException)
