@@ -419,73 +419,78 @@ const ProtectedLink = ({ fileId }: Props) => {
             border: "1px solid rgba(255, 65, 108, 0.2)",
           }}
         > */}
-        <Box
-  sx={{
-    maxHeight: 400,
-    overflowY: "auto",
-    pr: 1,
-    mb: 3,
-    scrollbarWidth: "thin",
-    "&::-webkit-scrollbar": {
-      width: "8px",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "#ff416c",
-      borderRadius: "4px",
-    },
-  }}
->
-  {links.map((link) => (
-    <Paper
-      key={link.linkId}
-      sx={{
-        background: "#1e1e1e",
-        p: 2,
-        mb: 2,
-        border: "1px solid rgba(255, 65, 108, 0.2)",
-      }}
-    >
-      <Typography
+      <Box
         sx={{
-          color: "#fff",
-          fontWeight: "bold",
-          wordBreak: "break-all", // 💥 כדי שהלינק לא יגלוש
+          maxHeight: 400,
+          overflowY: "auto",
+          pr: 1,
+          mb: 3,
+          scrollbarWidth: "thin",
+          "&::-webkit-scrollbar": {
+            width: "8px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#ff416c",
+            borderRadius: "4px",
+          },
         }}
       >
-        {`https://safesharereact.onrender.com/download/${link.linkid_hash}`}
-      </Typography>
-      <Typography sx={{ color: "#aaa", mt: 1 }}>
-        <FaCalendarAlt style={{ marginRight: 6 }} />
-        נוצר: {new Date(link.creationDate).toLocaleString()}
-      </Typography>
-      {link.expirationDate && (
-        <Typography sx={{ color: "#aaa" }}>
-          <FaClock style={{ marginRight: 6 }} />
-          פג תוקף: {new Date(link.expirationDate).toLocaleString()}
-        </Typography>
-      )}
-      <Typography sx={{ color: "#aaa" }}>
-        <FaDownload style={{ marginRight: 6 }} />
-        הורדות: {link.currentDownloadCount} / {link.downloadLimit ?? "∞"}
-      </Typography>
+        {links.map((link) => (
+          <Paper
+            key={link.linkId}
+            sx={{
+              background: "#1e1e1e",
+              p: 2,
+              mb: 2,
+              border: "1px solid rgba(255, 65, 108, 0.2)",
+            }}
+          >
+            <Typography
+              sx={{
+                color: "#fff",
+                fontWeight: "bold",
+                wordBreak: "break-all", // 💥 כדי שהלינק לא יגלוש
+              }}
+            >
+              {/* {`https://safesharereact.onrender.com/download/${link.linkid_hash}`} */}
+<a href={`https://safesharereact.onrender.com/download/${encodeURIComponent(link.linkid_hash)}`} target="_blank" rel="noopener noreferrer">
+  {`https://safesharereact.onrender.com/download/${encodeURIComponent(link.linkid_hash)}`}
+</a>
+            </Typography>
+            <Typography sx={{ color: "#aaa", mt: 1 }}>
+              <FaCalendarAlt style={{ marginRight: 6 }} />
+              נוצר: {new Date(link.creationDate).toLocaleString()}
+            </Typography>
+            {link.expirationDate && (
+              <Typography sx={{ color: "#aaa" }}>
+                <FaClock style={{ marginRight: 6 }} />
+                פג תוקף: {new Date(link.expirationDate).toLocaleString()}
+              </Typography>
+            )}
+            <Typography sx={{ color: "#aaa" }}>
+              <FaDownload style={{ marginRight: 6 }} />
+              הורדות: {link.currentDownloadCount} / {link.downloadLimit ?? "∞"}
+            </Typography>
 
-      <Box sx={{ mt: 2, display: "flex", gap: 1 }}>
-        <Tooltip title="ערוך">
-          <IconButton color="warning" onClick={() => setEditingLink(link)}>
-            <FaEdit />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="מחק">
-          <IconButton color="error" onClick={() => deleteLink(link.linkId)}>
-            <FaTrash />
-          </IconButton>
-        </Tooltip>
+
+            <Box sx={{ mt: 2, display: "flex", gap: 1 }}>
+              <Tooltip title="ערוך">
+                <IconButton color="warning" onClick={() => setEditingLink(link)}>
+                  <FaEdit />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="מחק">
+                <IconButton color="error" onClick={() => deleteLink(link.linkId)}>
+                  <FaTrash />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Paper>
+        ))}
       </Box>
-    </Paper>
-  ))}
-</Box>
-</Box>
-       
-)}       
+    </Box>
+
+  )
+}
 
 export default ProtectedLink

@@ -23,12 +23,12 @@ namespace SafeShare.API.Controllers
 
 
         [HttpPost("generate")]
-        public async Task<IActionResult> GenerateProtectedLink([FromBody] protectedLinkGenerate linkToGernerate)
+        public async Task<IActionResult> GenerateProtectedLink([FromBody] protectedLinkGenerate linkToGenerate)
         {
             var idClaim = User.FindFirst("id")?.Value;
             try
             {
-                string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGernerate.fileId, linkToGernerate.password, linkToGernerate.isOneTimeUse, linkToGernerate.downloadLimit, int.Parse(idClaim));
+                string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGenerate.fileId, linkToGenerate.password, linkToGenerate.isOneTimeUse, linkToGenerate.downloadLimit, int.Parse(idClaim));
                 return Ok(new { link });
             }
             catch (Exception ex)
@@ -36,8 +36,8 @@ namespace SafeShare.API.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-
-        [HttpGet("download/{encryptedLink}")]
+        [AllowAnonymous]
+        [HttpPost("download")]
         public async Task<IActionResult> DownloadFile([FromBody] ProtectedLinkDownloadModel link)
         {
             try
@@ -88,7 +88,7 @@ namespace SafeShare.API.Controllers
                 var idClaim = User.FindFirst("id")?.Value;
 
                 await _protectedLinkService.DeleteProtectedLinkAsync(linkId, int.Parse(idClaim));
-                return Ok("your link deleted secussfuly");
+                return Ok("your link deleted successfully");
             }
             catch (Exception ex)
             {
@@ -102,7 +102,7 @@ namespace SafeShare.API.Controllers
             {
                 var idClaim = User.FindFirst("id")?.Value;
                 await _protectedLinkService.UpdateProtectedLinkAsync(linkId, linkToUpdate.FileId, linkToUpdate.IsOneTimeUse, linkToUpdate.DownloadLimit,linkToUpdate.ExpirationDate, int.Parse(idClaim));
-                return Ok("your link updated secussfuly");
+                return Ok("your link updated successfully");
             }
             catch (Exception ex)
             {

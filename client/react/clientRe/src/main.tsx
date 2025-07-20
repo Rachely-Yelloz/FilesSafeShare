@@ -40,7 +40,7 @@ const Routes = createBrowserRouter([
       { path: 'upload', element: <UploadFile /> },
     ]
   },{
-    path: "download",
+    path: "download/:linkId",
     element:<Download />
   }
 
