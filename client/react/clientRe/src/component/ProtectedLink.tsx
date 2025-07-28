@@ -244,7 +244,6 @@ import {
   TextField,
   Button,
   Paper,
-  Divider,
   IconButton,
   Tooltip,
   Switch,
@@ -257,7 +256,6 @@ import {
   FaDownload,
   FaClock,
   FaPlus,
-  FaSave,
 } from "react-icons/fa"
 import axios from "axios"
 
@@ -341,26 +339,26 @@ const ProtectedLink = ({ fileId }: Props) => {
     }
   }
 
-  const updateLink = async () => {
-    if (!editingLink) return
+  // const updateLink = async () => {
+  //   if (!editingLink) return
 
-    try {
-      await axios.put(
-        `https://filessafeshare-1.onrender.com/api/ProtectedLink/update/${editingLink.linkId}`,
-        {
-          fileId: editingLink.fileId,
-          expirationDate: editingLink.expirationDate,
-          isOneTimeUse: editingLink.isOneTimeUse,
-          downloadLimit: editingLink.downloadLimit,
-        },
-        { headers: { Authorization: `Bearer ${authToken}` } }
-      )
-      setEditingLink(null)
-      fetchLinks()
-    } catch (error) {
-      console.error("Error updating link:", error)
-    }
-  }
+  //   try {
+  //     await axios.put(
+  //       `https://filessafeshare-1.onrender.com/api/ProtectedLink/update/${editingLink.linkId}`,
+  //       {
+  //         fileId: editingLink.fileId,
+  //         expirationDate: editingLink.expirationDate,
+  //         isOneTimeUse: editingLink.isOneTimeUse,
+  //         downloadLimit: editingLink.downloadLimit,
+  //       },
+  //       { headers: { Authorization: `Bearer ${authToken}` } }
+  //     )
+  //     setEditingLink(null)
+  //     fetchLinks()
+  //   } catch (error) {
+  //     console.error("Error updating link:", error)
+  //   }
+  // }
 
   return (
     <Box>
@@ -407,7 +405,7 @@ const ProtectedLink = ({ fileId }: Props) => {
           צור לינק
         </Button>
       </Paper>
-
+<a>{editingLink?.linkId}</a>
       {/* רשימה */}
       {/* {links.map((link) => (
         <Paper
