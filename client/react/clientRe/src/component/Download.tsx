@@ -54,11 +54,17 @@ export default function Download() {
     setIsLoading(true);
     setError("");
 
-    try {
+    
+      const url = 'https://filessafeshare-1.onrender.com/api/ProtectedLink/download';
+      const data = {
+        linkIdDecoded: linkId,
+        password: password // Use the password entered by the user",
+      };
+      try {
       // הכנס כאן את לוגיקת ההורדה
-await axios.get('https://filessafeshare-1.onrender.com/api/ProtectedLink/file/${linkId}', {)
+     const response= await axios.post(url, data );
+     console.log(response.data);
       setSuccess(true);
-      
       // כאן תוכל להוסיף את לוגיקת ההורדה האמיתית
       console.log("Downloading file with linkId:", linkId, "and password:", password);
     } catch (error) {
@@ -130,7 +136,7 @@ await axios.get('https://filessafeshare-1.onrender.com/api/ProtectedLink/file/${
             >
               <FaShieldAlt style={{ fontSize: "32px", color: "#ff416c" }} />
             </Box>
-            
+
             <Typography
               variant="h4"
               sx={{
@@ -142,7 +148,7 @@ await axios.get('https://filessafeshare-1.onrender.com/api/ProtectedLink/file/${
             >
               Secure Download
             </Typography>
-            
+
             <Typography
               variant="body1"
               sx={{
