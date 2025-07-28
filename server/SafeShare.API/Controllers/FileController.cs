@@ -51,8 +51,8 @@ namespace SafeShare.API.Controllers
             var fileDto = _mapper.Map<FileDTO>(file);  // שימוש ב AutoMapper למיפוי אוטומטי
             return Ok(fileDto); 
         }
-      
 
+        [AllowAnonymous]
         // Get encrypted file for download
         [HttpGet("download/{fileId}")]
         public async Task<IActionResult> DownloadFileAsync(int fileId)
