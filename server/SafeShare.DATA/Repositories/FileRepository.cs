@@ -44,17 +44,17 @@ namespace SafeShare.DATA.Repositories
 
         public async Task<FileDownload> GetFileForDownloadAsync(int fileId)
         {
-            var fileRecord = await _dataContext.filesToUpload.FindAsync(fileId);
+            var fileRecord = await _dataContext.filesToUpload.FirstOrDefaultAsync(f => f.FileId == fileId);
             if (fileRecord == null)
             {
-                throw new FileNotFoundException("הקובץ לא נמצא במערכת");
+                throw new FileNotFoundException("The file is not found in the system.");
             }
 
 
             string storagePath = fileRecord.StoragePath;
             if (string.IsNullOrEmpty(storagePath))
             {
-                throw new Exception("לא נמצא נתיב אחסון לקובץ");
+                throw new InvalidOperationException("No storage path found for the file.");
             }
             //שליפה מהענן!!
             FileDownload fileDownload = new FileDownload()
@@ -80,7 +80,7 @@ namespace SafeShare.DATA.Repositories
 
         public async Task<bool> UpdateFileAsync(int fileId, FileToUpload file)
         {
-            var fileFromDB = await _dataContext.filesToUpload.FindAsync(fileId);
+            var fileFromDB = await _dataContext.filesToUpload.FirstOrDefaultAsync(f => f.FileId == fileId); ;
             if (fileFromDB == null || file == null)
             {
                 return false;

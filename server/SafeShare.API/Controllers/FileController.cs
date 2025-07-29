@@ -58,9 +58,10 @@ namespace SafeShare.API.Controllers
         public async Task<IActionResult> DownloadFileAsync(int fileId)
         {
             var file = await _fileService.GetFileForDownloadAsync(fileId);
-            if (file == null)
-                return Ok(file);
-            return NotFound();
+            if (file == null) 
+                return NotFound();
+            return Ok(file);
+           
         }
 
         // Update file metadata (e.g. file name)
