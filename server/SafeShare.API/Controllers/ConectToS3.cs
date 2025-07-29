@@ -3,6 +3,7 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SafeShare.API.Controllers
 {
@@ -62,22 +63,14 @@ namespace SafeShare.API.Controllers
                 return StatusCode(500, $"שגיאה ביצירת קישור העלאה: {ex.Message}");
             }
         }
-
+        
         // 🔽 יצירת קישור להורדה ישירה
         [HttpGet("download-url")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetDownloadUrl([FromQuery] string fileKey)
         {
             if (string.IsNullOrEmpty(fileKey))
-                return BadRequest("חובה לספק מזהה קובץ.");
-
-            // חילוץ מזהה המשתמש מתוך ה-JWT
-            var userId = User.FindFirstValue("id");
-            if (string.IsNullOrEmpty(userId))
-                return Unauthorized("משתמש לא מזוהה.");
-
-            // בדיקה שהקובץ באמת שייך למשתמש
-            if (!fileKey.StartsWith($"uploads/{userId}/"))
-                return Forbid("אין לך הרשאה להוריד קובץ זה.");
+                return BadRequest("File ID must be provided.");
 
             var request = new GetPreSignedUrlRequest
             {
@@ -94,7 +87,7 @@ namespace SafeShare.API.Controllers
             }
             catch (AmazonS3Exception ex)
             {
-                return StatusCode(500, $"שגיאה ביצירת קישור הורדה: {ex.Message}");
+                return StatusCode(500, $"Error creating download link: {ex.Message}");
             }
         }
     }
