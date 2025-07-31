@@ -90,6 +90,30 @@ namespace SafeShare.API.Controllers
                 return StatusCode(500, $"Error creating download link: {ex.Message}");
             }
         }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteFile([FromQuery] string fileKey)
+        {
+            if (string.IsNullOrEmpty(fileKey))
+                return BadRequest("Must provide fileKey.");
+
+            try
+            {
+                var deleteRequest = new DeleteObjectRequest
+                {
+                    BucketName = _bucketName,
+                    Key = fileKey
+                };
+
+                var response = await _s3Client.DeleteObjectAsync(deleteRequest);
+
+                return Ok(new { message = $"The file {fileKey} was deleted successfully." });
+            }
+            catch (AmazonS3Exception ex)
+            {
+                return StatusCode(500, $"Error deleting file: {ex.Message}");
+            }
+        }
     }
 }
 

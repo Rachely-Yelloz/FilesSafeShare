@@ -95,6 +95,7 @@ namespace SafeShare.API.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [HttpPut("update/{linkId}")]
         public async Task<IActionResult> UpdateProtectedLink(int linkId, [FromBody] ProtectedLinkPutModel linkToUpdate)
         {

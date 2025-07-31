@@ -64,7 +64,11 @@ export default function Download() {
       // הכנס כאן את לוגיקת ההורדה
      const response= await axios.post(url, data );
      console.log(response.data);
-      setSuccess(true);
+     const responseData = await axios.post(`https://filessafeshare-1.onrender.com/api/File/download/${response.data}`)
+     console.log(responseData.data); 
+     setSuccess(true);
+      window.open("https://s3.eu-north-1.amazonaws.com/filesafeshare.aws-testpnoren/uploads/19/ffc2dba1-7909-40e5-8d9d-f511878a7887_%D7%A0%D7%A1%D7%99%D7%95%D7%9F", '_blank');
+
       // כאן תוכל להוסיף את לוגיקת ההורדה האמיתית
       console.log("Downloading file with linkId:", linkId, "and password:", password);
     } catch (error) {

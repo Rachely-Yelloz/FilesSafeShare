@@ -61,7 +61,9 @@ namespace SafeShare.DATA.Repositories
             {
                 FileName = fileRecord.FileName,
                 FileType = fileRecord.FileType,
-                pathInS3 = storagePath
+                pathInS3 = storagePath,
+                EncryptionKey = fileRecord.EncryptionKey,
+                Nonce = fileRecord.Nonce
             };
             fileRecord.DownloadCount++;
             await _dataContext.SaveChangesAsync();
