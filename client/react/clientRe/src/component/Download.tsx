@@ -37,6 +37,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { decryptFile } from "../encryptFile";
 
 export default function Download() {
   const { linkId } = useParams();
@@ -63,11 +64,20 @@ export default function Download() {
     try {
       // הכנס כאן את לוגיקת ההורדה
       const response = await axios.post(url, data);
-      console.log(response.data);
+      console.log('fileid ', response.data);
       const responseData = await axios.post(`https://filessafeshare-1.onrender.com/api/File/download/${response.data}`)
       console.log(responseData.data);
       setSuccess(true);
-      window.open(responseData.data.pathInS3, '_blank');
+      const encryptedResponse = await fetch(responseData.data.pathInS3);
+      const encryptedBuffer = await encryptedResponse.arrayBuffer();
+
+      const encryptedData = new Uint8Array(encryptedBuffer);
+      const nonce = new Uint8Array(responseData.data.nonce);
+      const key = new Uint8Array(responseData.data.key);
+      const decryptedBlobFile = await decryptFile(encryptedData, nonce, key);
+      const url1 = URL.createObjectURL(decryptedBlobFile);
+      window.open(url, '_blank');
+      setTimeout(() => URL.revokeObjectURL(url1), 10000); // מנקה אחרי 10 שניות
 
       // כאן תוכל להוסיף את לוגיקת ההורדה האמיתית
       console.log("Downloading file with linkId:", linkId, "and password:", password);

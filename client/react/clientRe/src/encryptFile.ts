@@ -13,3 +13,15 @@ export default async function encryptFile(file: File) {
 
     return { ciphertext, nonce, key };
 }
+
+export  async function decryptFile(ciphertext: Uint8Array, nonce: Uint8Array, key: Uint8Array): Promise<Blob> {
+    await sodium.ready;
+
+    const decrypted = sodium.crypto_secretbox_open_easy(ciphertext, nonce, key);
+    if (!decrypted) {
+        throw new Error("Decryption failed. Possibly wrong key or corrupted data.");
+    }
+
+    // החזרת Blob לצורך הורדה/שימוש בקובץ
+    return new Blob([decrypted]);
+}
