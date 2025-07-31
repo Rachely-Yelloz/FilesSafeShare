@@ -122,6 +122,8 @@ builder.Configuration["DefaultConnection"],
     ));
 
 var app = builder.Build();
+app.UseHttpsRedirection();
+
 app.UseCors("AllowAll");
 
 
@@ -139,7 +141,7 @@ app.UseSwaggerUI(c =>
 });
 
 
-app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
