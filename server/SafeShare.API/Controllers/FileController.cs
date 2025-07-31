@@ -55,7 +55,7 @@ namespace SafeShare.API.Controllers
         [AllowAnonymous]
         // Get encrypted file for download
         [HttpPost("download/{fileId}")]
-        public async Task<IActionResult> DownloadFileAsync([FromQuery]int fileId)
+        public async Task<IActionResult> DownloadFileAsync(int fileId)
         {
             var file = await _fileService.GetFileForDownloadAsync(fileId);
             if (file == null) 
