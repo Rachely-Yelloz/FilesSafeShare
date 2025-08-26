@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SafeShare.API.Models;
 using SafeShare.CORE.DTO_s;
 using SafeShare.CORE.Services;
+using System.Security.Claims;
 namespace SafeShare.API.Controllers
 {
     [Route("api/[controller]")]
@@ -14,11 +15,13 @@ namespace SafeShare.API.Controllers
     {
         private readonly IProtectedLinkService _protectedLinkService;
         private readonly IMapper _mapper;  // הוספת המ mapper
+        private readonly ILogger<ProtectedLinkController> _logger;
 
-        public ProtectedLinkController(IProtectedLinkService protectedLinkService, IMapper mapper)
+        public ProtectedLinkController(IProtectedLinkService protectedLinkService, IMapper mapper, ILogger<ProtectedLinkController> logger)
         {
             _protectedLinkService = protectedLinkService;
             _mapper = mapper;
+            _logger = logger;
         }
 
 
@@ -29,10 +32,14 @@ namespace SafeShare.API.Controllers
             try
             {
                 string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGenerate.fileId, linkToGenerate.password, linkToGenerate.isOneTimeUse, linkToGenerate.downloadLimit, int.Parse(idClaim));
+                _logger.LogInformation("User {UserId} generated a protected link for file {FileId}",
+                    idClaim, linkToGenerate.fileId);
                 return Ok(new { link });
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error while generating protected link for file {FileId} by user {UserId}",
+                    linkToGenerate.fileId, idClaim);
                 return BadRequest(new { message = ex.Message });
             }
         }
@@ -47,7 +54,8 @@ namespace SafeShare.API.Controllers
             }
             catch (UnauthorizedAccessException)
             {
-                return Unauthorized("הסיסמה אינה נכונה");
+                _logger.LogWarning("Unauthorized access attempt with link {LinkIdDecoded} {UserId}", link.LinkIdDecoded, "anonimious");
+                return Unauthorized("worng password");
             }
             catch (FileNotFoundException ex)
             {
@@ -68,7 +76,7 @@ namespace SafeShare.API.Controllers
 
                 if (protectedLinks == null || !protectedLinks.Any())
                 {
-                    return NotFound("לא נמצאו לינקים מוגנים עבור הקובץ הזה.");
+                    return NotFound("No protected links were found for this file..");
                 }
 
                 // אם מצאנו לינקים מוגנים, נמפה אותם ל-DTO ותחזיר אותם
@@ -83,15 +91,20 @@ namespace SafeShare.API.Controllers
         [HttpDelete("delete/{linkId}")]
         public async Task<IActionResult> DeleteProtectedLink(int linkId)
         {
+            var idClaim = User.FindFirst("id")?.Value;
+
             try
             {
-                var idClaim = User.FindFirst("id")?.Value;
 
                 await _protectedLinkService.DeleteProtectedLinkAsync(linkId, int.Parse(idClaim));
+                _logger.LogInformation("User {UserId} deleted protected link {LinkId}",
+                    idClaim, linkId);
                 return Ok("your link deleted successfully");
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error while deleting protected link {LinkId} by user {UserId}",
+                    linkId, idClaim);
                 return BadRequest(new { message = ex.Message });
             }
         }
@@ -103,10 +116,14 @@ namespace SafeShare.API.Controllers
             {
                 var idClaim = User.FindFirst("id")?.Value;
                 await _protectedLinkService.UpdateProtectedLinkAsync(linkId, linkToUpdate.FileId, linkToUpdate.IsOneTimeUse, linkToUpdate.DownloadLimit,linkToUpdate.ExpirationDate, int.Parse(idClaim));
+                _logger.LogInformation("User {UserId} updated protected link {LinkId}",
+                    idClaim, linkId);
                 return Ok("your link updated successfully");
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error while updating protected link {LinkId} by user {UserId}",
+                    linkId, User.FindFirst("id")?.Value);
                 return BadRequest(new { message = ex.Message });
             }
         }

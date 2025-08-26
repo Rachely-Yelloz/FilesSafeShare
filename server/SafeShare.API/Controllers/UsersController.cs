@@ -18,10 +18,13 @@ namespace SafeShare.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        public UsersController(IUserService userService, IMapper mapper)
+        private readonly ILogger<UsersController> _logger;
+
+        public UsersController(IUserService userService, IMapper mapper, ILogger<UsersController> logger)
         {
             _userService = userService;
             _mapper = mapper;
+            _logger = logger;
         }
 
 
@@ -36,10 +39,13 @@ namespace SafeShare.API.Controllers
                 return Unauthorized();
             var userSend = new User() { Email = user.Email, PasswordHash = user.PasswordHash, IsAdmin = user.IsAdmin, Username = user.Username };
             var result = await _userService.UpdateUserAsync(userId, userSend);
-            if (result == null)  // אם העדכון הצליח
-
+            if (result == null)
+            {
+                _logger.LogWarning("Failed to update user with ID {UserId}. Service returned null.", userId);
                 return BadRequest(new { message = "User update failed", errors = "Error during the update process" });
+            }
             var resultDTO = _mapper.Map<UserDTO>(result);
+            _logger.LogInformation("User with ID {UserId} successfully updated.", userId);
             return Ok(resultDTO);
 
         }
@@ -87,7 +93,11 @@ namespace SafeShare.API.Controllers
                 return Unauthorized();
             var result = await _userService.DeleteUserAsync(userId);
             if (result)  // אם המחיקה הצליחה
+            {
+                _logger.LogInformation("User with ID {UserId} successfully deleted.", userId);
                 return Ok(new { message = "User deleted successfully" });
+            }
+            _logger.LogWarning("Failed to delete user with ID {UserId}. User not found.", userId);
             return NotFound(new { message = "User not found" });
         }
     }

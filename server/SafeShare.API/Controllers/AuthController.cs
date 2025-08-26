@@ -19,11 +19,13 @@ namespace SafeShare.API.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly DataContext _dataContext;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IConfiguration configuration, DataContext dataContext)
+        public AuthController(IConfiguration configuration, DataContext dataContext, ILogger<AuthController> logger)
         {
             _configuration = configuration;
             _dataContext = dataContext;
+            _logger = logger;
         }
 
 
@@ -48,12 +50,14 @@ namespace SafeShare.API.Controllers
             var existingUser = await _dataContext.users
                 .FirstOrDefaultAsync(u => u.Email == newUser.Email);
             if (existingUser != null)
+            
                 return Conflict(new { message = "UserMail already in use." });
+            
 
 
             _dataContext.users.Add(newUser);
             await _dataContext.SaveChangesAsync();
-
+            _logger.LogInformation("New user registered with id {UserId}", newUser.UserId);
             var jwt = CreateJWT(newUser);
             return Ok(jwt);
         }

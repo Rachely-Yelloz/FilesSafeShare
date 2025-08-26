@@ -67,7 +67,6 @@ export default function Download() {
       console.log('fileid ', response.data);
       const responseData = await axios.post(`https://filessafeshare-1.onrender.com/api/File/download/${response.data}`)
       console.log(responseData.data);
-      setSuccess(true);
       const encryptedResponse = await fetch(responseData.data.pathInS3);
       const encryptedBuffer = await encryptedResponse.arrayBuffer();
 
@@ -78,6 +77,7 @@ export default function Download() {
       const url1 = URL.createObjectURL(decryptedBlobFile);
       window.open(url, '_blank');
       setTimeout(() => URL.revokeObjectURL(url1), 10000); // מנקה אחרי 10 שניות
+      setSuccess(true);
 
       // כאן תוכל להוסיף את לוגיקת ההורדה האמיתית
       console.log("Downloading file with linkId:", linkId, "and password:", password);

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SafeShare.API.Middlewares;
 using SafeShare.CORE;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Repositories;
@@ -14,10 +15,28 @@ using SafeShare.CORE.Services;
 using SafeShare.DATA;
 using SafeShare.DATA.Repositories;
 using SafeShare.SERVICE;
+using Serilog;
 using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+//רישום ללוג
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .Enrich.WithMachineName()
+    .Enrich.WithThreadId()
+    .WriteTo.Console()
+    .WriteTo.MySQL(
+        connectionString: connectionString,
+        tableName: "logs"
+    )
+    .CreateLogger();
+
+builder.Host.UseSerilog(); // מחליפים את ה-logger המובנה ב-Serilog
+
 
 // רישום שירותי AWS
 
@@ -144,19 +163,21 @@ app.UseSwaggerUI(c =>
 app.UseAuthentication();
 
 app.UseAuthorization();
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 
 app.MapControllers();
-app.Use(async (context, next) =>
-{
-    try
-    {
-        await next();
-    }
-    catch (Exception ex)
-    {
-        context.Response.StatusCode = 500;
-        await context.Response.WriteAsJsonAsync(new { error = ex.Message });
-    }
-});
+//app.Use(async (context, next) =>
+//{
+//    try
+//    {
+//        await next();
+//    }
+//    catch (Exception ex)
+//    {
+//        context.Response.StatusCode = 500;
+//        await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+//    }
+//});
 
 app.Run();

@@ -19,26 +19,51 @@ namespace SafeShare.API.Controllers
     {
         private readonly IFileService _fileService;
         private readonly IMapper _mapper;  // הוספת המ mapper
+        private readonly ILogger<FileController> _logger;
 
-        public FileController(IFileService fileService, IMapper mapper)
+
+        public FileController(IFileService fileService, IMapper mapper, ILogger<FileController> logger)
         {
             _fileService = fileService;
             _mapper = mapper;
+            _logger = logger;
         }
         [HttpPost("upload")]
         public async Task<IActionResult> UploadFileAsync([FromBody] FilePostModel file)
         {
+
             var idClaim = User.FindFirst("id")?.Value;
-            var result = await _fileService.UploadFileAsync(
+            try
+            {
+                _logger.LogInformation("User {UserId} uploaded file {FileName}",
+        idClaim ?? "Anonymous", file.FileName);
+
+                var result = await _fileService.UploadFileAsync(
                 file.StoragePath,
                 file.FileName,
                 int.Parse(idClaim),
                 file.GetEncryptionKey(),  // שימוש בפונקציה להמרת Base64 ל-byte[]
                 file.GetNonce()           // שימוש בפונקציה להמרת Base64 ל-byte[]
             );
-            if (result > 0)
-                return Ok(result);
-            return BadRequest(result);
+                if (result > 0)
+                {
+                    //_logger.LogInformation("User {UserId} successfully uploaded file {FileName} with ID {FileId}",
+                    //    idClaim, file.FileName, result);//TODO: maybe add it to the table
+                    return Ok(result);
+                }
+                else
+                {
+                    _logger.LogWarning("User {UserId} failed to upload file {FileName}. Service returned {Result}",
+                        idClaim, file.FileName, result);
+                    return BadRequest(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while uploading file {FileName} by user {UserId}",
+                    file.FileName, idClaim);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while uploading the file.");
+            }
         }
 
         // Get file details by fileId
@@ -47,9 +72,11 @@ namespace SafeShare.API.Controllers
         {
             var file = await _fileService.GetFileAsync(fileId);
             if (file == null)
+            {
                 return NotFound();
+            }
             var fileDto = _mapper.Map<FileDTO>(file);  // שימוש ב AutoMapper למיפוי אוטומטי
-            return Ok(fileDto); 
+            return Ok(fileDto);
         }
 
         [AllowAnonymous]
@@ -58,10 +85,16 @@ namespace SafeShare.API.Controllers
         public async Task<IActionResult> DownloadFileAsync(int fileId)
         {
             var file = await _fileService.GetFileForDownloadAsync(fileId);
-            if (file == null) 
-                return NotFound();
+
+            if (file == null)
+            {
+                // רישום שגיאה בלוג
+                _logger.LogError("Download failed: file with ID {FileId} not found. {UserId}", fileId, "anonymous");
+
+                return NotFound(new { message = $"File with ID {fileId} does not exist." });
+            }
             return Ok(file);
-           
+
         }
 
         // Update file metadata (e.g. file name)
@@ -70,11 +103,21 @@ namespace SafeShare.API.Controllers
         {
             var result = await _fileService.UpdateFileAsync(fileId, file);
             if (result)
+            {
+                _logger.LogInformation(
+                "File details with ID {FileId} successfully updated by userid {UserId}. FileName: {FileName}",
+                fileId, file.UserId, file.FileName);
                 return Ok(result);
+            }
+            _logger.LogWarning(
+              "user id {UserId} Failed to update file details with ID {FileId}. Service returned false.",
+             file.UserId, fileId
+          );
             return BadRequest(result);
         }
+        [AllowAnonymous]
         [HttpPut("{fileId}/countdownload")]
-        public async Task<IActionResult> UpdateFileCountAsync(int fileId )
+        public async Task<IActionResult> UpdateFileCountAsync(int fileId)
         {
             var result = await _fileService.UpdateFileCountAsync(fileId);
             if (result)

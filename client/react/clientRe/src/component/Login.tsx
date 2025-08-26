@@ -225,12 +225,6 @@ export default function Login() {
             {loading ? <CircularProgress size="sm" sx={{ color: '#fff' }} /> : 'login'}
           </Button>
 
-          <Typography fontSize="sm" sx={{ mt: 2, color: '#bbb' }}>
-            Don't have an account?{' '}
-            <Link href="/register" sx={{ color: '#ff416c', fontWeight: 'bold' }}>
-              register
-            </Link>
-          </Typography>
         </Sheet>
       </div>
       <Outlet />
