@@ -22,7 +22,7 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 //רישום ללוג
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
