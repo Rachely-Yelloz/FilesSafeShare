@@ -54,7 +54,7 @@ namespace SafeShare.API.Controllers
             }
             catch (UnauthorizedAccessException)
             {
-                _logger.LogWarning("Unauthorized access attempt with link {LinkIdDecoded} {UserId}", link.LinkIdDecoded, "anonimious");
+                _logger.LogWarning("Unauthorized access attempt with link {LinkId} {UserId}", link.LinkIdDecoded, 0);
                 return Unauthorized("worng password");
             }
             catch (FileNotFoundException ex)
