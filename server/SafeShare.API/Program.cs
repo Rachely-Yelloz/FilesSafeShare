@@ -20,8 +20,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
-SelfLog.Enable(msg => Console.WriteLine("Serilog MySQL Error: " + msg));
+//var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+//SelfLog.Enable(msg => Console.WriteLine("Serilog MySQL Error: " + msg));
 
 //Log.Logger = new LoggerConfiguration()
 //    .Enrich.FromLogContext()
@@ -33,13 +33,13 @@ SelfLog.Enable(msg => Console.WriteLine("Serilog MySQL Error: " + msg));
 //        tableName: "logs"
 //    )
 //    .CreateLogger();
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Information()
-    .Filter.ByIncludingOnly(logEvent =>
-        logEvent.MessageTemplate.Text.StartsWith("עצם הבקשה"))
-    .WriteTo.MySQL(connectionString, tableName: "Logs")
-    .CreateLogger();
-builder.Host.UseSerilog();      // מחליף את ה-Logger של ASP.NET ב-Serilog
+//Log.Logger = new LoggerConfiguration()
+//    .MinimumLevel.Information()
+//    .Filter.ByIncludingOnly(logEvent =>
+//        logEvent.MessageTemplate.Text.StartsWith("עצם הבקשה"))
+//    .WriteTo.MySQL(connectionString, tableName: "Logs")
+//    .CreateLogger();
+//builder.Host.UseSerilog();      // מחליף את ה-Logger של ASP.NET ב-Serilog
 
 
 // רישום שירותי AWS
