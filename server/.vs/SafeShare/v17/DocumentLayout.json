@@ -98,7 +98,8 @@
               "RelativeToolTip": "SafeShare.API\\Controllers\\AuthController.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAAWwEoAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T12:45:15.659Z"
+              "WhenOpened": "2025-08-26T12:45:15.659Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -110,7 +111,8 @@
               "RelativeToolTip": "SafeShare.API\\Middlewares\\ErrorHandlingMiddleware.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T09:58:09.138Z"
+              "WhenOpened": "2025-08-26T09:58:09.138Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -120,7 +122,7 @@
               "RelativeDocumentMoniker": "SafeShare.API\\Program.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Program.cs",
               "RelativeToolTip": "SafeShare.API\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHYAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-31T14:32:42.109Z",
               "EditorCaption": ""
@@ -135,7 +137,8 @@
               "RelativeToolTip": "SafeShare.API\\Controllers\\FileController.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAqwBgAAABmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T13:38:33.529Z"
+              "WhenOpened": "2025-07-20T13:38:33.529Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -145,7 +148,7 @@
               "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\LogesController.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\LogesController.cs",
               "RelativeToolTip": "SafeShare.API\\Controllers\\LogesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-25T15:25:01.392Z",
               "EditorCaption": ""
@@ -158,9 +161,10 @@
               "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\ProtectedLinkController.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\ProtectedLinkController.cs",
               "RelativeToolTip": "SafeShare.API\\Controllers\\ProtectedLinkController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAADgAAABRAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAIBJwDgAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T12:49:15.106Z"
+              "WhenOpened": "2025-08-26T12:49:15.106Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -170,9 +174,10 @@
               "RelativeDocumentMoniker": "SafeShare.API\\Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05E9\u05E0\u05D4 \u05D1\\\u200F\u200F\u05E4\u05E8\u05D5\u05D9\u05D9\u05E7\u05D8 \u05E4\u05E8\u05E7\u05D8\u05D9\u05E7\u05D5\u05DD - \u05D1\u05DC\u05D9 \u05D1\u05E8\u05E0\u05E6\u05D9\u05DD\\server\\SafeShare.API\\Controllers\\UsersController.cs",
               "RelativeToolTip": "SafeShare.API\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAEBdwGMAAABiAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAuwGMAAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T12:39:00.921Z"
+              "WhenOpened": "2025-08-26T12:39:00.921Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -184,7 +189,8 @@
               "RelativeToolTip": "SafeShare.API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-07-29T12:52:13.422Z"
+              "WhenOpened": "2025-07-29T12:52:13.422Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -196,7 +202,8 @@
               "RelativeToolTip": "SafeShare.SERVICE\\ProtectedLinkService.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAYwCgAAACAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T11:01:47.381Z"
+              "WhenOpened": "2025-07-14T11:01:47.381Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -208,7 +215,8 @@
               "RelativeToolTip": "SafeShare.API\\Controllers\\ConectToS3.cs",
               "ViewState": "AgIAAF8AAAAAAAAAAAAmwG0AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T11:30:25.64Z"
+              "WhenOpened": "2025-07-29T11:30:25.64Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -220,7 +228,8 @@
               "RelativeToolTip": "SafeShare.CORE\\Entities\\FileDownload.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T09:13:55.571Z"
+              "WhenOpened": "2025-07-31T09:13:55.571Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -232,7 +241,8 @@
               "RelativeToolTip": "SafeShare.CORE\\Repositories\\IProtectedLinkRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAACFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T11:00:53.841Z"
+              "WhenOpened": "2025-07-14T11:00:53.841Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -244,7 +254,8 @@
               "RelativeToolTip": "SafeShare.API\\Models\\ProtectedLinkDownloadModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T15:05:02.998Z"
+              "WhenOpened": "2025-07-16T15:05:02.998Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -256,7 +267,8 @@
               "RelativeToolTip": "SafeShare.CORE\\Services\\IProtectedLinkService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAACCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T11:00:27.668Z"
+              "WhenOpened": "2025-07-14T11:00:27.668Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -268,7 +280,8 @@
               "RelativeToolTip": "SafeShare.API\\Models\\ProtectedLinkPutModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T11:56:45.935Z"
+              "WhenOpened": "2025-07-14T11:56:45.935Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -280,7 +293,8 @@
               "RelativeToolTip": "SafeShare.API\\Models\\ProtectedLinkPostModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T10:56:29.528Z"
+              "WhenOpened": "2025-07-14T10:56:29.528Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -292,7 +306,8 @@
               "RelativeToolTip": "SafeShare.CORE\\DTO\u0027s\\ProtectedLinkDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T10:52:47.808Z"
+              "WhenOpened": "2025-07-14T10:52:47.808Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -304,7 +319,8 @@
               "RelativeToolTip": "SafeShare.API\\Models\\protectedLinkGenerate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T10:51:45.471Z"
+              "WhenOpened": "2025-07-14T10:51:45.471Z",
+              "EditorCaption": ""
             }
           ]
         }

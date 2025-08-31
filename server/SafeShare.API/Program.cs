@@ -2,30 +2,26 @@ using Amazon;
 using Amazon.Runtime;
 using Amazon.S3;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SafeShare.API.Middlewares;
 using SafeShare.CORE;
-using SafeShare.CORE.Entities;
 using SafeShare.CORE.Repositories;
 using SafeShare.CORE.Services;
 using SafeShare.DATA;
 using SafeShare.DATA.Repositories;
 using SafeShare.SERVICE;
 using Serilog;
+using Serilog.Sinks.MySQL;
 using Serilog.Debugging;
-using System.Text;
 using System.Text.Json.Serialization;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-//רישום ללוג
 
 var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 SelfLog.Enable(msg => Console.WriteLine("Serilog MySQL Error: " + msg));
-
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
