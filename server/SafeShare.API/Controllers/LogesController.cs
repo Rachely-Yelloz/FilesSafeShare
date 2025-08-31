@@ -15,7 +15,7 @@ namespace SafeShare.API.Controllers
         {
             _logger = logger;
         }
-        [HttpPost("log")]
+        [HttpPost]
         public IActionResult LogMessage()
         {
            _logger.LogInformation("This is a log message from LogesController.");

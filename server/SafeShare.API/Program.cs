@@ -16,6 +16,7 @@ using SafeShare.DATA;
 using SafeShare.DATA.Repositories;
 using SafeShare.SERVICE;
 using Serilog;
+using Serilog.Debugging;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -23,6 +24,8 @@ var builder = WebApplication.CreateBuilder(args);
 //רישום ללוג
 
 var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+SelfLog.Enable(msg => Console.WriteLine("Serilog MySQL Error: " + msg));
+
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
@@ -35,7 +38,7 @@ Log.Logger = new LoggerConfiguration()
     )
     .CreateLogger();
 
-builder.Host.UseSerilog(); // מחליפים את ה-logger המובנה ב-Serilog
+builder.Host.UseSerilog();      // מחליף את ה-Logger של ASP.NET ב-Serilog
 
 
 // רישום שירותי AWS
