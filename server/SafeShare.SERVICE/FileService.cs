@@ -13,6 +13,7 @@ namespace SafeShare.SERVICE
     public class FileService : IFileService
     {
         private readonly IFileRepository _fileRepository;
+
         public FileService(IFileRepository fileRepository)
         {
             _fileRepository = fileRepository;

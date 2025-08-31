@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SafeShare.API.Models;
 using SafeShare.CORE.DTO_s;
+using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
+using SafeShare.SERVICE;
 using System.Security.Claims;
 namespace SafeShare.API.Controllers
 {
@@ -15,13 +17,12 @@ namespace SafeShare.API.Controllers
     {
         private readonly IProtectedLinkService _protectedLinkService;
         private readonly IMapper _mapper;  // הוספת המ mapper
-        private readonly ILogger<ProtectedLinkController> _logger;
-
-        public ProtectedLinkController(IProtectedLinkService protectedLinkService, IMapper mapper, ILogger<ProtectedLinkController> logger)
+        private readonly IlogService _logService;
+        public ProtectedLinkController(IProtectedLinkService protectedLinkService, IMapper mapper,LogService logService)
         {
             _protectedLinkService = protectedLinkService;
             _mapper = mapper;
-            _logger = logger;
+            _logService = logService;
         }
 
 
@@ -31,15 +32,33 @@ namespace SafeShare.API.Controllers
             var idClaim = User.FindFirst("id")?.Value;
             try
             {
+                var usernameClaim = User.FindFirst("name")?.Value;
                 string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGenerate.fileId, linkToGenerate.password, linkToGenerate.isOneTimeUse, linkToGenerate.downloadLimit, int.Parse(idClaim));
-                _logger.LogInformation("User {UserId} generated a protected link for file {FileId}",
-                    idClaim, linkToGenerate.fileId);
+                // _logger.LogInformation("User {UserId} generated a protected link for file {FileId}",
+                //     idClaim, linkToGenerate.fileId);
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "generate protected link",
+                    UserName = usernameClaim,
+                    IsSuccess = true,
+                    UserId = int.Parse(idClaim),
+                    CreatedAt = DateTime.UtcNow
+                });
                 return Ok(new { link });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while generating protected link for file {FileId} by user {UserId}",
-                    linkToGenerate.fileId, idClaim);
+                //_logger.LogError(ex, "Error while generating protected link for file {FileId} by user {UserId}",
+                //    linkToGenerate.fileId, idClaim);
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "generate protected link",
+                    UserName = User.FindFirst("name")?.Value,
+                    IsSuccess = false,
+                    ErrorMessage = ex.Message,
+                    UserId = int.Parse(idClaim),
+                    CreatedAt = DateTime.UtcNow
+                });
                 return BadRequest(new { message = ex.Message });
             }
         }
@@ -54,7 +73,16 @@ namespace SafeShare.API.Controllers
             }
             catch (UnauthorizedAccessException)
             {
-                _logger.LogWarning("Unauthorized access attempt with link {LinkId} {UserId}", link.LinkIdDecoded, 0);
+                // _logger.LogWarning("Unauthorized access attempt with link {LinkId} {UserId}", link.LinkIdDecoded, 0);
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "Update User",
+                    UserName = "Anonymous",
+                    IsSuccess = false,
+                    ErrorMessage = "nauthorized access attempt to the link",
+                    UserId = 0,
+                    CreatedAt = DateTime.UtcNow
+                });
                 return Unauthorized("worng password");
             }
             catch (FileNotFoundException ex)
@@ -97,14 +125,31 @@ namespace SafeShare.API.Controllers
             {
 
                 await _protectedLinkService.DeleteProtectedLinkAsync(linkId, int.Parse(idClaim));
-                _logger.LogInformation("User {UserId} deleted protected link {LinkId}",
-                    idClaim, linkId);
+                //_logger.LogInformation("User {UserId} deleted protected link {LinkId}",
+                //    idClaim, linkId);
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "delete protected link",
+                    UserName = User.FindFirst("name")?.Value,
+                    IsSuccess = true,
+                    UserId = int.Parse(idClaim),
+                    CreatedAt = DateTime.UtcNow
+                });
                 return Ok("your link deleted successfully");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while deleting protected link {LinkId} by user {UserId}",
-                    linkId, idClaim);
+               // _logger.LogError(ex, "Error while deleting protected link {LinkId} by user {UserId}",
+               //     linkId, idClaim);
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "delete protected link",
+                    UserName = User.FindFirst("name")?.Value,
+                    IsSuccess = false,
+                    ErrorMessage = ex.Message,
+                    UserId = int.Parse(idClaim),
+                    CreatedAt = DateTime.UtcNow
+                });
                 return BadRequest(new { message = ex.Message });
             }
         }
@@ -116,14 +161,31 @@ namespace SafeShare.API.Controllers
             {
                 var idClaim = User.FindFirst("id")?.Value;
                 await _protectedLinkService.UpdateProtectedLinkAsync(linkId, linkToUpdate.FileId, linkToUpdate.IsOneTimeUse, linkToUpdate.DownloadLimit,linkToUpdate.ExpirationDate, int.Parse(idClaim));
-                _logger.LogInformation("User {UserId} updated protected link {LinkId}",
-                    idClaim, linkId);
+                //_logger.LogInformation("User {UserId} updated protected link {LinkId}",
+                //    idClaim, linkId);
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "update protected link",
+                    UserName = User.FindFirst("name")?.Value,
+                    IsSuccess = true,
+                    UserId = int.Parse(idClaim),
+                    CreatedAt = DateTime.UtcNow
+                });
                 return Ok("your link updated successfully");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while updating protected link {LinkId} by user {UserId}",
-                    linkId, User.FindFirst("id")?.Value);
+                //_logger.LogError(ex, "Error while updating protected link {LinkId} by user {UserId}",
+                //    linkId, User.FindFirst("id")?.Value);
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "update protected link",
+                    UserName = User.FindFirst("name")?.Value,
+                    IsSuccess = false,
+                    ErrorMessage = ex.Message,
+                    UserId = int.Parse(User.FindFirst("id")?.Value),
+                    CreatedAt = DateTime.UtcNow
+                });
                 return BadRequest(new { message = ex.Message });
             }
         }

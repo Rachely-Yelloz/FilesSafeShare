@@ -26,5 +26,6 @@ namespace SafeShare.DATA
         public DbSet<User> users { get; set; }
         public DbSet<ProtectedLink> protectedLinks { get; set; }
         public DbSet<FileToUpload> filesToUpload { get; set; }
+        public DbSet<LogMessage> logs { get; set; }
     }
 }

@@ -18,13 +18,13 @@ namespace SafeShare.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        private readonly ILogger<UsersController> _logger;
+        private readonly IlogService _logService;
 
-        public UsersController(IUserService userService, IMapper mapper, ILogger<UsersController> logger)
+        public UsersController(IUserService userService, IMapper mapper, IlogService logService)
         {
             _userService = userService;
             _mapper = mapper;
-            _logger = logger;
+            _logService = logService;
         }
 
 
@@ -34,6 +34,7 @@ namespace SafeShare.API.Controllers
         public async Task<IActionResult> UpdateUserAsync(int userId, [FromBody] UserPostModel user)
         {
             var isAdminClaim = User.FindFirst("isAdmin")?.Value;
+            var usernameClaim = User.FindFirst("name")?.Value;
             var idClaim = User.FindFirst("id")?.Value;
             if (isAdminClaim == "false" || userId.ToString() != idClaim)
                 return Unauthorized();
@@ -41,11 +42,29 @@ namespace SafeShare.API.Controllers
             var result = await _userService.UpdateUserAsync(userId, userSend);
             if (result == null)
             {
-                _logger.LogWarning("Failed to update user with ID {UserId}. Service returned null.", userId);
+                //_logger.LogWarning("Failed to update user with ID {UserId}. Service returned null.", userId);
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "Update User",
+                    UserName = usernameClaim,
+                    IsSuccess = false,
+                    ErrorMessage = "Error during the update process service returend null",
+                    UserId = int.Parse(idClaim),
+                    CreatedAt = DateTime.UtcNow
+                });
+
                 return BadRequest(new { message = "User update failed", errors = "Error during the update process" });
             }
             var resultDTO = _mapper.Map<UserDTO>(result);
-            _logger.LogInformation("User with ID {UserId} successfully updated.", userId);
+            //   _logger.LogInformation("User with ID {UserId} successfully updated.", userId);
+            await _logService.LogAsync(new LogMessage()
+            {
+                Action = "Update User",
+                UserName = usernameClaim,
+                IsSuccess = true,
+                UserId = int.Parse(idClaim),
+                CreatedAt = DateTime.UtcNow
+            });
             return Ok(resultDTO);
 
         }
@@ -89,15 +108,31 @@ namespace SafeShare.API.Controllers
         {
             var isAdminClaim = User.FindFirst("isAdmin")?.Value;
             var idClaim = User.FindFirst("id")?.Value;
+            var usernameClaim = User.FindFirst("name")?.Value;
             if (isAdminClaim == "false" || userId.ToString() != idClaim)
                 return Unauthorized();
             var result = await _userService.DeleteUserAsync(userId);
             if (result)  // אם המחיקה הצליחה
             {
-                _logger.LogInformation("User with ID {UserId} successfully deleted.", userId);
-                return Ok(new { message = "User deleted successfully" });
+                await _logService.LogAsync(new LogMessage()
+                {
+                    Action = "delete User",
+                    UserName = usernameClaim,
+                    IsSuccess = true,
+                    UserId = int.Parse(idClaim),
+                    CreatedAt = DateTime.UtcNow
+                }); return Ok(new { message = "User deleted successfully" });
             }
-            _logger.LogWarning("Failed to delete user with ID {UserId}. User not found.", userId);
+            //_logger.LogWarning("Failed to delete user with ID {UserId}. User not found.", userId);
+            await _logService.LogAsync(new LogMessage()
+            {
+                Action = "delete User",
+                UserName = usernameClaim,
+                IsSuccess = false,
+                ErrorMessage = "Error during the delete process service returend null",
+                UserId = int.Parse(idClaim),
+                CreatedAt = DateTime.UtcNow
+            });
             return NotFound(new { message = "User not found" });
         }
     }

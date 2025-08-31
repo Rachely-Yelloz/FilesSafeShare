@@ -19,13 +19,14 @@ namespace SafeShare.API.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly DataContext _dataContext;
-        private readonly ILogger<AuthController> _logger;
+        //private readonly ILogger<AuthController> _logger;
+         private readonly IlogService _logService;
 
-        public AuthController(IConfiguration configuration, DataContext dataContext, ILogger<AuthController> logger)
+        public AuthController(IConfiguration configuration, DataContext dataContext, IlogService logService)
         {
             _configuration = configuration;
             _dataContext = dataContext;
-            _logger = logger;
+            _logService = logService;
         }
 
 
@@ -57,7 +58,14 @@ namespace SafeShare.API.Controllers
 
             _dataContext.users.Add(newUser);
             await _dataContext.SaveChangesAsync();
-            _logger.LogInformation("New user registered with id {UserId}", newUser.UserId);
+            await _logService.LogAsync(new LogMessage()
+            {
+                Action = "Register User",
+                UserName = newUser.Username,
+                IsSuccess = true,
+                UserId = newUser.UserId,
+                CreatedAt = DateTime.UtcNow
+            });
             var jwt = CreateJWT(newUser);
             return Ok(jwt);
         }

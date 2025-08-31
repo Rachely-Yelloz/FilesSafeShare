@@ -23,17 +23,22 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 SelfLog.Enable(msg => Console.WriteLine("Serilog MySQL Error: " + msg));
 
+//Log.Logger = new LoggerConfiguration()
+//    .Enrich.FromLogContext()
+//    .Enrich.WithMachineName()
+//    .Enrich.WithThreadId()
+//    .WriteTo.Console()
+//    .WriteTo.MySQL(
+//        connectionString: connectionString,
+//        tableName: "logs"
+//    )
+//    .CreateLogger();
 Log.Logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
-    .Enrich.WithMachineName()
-    .Enrich.WithThreadId()
-    .WriteTo.Console()
-    .WriteTo.MySQL(
-        connectionString: connectionString,
-        tableName: "logs"
-    )
+    .MinimumLevel.Information()
+    .Filter.ByIncludingOnly(logEvent =>
+        logEvent.MessageTemplate.Text.StartsWith("עצם הבקשה"))
+    .WriteTo.MySQL(connectionString, tableName: "Logs")
     .CreateLogger();
-
 builder.Host.UseSerilog();      // מחליף את ה-Logger של ASP.NET ב-Serilog
 
 
@@ -128,6 +133,8 @@ builder.Services.AddScoped<IProtectedLinkRepository, ProtectedLinkRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddDbContext<DataContext>();
+builder.Services.AddScoped<ILogRepository, LogRepository>();
+builder.Services.AddScoped<IlogService, LogService>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddDbContext<DataContext>(options =>
