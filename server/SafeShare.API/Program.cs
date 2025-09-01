@@ -12,9 +12,7 @@ using SafeShare.CORE.Services;
 using SafeShare.DATA;
 using SafeShare.DATA.Repositories;
 using SafeShare.SERVICE;
-using Serilog;
-using Serilog.Sinks.MySQL;
-using Serilog.Debugging;
+
 using System.Text.Json.Serialization;
 using System.Text;
 

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using SafeShare.CORE.Entities;
 using SafeShare.CORE.Services;
-using Serilog;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,7 +26,7 @@ namespace SafeShare.API.Controllers
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Error saving log");
+                //Log.Error(ex, "Error saving log");
                 return StatusCode(500, new { message = "An error occurred while saving the log." });
             }
         }
@@ -41,7 +40,7 @@ namespace SafeShare.API.Controllers
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Error retrieving logs");
+                //Log.Error(ex, "Error retrieving logs");
                 return StatusCode(500, new { message = "An error occurred while retrieving the logs." });
             }
         }
