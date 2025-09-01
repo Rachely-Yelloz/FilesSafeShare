@@ -12,6 +12,10 @@ namespace SafeShare.SERVICE
     public class LogService : IlogService
     {
         private readonly ILogRepository _logRepository;
+        public LogService(ILogRepository logRepository)
+        {
+            _logRepository = logRepository;
+        }
         public Task LogAsync(LogMessage log)
         {
             return _logRepository.AddLogAsync(log);

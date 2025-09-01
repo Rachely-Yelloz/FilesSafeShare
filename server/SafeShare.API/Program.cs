@@ -124,6 +124,8 @@ builder.Services.AddAuthentication(options =>
     });
 
 //builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IlogService, LogService>();
+builder.Services.AddScoped<ILogRepository, LogRepository>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IFileRepository, FileRepository>();
 builder.Services.AddScoped<IProtectedLinkService, ProtectedLinkService>();
@@ -131,8 +133,7 @@ builder.Services.AddScoped<IProtectedLinkRepository, ProtectedLinkRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddDbContext<DataContext>();
-builder.Services.AddScoped<ILogRepository, LogRepository>();
-builder.Services.AddScoped<IlogService, LogService>();
+
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddDbContext<DataContext>(options =>
