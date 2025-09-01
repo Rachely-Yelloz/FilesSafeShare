@@ -66,6 +66,7 @@ namespace SafeShare.API.Controllers
                 UserId = newUser.UserId,
                 CreatedAt = DateTime.UtcNow
             });
+
             var jwt = CreateJWT(newUser);
             return Ok(jwt);
         }

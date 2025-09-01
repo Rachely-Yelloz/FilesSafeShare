@@ -109,6 +109,27 @@
         }
       }
     },
+    "/api/UploadFile/delete": {
+      "delete": {
+        "tags": [
+          "ConectToS3"
+        ],
+        "parameters": [
+          {
+            "name": "fileKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/File/upload": {
       "post": {
         "tags": [
@@ -204,7 +225,7 @@
       }
     },
     "/api/File/download/{fileId}": {
-      "get": {
+      "post": {
         "tags": [
           "File"
         ],
@@ -325,28 +346,30 @@
         }
       }
     },
-    "/api/ProtectedLink/download/{encryptedLink}": {
-      "get": {
+    "/api/ProtectedLink/download": {
+      "post": {
         "tags": [
           "ProtectedLink"
         ],
-        "parameters": [
-          {
-            "name": "encryptedLink",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProtectedLinkDownloadModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProtectedLinkDownloadModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProtectedLinkDownloadModel"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -370,6 +393,71 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProtectedLink/delete/{linkId}": {
+      "delete": {
+        "tags": [
+          "ProtectedLink"
+        ],
+        "parameters": [
+          {
+            "name": "linkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ProtectedLink/update/{linkId}": {
+      "put": {
+        "tags": [
+          "ProtectedLink"
+        ],
+        "parameters": [
+          {
+            "name": "linkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProtectedLinkPutModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProtectedLinkPutModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProtectedLinkPutModel"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -615,6 +703,43 @@
           "currentDownloadCount": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedLinkDownloadModel": {
+        "type": "object",
+        "properties": {
+          "linkIdDecoded": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProtectedLinkPutModel": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isOneTimeUse": {
+            "type": "boolean"
+          },
+          "downloadLimit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false

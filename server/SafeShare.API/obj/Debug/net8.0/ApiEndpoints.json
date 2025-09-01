@@ -104,7 +104,7 @@
     "ContainingType": "SafeShare.API.Controllers.FileController",
     "Method": "DownloadFileAsync",
     "RelativePath": "api/File/download/{fileId}",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -150,21 +150,32 @@
   },
   {
     "ContainingType": "SafeShare.API.Controllers.ProtectedLinkController",
-    "Method": "DownloadFile",
-    "RelativePath": "api/ProtectedLink/download/{encryptedLink}",
-    "HttpMethod": "GET",
+    "Method": "DeleteProtectedLink",
+    "RelativePath": "api/ProtectedLink/delete/{linkId}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "encryptedLink",
-        "Type": "System.String",
+        "Name": "linkId",
+        "Type": "System.Int32",
         "IsRequired": true
-      },
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SafeShare.API.Controllers.ProtectedLinkController",
+    "Method": "DownloadFile",
+    "RelativePath": "api/ProtectedLink/download",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "password",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "link",
+        "Type": "SafeShare.API.Models.ProtectedLinkDownloadModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -194,9 +205,46 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "linkToGernerate",
+        "Name": "linkToGenerate",
         "Type": "SafeShare.API.Models.protectedLinkGenerate",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SafeShare.API.Controllers.ProtectedLinkController",
+    "Method": "UpdateProtectedLink",
+    "RelativePath": "api/ProtectedLink/update/{linkId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "linkId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "linkToUpdate",
+        "Type": "SafeShare.API.Models.ProtectedLinkPutModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SafeShare.API.Controllers.ConectToS3",
+    "Method": "DeleteFile",
+    "RelativePath": "api/UploadFile/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileKey",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

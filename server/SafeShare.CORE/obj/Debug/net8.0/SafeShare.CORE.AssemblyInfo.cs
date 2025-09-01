@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SafeShare.CORE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c6c549569c16de0e1b311d48efb417e574f4f38")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43c5201f936f17e4454c3620bba17c6123be9959")]
 [assembly: System.Reflection.AssemblyProductAttribute("SafeShare.CORE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SafeShare.CORE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

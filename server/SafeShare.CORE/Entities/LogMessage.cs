@@ -16,7 +16,7 @@ namespace SafeShare.CORE.Entities
         [Key]
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [Column("user_id")]
 
         public int UserId { get; set; }
