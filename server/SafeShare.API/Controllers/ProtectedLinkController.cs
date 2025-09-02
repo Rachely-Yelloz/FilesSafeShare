@@ -18,7 +18,7 @@ namespace SafeShare.API.Controllers
         private readonly IProtectedLinkService _protectedLinkService;
         private readonly IMapper _mapper;  // הוספת המ mapper
         private readonly IlogService _logService;
-        public ProtectedLinkController(IProtectedLinkService protectedLinkService, IMapper mapper,LogService logService)
+        public ProtectedLinkController(IProtectedLinkService protectedLinkService, IMapper mapper,IlogService logService)
         {
             _protectedLinkService = protectedLinkService;
             _mapper = mapper;
