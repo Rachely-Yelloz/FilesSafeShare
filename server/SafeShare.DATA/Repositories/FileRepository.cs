@@ -113,11 +113,10 @@ namespace SafeShare.DATA.Repositories
 
         }
 
-        public async Task<int> UploadFileAsync(string pathInS3, string fileName, int userId, byte[] EncryptionKey1, byte[] Nonce1)
+        public async Task<int> UploadFileAsync(string pathInS3, string fileName, int userId, byte[] EncryptionKey1, byte[] Nonce1, string fileType)
         {
             if (string.IsNullOrWhiteSpace(fileName))
                 throw new ArgumentException("שם הקובץ והסיסמה חובה!");
-            var fileExtension = Path.GetExtension(fileName).ToLower();
 
             // יצירת אובייקט ושמירה במסד נתונים
             var fileToUpload = new FileToUpload
@@ -126,7 +125,7 @@ namespace SafeShare.DATA.Repositories
                 DownloadCount = 0,
                 StoragePath = pathInS3, // נתיב מהאחסון
                 UploadDate = DateTime.Now,
-                FileType = fileExtension,
+                FileType =  fileType,
                 UserId = userId,
                 EncryptionKey = EncryptionKey1,
                 Nonce = Nonce1

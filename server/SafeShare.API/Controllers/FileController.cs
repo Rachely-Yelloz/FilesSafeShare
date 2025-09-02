@@ -44,7 +44,8 @@ namespace SafeShare.API.Controllers
                 file.FileName,
                 int.Parse(idClaim),
                 file.GetEncryptionKey(),  // שימוש בפונקציה להמרת Base64 ל-byte[]
-                file.GetNonce()           // שימוש בפונקציה להמרת Base64 ל-byte[]
+                file.GetNonce()    ,
+                file.FileType// שימוש בפונקציה להמרת Base64 ל-byte[]
             );
                 if (result > 0)
                 {

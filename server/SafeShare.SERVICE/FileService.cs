@@ -52,9 +52,9 @@ namespace SafeShare.SERVICE
 
         }
 
-        public async Task<int> UploadFileAsync(string pathInS3, string fileName, int userId, byte[] EncryptionKey, byte[] Nonce)
+        public async Task<int> UploadFileAsync(string pathInS3, string fileName, int userId, byte[] EncryptionKey, byte[] Nonce, string fileType)
         {
-            return await _fileRepository.UploadFileAsync(pathInS3, fileName,userId, EncryptionKey,Nonce);
+            return await _fileRepository.UploadFileAsync(pathInS3, fileName,userId, EncryptionKey,Nonce,  fileType);
         }
     }
 }
