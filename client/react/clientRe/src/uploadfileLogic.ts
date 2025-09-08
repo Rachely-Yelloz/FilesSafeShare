@@ -27,7 +27,7 @@ export async function uploadFileToS3(uploadUrl: string, encryptedFile: Blob): Pr
     return uploadUrl.split("?")[0]; // מחזיר את הנתיב ללא הפרמטרים
 }
 
-export async function uploadFileToDb(fileName: string, storagePath: string, encryptionKey: Uint8Array, nonce: Uint8Array) {
+export async function uploadFileToDb(fileName: string, storagePath: string, encryptionKey: Uint8Array, nonce: Uint8Array, filetype:string) {
     const authToken = sessionStorage.getItem("authToken"); 
 
     // המרה ל-Base64
@@ -38,7 +38,8 @@ export async function uploadFileToDb(fileName: string, storagePath: string, encr
         fileName: fileName,
         storagePath: storagePath,
         encryptionKey: encryptionKeyBase64,  
-        nonce: nonceBase64                 
+        nonce: nonceBase64   ,
+        fileType :filetype            
     };
 
     try {

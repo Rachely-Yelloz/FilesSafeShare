@@ -120,14 +120,14 @@ export default function UploadFile() {
       const { uploadUrl
         // ,  fileUrl, fileKey 
       } = response.data
-      const encryptedBlob = new Blob([fileandkeys.ciphertext], {
+      const encryptedBlob = new Blob([new Uint8Array(fileandkeys.ciphertext)], {
         type: "application/octet-stream",
       })
 
       const s3url = await uploadFileToS3(uploadUrl, encryptedBlob)
       setUploadProgress(80)
 
-      const fileId = await uploadFileToDb(fileName, s3url, fileandkeys.key, fileandkeys.nonce)
+      const fileId = await uploadFileToDb(fileName, s3url, fileandkeys.key, fileandkeys.nonce, selectedFile!.type)
 
       const link = await generateProtectedLink(fileId, password, isOneTimeUse, downloadLimit)
 

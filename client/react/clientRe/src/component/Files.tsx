@@ -39,6 +39,7 @@ import ProtectedLink from "./ProtectedLink"
 import { motion } from "framer-motion"
 import { Outlet, useNavigate } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
+import { FileProvider, useFileContext } from "./FileContext"
 
 interface FileItem {
   fileId: number
@@ -49,7 +50,7 @@ interface FileItem {
 }
 
 export default function Files() {
-  const [files, setFiles] = useState<FileItem[]>([])
+  //const [files, setFiles] = useState<FileItem[]>([])
   const [filteredFiles, setFilteredFiles] = useState<FileItem[]>([])
   const [openLinksModal, setOpenLinksModal] = useState(false)
   const [selectedFileId, setSelectedFileId] = useState<number | null>(null)
@@ -58,6 +59,7 @@ export default function Files() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc")
   const [deleteConfirmId, setDeleteConfirmId] = useState<number | null>(null)
   const [viewMode, setViewMode] = useState<"list" | "grid">("list")
+  const { files, setFiles, setSelectedFile } = useFileContext();
 
   const navigate = useNavigate()
   const theme = useTheme()
@@ -122,9 +124,10 @@ export default function Files() {
       await axios.delete(`https://filessafeshare-1.onrender.com/api/File?fileId=${deleteConfirmId}`, {
         headers: { Authorization: `Bearer ${sessionStorage.getItem("authToken")}` }
       });
+      const newFiles = files.filter(file => file.fileId !== deleteConfirmId);
 
       // Optimistic UI update
-      setFiles((prev) => prev.filter((file) => file.fileId !== deleteConfirmId))
+      setFiles(newFiles);
       setFilteredFiles((prev) => prev.filter((file) => file.fileId !== deleteConfirmId))
     } catch (error) {
       console.error("Error deleting file:", error)
@@ -165,7 +168,8 @@ export default function Files() {
 
   const renderFileList = () => {
     if (viewMode === "list") {
-      return (
+      return (    
+
         <List sx={{ width: "100%", overflow: "auto", maxHeight: "calc(100vh - 250px)" }}>
           <AnimatePresence>
             {filteredFiles.map((file) => (
@@ -244,7 +248,9 @@ export default function Files() {
                             transform: "scale(1.1)",
                           },
                         }}
-                        onClick={() => handleOpenLinks(file.fileId)}
+                        // onClick={() => handleOpenLinks(file.fileId)}
+                        onClick={() => {navigate(`:${file.fileId}`); setSelectedFile(file)}}
+
                       >
                         <FaListUl /> {/* או FaLink גם בסדר אם רוצים משהו שמזכיר קישורים */}
                       </IconButton>
@@ -260,7 +266,7 @@ export default function Files() {
                             transform: "scale(1.1)",
                           },
                         }}
-                        onClick={() => handleOpenLinks(file.fileId)}
+                        onClick={() => {navigate(`:${file.fileId}`); setSelectedFile(file)}}
                       >
                         <FaLink />
                       </IconButton>
@@ -275,7 +281,7 @@ export default function Files() {
                             transform: "scale(1.1)",
                           },
                         }}
-                        onClick={() => console.log("Editing", file.fileId)}
+                        onClick={() => {navigate(`:${file.fileId}`); setSelectedFile(file)}}
                       >
                         <FaEdit />
                       </IconButton>
@@ -301,9 +307,10 @@ export default function Files() {
             ))}
           </AnimatePresence>
         </List>
-      )
+)
     } else {
-      return (
+      return (    
+
         <Grid container spacing={2} sx={{ mt: 1, maxHeight: "calc(100vh - 250px)", overflow: "auto" }}>
           <AnimatePresence>
             {filteredFiles.map((file) => (
@@ -380,7 +387,7 @@ export default function Files() {
                               transform: "scale(1.1)",
                             },
                           }}
-                          onClick={() => handleOpenLinks(file.fileId)}
+                        onClick={() => {navigate(`:${file.fileId}`); setSelectedFile(file)}}
                         >
                           <FaLink />
                         </IconButton>
@@ -396,7 +403,7 @@ export default function Files() {
                               transform: "scale(1.1)",
                             },
                           }}
-                          onClick={() => console.log("Editing", file.fileId)}
+                        onClick={() => {navigate(`:${file.fileId}`); setSelectedFile(file)}}
                         >
                           <FaEdit />
                         </IconButton>
@@ -412,7 +419,7 @@ export default function Files() {
                               transform: "scale(1.1)",
                             },
                           }}
-                          onClick={() => handleDeleteFile(file.fileId)}
+                          onClick={() => { handleDeleteFile(file.fileId) }}
                         >
                           <FaTrash />
                         </IconButton>
@@ -424,7 +431,7 @@ export default function Files() {
             ))}
           </AnimatePresence>
         </Grid>
-      )
+)
     }
   }
 
@@ -643,95 +650,14 @@ export default function Files() {
             </Button>
           )}
         </Box>
-      ) : (
+ ) : (              
+
         renderFileList()
-      )}
+  )}
 
-      {/* מודאל להצגת הלינקים
-      <Modal
-        open={openLinksModal}
-        onClose={() => setOpenLinksModal(false)}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={openLinksModal}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              background: "#121212",
-              padding: "20px",
-              borderRadius: "10px",
-              boxShadow: "0px 0px 20px rgba(255, 65, 108, 0.5)",
-              width: "90%",
-              maxWidth: "500px",
-              border: "1px solid rgba(255, 65, 108, 0.3)",
-              outline: "none",
-            }}
-          >
-            {selectedFileId && <ProtectedLink fileId={selectedFileId} />}
-            <Box display="flex" justifyContent="center" mt={2}>
-              <Button
-                variant="contained"
-                onClick={() => setOpenLinksModal(false)}
-                sx={{
-                  background: "linear-gradient(135deg, #ff416c, #ff4b2b)",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    opacity: 0.9,
-                    boxShadow: "0 4px 8px rgba(255, 65, 108, 0.5)",
-                  },
-                }}
-              >
-                Close
-              </Button>
-            </Box>
-          </Box>
-        </Fade>
-      </Modal> */}
-<Box
-  sx={{
-    position: "fixed",
-    top: 0,
-    right: openLinksModal ? 0 : "-400px", // רוחב צד שמאל מוסתר
-    height: "100vh",
-    width: { xs: "100%", sm: "400px" },
-    background: "#1e1e1e",
-    boxShadow: "0 0 20px rgba(255, 65, 108, 0.3)",
-    borderLeft: "1px solid rgba(255, 65, 108, 0.3)",
-    transition: "right 0.4s ease",
-    zIndex: 1300,
-    overflowY: "auto",
-    padding: 2,
-  }}
->
-  <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-    <Typography variant="h6" sx={{ color: "#ff416c" }}>
-      Protected Links
-    </Typography>
-    <Button
-      variant="outlined"
-      size="small"
-      sx={{
-        color: "#ff416c",
-        borderColor: "#ff416c",
-        "&:hover": {
-          background: "rgba(255,65,108,0.1)",
-        },
-      }}
-      onClick={() => setOpenLinksModal(false)}
-    >
-      Close
-    </Button>
-  </Box>
 
-  {selectedFileId && <ProtectedLink fileId={selectedFileId} />}
-</Box>
+
+
       {/* Delete Confirmation Modal */}
       <Modal
         open={deleteConfirmId !== null}
