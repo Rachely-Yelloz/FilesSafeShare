@@ -9,6 +9,15 @@ import {
   IconButton,
   Tooltip,
   Switch,
+  Checkbox,
+  Slider,
+  Alert,
+  Chip,
+  CircularProgress,
+  Divider,
+  Fade,
+  InputAdornment,
+  FormControlLabel,
 } from "@mui/material"
 import {
   FaTrash,
@@ -18,8 +27,14 @@ import {
   FaDownload,
   FaClock,
   FaPlus,
+  FaFileUpload,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+  FaKey,
 } from "react-icons/fa"
 import axios from "axios"
+import EmptyLink from "./EmptyLink"
 
 interface ProtectedLink {
   linkId: number
@@ -40,7 +55,15 @@ export default function ProtectedLinkPage({ fileId }: { fileId: number }) {
     password: "",
     isOneTimeUse: false,
     downloadLimit: 1,
+    expirationDate: "",
   })
+
+  const today = new Date()
+  const minDate = today.toISOString().split("T")[0]
+  const maxDate = new Date()
+  maxDate.setFullYear(maxDate.getFullYear() + 1)
+  const maxDateStr = maxDate.toISOString().split("T")[0]
+
   const [editingLink, setEditingLink] = useState<ProtectedLink | null>(null)
   const authToken = sessionStorage.getItem("authToken")
 
@@ -80,9 +103,28 @@ export default function ProtectedLinkPage({ fileId }: { fileId: number }) {
         }
       )
       fetchLinks()
-      setNewLink({ password: "", isOneTimeUse: false, downloadLimit: 1 })
+      setNewLink({ password: "", isOneTimeUse: false, downloadLimit: 1, expirationDate: "" })
     } catch (error) {
       console.error("Error adding link:", error)
+    }
+  }
+  async function saveLink() {
+    if (!editingLink) return;
+    try {
+      await axios.put(
+        `https://filessafeshare-1.onrender.com/api/ProtectedLink/update/${editingLink.linkId}`,
+        {
+          fileId: editingLink.fileId,
+          expirationDate: editingLink.expirationDate ? new Date(editingLink.expirationDate) : null,
+          isOneTimeUse: editingLink.isOneTimeUse,
+          downloadLimit: editingLink.downloadLimit,
+        },
+        { headers: { Authorization: `Bearer ${authToken}` } }
+      );
+      setEditingLink(null);
+      fetchLinks();
+    } catch (error) {
+      console.error("Error updating link:", error);
     }
   }
 
@@ -98,85 +140,23 @@ export default function ProtectedLinkPage({ fileId }: { fileId: number }) {
     }
   }
 
-  // const updateLink = async () => {
-  //   if (!editingLink) return
-
-  //   try {
-  //     await axios.put(
-  //       `https://filessafeshare-1.onrender.com/api/ProtectedLink/update/${editingLink.linkId}`,
-  //       {
-  //         fileId: editingLink.fileId,
-  //         expirationDate: editingLink.expirationDate,
-  //         isOneTimeUse: editingLink.isOneTimeUse,
-  //         downloadLimit: editingLink.downloadLimit,
-  //       },
-  //       { headers: { Authorization: `Bearer ${authToken}` } }
-  //     )
-  //     setEditingLink(null)
-  //     fetchLinks()
-  //   } catch (error) {
-  //     console.error("Error updating link:", error)
-  //   }
-  // }
 
   return (
-    <Box>
+    <Box >
       <Typography variant="h5" sx={{ color: "#ff416c", fontWeight: "bold", mb: 2 }}>
         <FaLink style={{ marginRight: 8 }} />
-        לינקים מוגנים
+        Protected Links     
+         </Typography>
+      <Typography variant="h6" sx={{ color: "#ff416c", fontWeight: "bold", mb: 2 }}>
+        Add new link
       </Typography>
+     <Box sx={{ mb: 3, bgcolor: "black", color: "white", p: 2 }}>
+      <EmptyLink />
+      </Box>
 
-      {/* יצירת לינק חדש */}
-      <Paper sx={{ background: "#1e1e1e", p: 3, border: "1px solid #ff416c", mb: 3 }}>
-        <Typography variant="subtitle1" sx={{ color: "white", mb: 2 }}>
-          <FaPlus style={{ marginRight: 8 }} />
-          צור לינק חדש
-        </Typography>
-        <TextField
-          fullWidth
-          type="password"
-          label="סיסמה"
-          variant="outlined"
-          value={newLink.password}
-          onChange={(e) => setNewLink({ ...newLink, password: e.target.value })}
-          sx={{ mb: 2, input: { color: "white" } }}
-        />
-        <TextField
-          fullWidth
-          type="number"
-          label="מגבלת הורדות"
-          variant="outlined"
-          value={newLink.downloadLimit}
-          onChange={(e) => setNewLink({ ...newLink, downloadLimit: parseInt(e.target.value) })}
-          sx={{ mb: 2, input: { color: "white" } }}
-        />
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-          <Typography variant="body2" sx={{ color: "#ff416c" }}>
-            חד פעמי
-          </Typography>
-          <Switch
-            checked={newLink.isOneTimeUse}
-            onChange={(e) => setNewLink({ ...newLink, isOneTimeUse: e.target.checked })}
-            sx={{ color: "#ff416c" }}
-          />
-        </Box>
-        <Button fullWidth variant="contained" sx={{ background: "#ff416c" }} onClick={addLink}>
-          צור לינק
-        </Button>
-      </Paper>
-<a>{editingLink?.linkId}</a>
-      {/* רשימה */}
-      {/* {links.map((link) => (
-        <Paper
-          key={link.linkId}
-          sx={{
-            background: "#1e1e1e",
-            p: 2,
-            mb: 2,
-            border: "1px solid rgba(255, 65, 108, 0.2)",
-          }}
-        > */}
-      <Box
+
+
+      <Box display={"flex"} flexDirection="row" alignItems="center" p={1}
         sx={{
           maxHeight: 400,
           overflowY: "auto",
@@ -192,60 +172,177 @@ export default function ProtectedLinkPage({ fileId }: { fileId: number }) {
           },
         }}
       >
-        {links.map((link) => (
-          <Paper
-            key={link.linkId}
-            sx={{
-              background: "#1e1e1e",
-              p: 2,
-              mb: 2,
-              border: "1px solid rgba(255, 65, 108, 0.2)",
-            }}
-          >
-            <Typography
+
+        {links.map((link) => {
+          const isEditing = editingLink?.linkId === link.linkId;
+          return (
+            <Paper
+              key={link.linkId}
               sx={{
-                color: "#fff",
-                fontWeight: "bold",
-                wordBreak: "break-all", // 💥 כדי שהלינק לא יגלוש
+                background: "#1e1e1e",
+                p: 2,
+                mb: 2,
+                border: "1px solid rgba(255, 65, 108, 0.2)",
               }}
             >
-              {/* {`https://safesharereact.onrender.com/download/${link.linkid_hash}`} */}
-<a href={`https://safesharereact.onrender.com/download/${encodeURIComponent(link.linkid_hash)}`} target="_blank" rel="noopener noreferrer">
-  {`https://safesharereact.onrender.com/download/${encodeURIComponent(link.linkid_hash)}`}
-</a>
-            </Typography>
-            <Typography sx={{ color: "#aaa", mt: 1 }}>
-              <FaCalendarAlt style={{ marginRight: 6 }} />
-              נוצר: {new Date(link.creationDate).toLocaleString()}
-            </Typography>
-            {link.expirationDate && (
-              <Typography sx={{ color: "#aaa" }}>
-                <FaClock style={{ marginRight: 6 }} />
-                פג תוקף: {new Date(link.expirationDate).toLocaleString()}
+              {isEditing ? (<>
+
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    fontWeight: "bold",
+                    wordBreak: "break-all",
+                  }}
+                >
+                  <a
+                    href={`https://safesharereact.onrender.com/download/${encodeURIComponent(
+                      link.linkid_hash
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#fff", textDecoration: "none" }}
+                  >
+                    {`https://safesharereact.onrender.com/download/${encodeURIComponent(
+                      link.linkid_hash
+                    )}`}
+                  </a>
+                </Typography>
+                expirationDate
+                <input
+                  type="date"
+                  value={editingLink.expirationDate?.split("T")[0] || ""}
+                  onChange={(e) =>
+                    setEditingLink({ ...editingLink, expirationDate: e.target.value })
+                  }
+                  style={{
+                    width: "100%",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    background: "#1e1e1e",
+                    border: "1px solid rgba(255, 65, 108, 0.2)",
+                    borderRadius: 4,
+                    padding: "8px",
+                    wordBreak: "keep-all",
+                  }}
+                />
+
+                <Checkbox
+                  // checked={isOneTimeUse}
+                  onChange={(e) => setEditingLink({ ...editingLink, isOneTimeUse: e.target.checked })}
+                  sx={{
+                    color: "#ff416c",
+                    "&.Mui-checked": {
+                      color: "#ff416c",
+                    },
+                  }}
+                />is one time use
+                {!editingLink.isOneTimeUse && (
+                  <Box sx={{ px: 2, mt: 2 }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "white", mb: 1, display: "flex", justifyContent: "space-between" }}
+                    >
+                      <span>Download Limit: {editingLink.downloadLimit}</span>
+                      <span style={{ color: "#ff416c" }}>{editingLink.downloadLimit === 10 ? "Unlimited" : editingLink.downloadLimit}</span>
+                    </Typography>
+                    <Slider
+                      value={editingLink.downloadLimit}
+                      min={editingLink.currentDownloadCount}
+                      max={10}
+                      step={1}
+                      onChange={(_, value) => setEditingLink({ ...editingLink, downloadLimit: (value as number) })}
+                      sx={{
+                        color: "#ff416c",
+                        "& .MuiSlider-thumb": {
+                          "&:hover, &.Mui-focusVisible": {
+                            boxShadow: "0px 0px 0px 8px rgba(255, 65, 108, 0.16)",
+                          },
+                        },
+                      }}
+                    />
+
+                  </Box>
+                )}
+              </>) : (
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    fontWeight: "bold",
+                    wordBreak: "break-all",
+                  }}
+                >
+                  <a
+                    href={`https://safesharereact.onrender.com/download/${encodeURIComponent(
+                      link.linkid_hash
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#fff", textDecoration: "none" }}
+                  >
+                    {`https://safesharereact.onrender.com/download/${encodeURIComponent(
+                      link.linkid_hash
+                    )}`}
+                  </a>
+                </Typography>
+              )}
+
+              {/* שאר השדות נשארים בדיוק כפי שהם */}
+              <Typography sx={{ color: "#aaa", mt: 1 }}>
+                <FaCalendarAlt style={{ marginRight: 6 }} />
+                Created: {new Date(link.creationDate).toLocaleString()}
               </Typography>
-            )}
-            <Typography sx={{ color: "#aaa" }}>
-              <FaDownload style={{ marginRight: 6 }} />
-              הורדות: {link.currentDownloadCount} / {link.downloadLimit ?? "∞"}
-            </Typography>
 
+              <Typography sx={{ color: "#aaa" }}>
+                <FaDownload style={{ marginRight: 6 }} />
+                Downloads: {link.currentDownloadCount} / {link.downloadLimit ?? "∞"}
 
-            <Box sx={{ mt: 2, display: "flex", gap: 1 }}>
-              <Tooltip title="ערוך">
-                <IconButton color="warning" onClick={() => setEditingLink(link)}>
-                  <FaEdit />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="מחק">
-                <IconButton color="error" onClick={() => deleteLink(link.linkId)}>
-                  <FaTrash />
-                </IconButton>
-              </Tooltip>
-            </Box>
-          </Paper>
-        ))}
+              </Typography>
+              {!isEditing ? (
+                <Typography sx={{ color: "#aaa" }}>
+                  <FaDownload style={{ marginRight: 6 }} />
+                  expirationDate: {link.expirationDate}
+                </Typography>) : null}
+
+              {/* כפתורי שמירה/ביטול או עריכה/מחיקה */}
+              <Box sx={{ mt: 2, display: "flex", gap: 1 }}>
+                {isEditing ? (
+                  <>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={() => saveLink()}
+                    >
+                      שמור
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="inherit"
+                      onClick={() => setEditingLink(null)}
+                    >
+                      ביטול
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Tooltip title="ערוך">
+                      <IconButton color="warning" onClick={() => setEditingLink(link)}>
+                        <FaEdit />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="מחק">
+                      <IconButton color="error" onClick={() => deleteLink(link.linkId)}>
+                        <FaTrash />
+                      </IconButton>
+                    </Tooltip>
+                  </>
+                )}
+              </Box>
+            </Paper>
+          );
+        })}
+
       </Box>
-    </Box>
+    </Box >
 
   )
 }

@@ -19,7 +19,7 @@ namespace SafeShare.DATA.Repositories
         {
             _dataContext = dataContext;
         }
-        public async Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId)
+        public async Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId, DateTime? expirationDate)
         {
             var file = await _dataContext.filesToUpload.FindAsync(fileId);
             if (file == null)
@@ -31,7 +31,7 @@ namespace SafeShare.DATA.Repositories
                 FileId = fileId,
                 PasswordHash = passwordhash,
                 CreationDate = DateTime.Now,
-                ExpirationDate = DateTime.Now.AddDays(7), // תקף לשבוע
+                ExpirationDate = expirationDate, // תקף לשבוע
                 IsOneTimeUse = isOneTimeUse,
                 DownloadLimit = downloadLimit,
                 CurrentDownloadCount = 0,
@@ -162,6 +162,7 @@ namespace SafeShare.DATA.Repositories
             link.IsOneTimeUse = isOneTimeUse;
             link.DownloadLimit = downloadLimit;
             link.ExpirationDate = ExpirationDate;
+            link.CurrentDownloadCount=link.CurrentDownloadCount; // לא לשנות את מספר ההורדות הנוכחי
 
             // אין צורך לקרוא ל-Update כי EF עוקב אחרי האובייקט
             int changes = await _dataContext.SaveChangesAsync();

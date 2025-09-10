@@ -33,7 +33,7 @@ namespace SafeShare.API.Controllers
             try
             {
                 var usernameClaim = User.FindFirst("name")?.Value;
-                string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGenerate.fileId, linkToGenerate.password, linkToGenerate.isOneTimeUse, linkToGenerate.downloadLimit, int.Parse(idClaim));
+                string link = await _protectedLinkService.GenerateProtectedLinkAsync(linkToGenerate.fileId, linkToGenerate.password, linkToGenerate.isOneTimeUse, linkToGenerate.downloadLimit, int.Parse(idClaim),linkToGenerate.expirationDate);
                 // _logger.LogInformation("User {UserId} generated a protected link for file {FileId}",
                 //     idClaim, linkToGenerate.fileId);
                 await _logService.LogAsync(new LogMessage()

@@ -58,7 +58,7 @@ if (!file) return <div>No file selected</div>;
             <FaLock style={{ color: "#ff416c" }} />
           </Box>
           <Box>
-            <Typography variant="h6" sx={{ color: "white", fontWeight: "bold" }}>
+            <Typography variant="h6" sx={{ color: "#ff416c", fontWeight: "bold" }}>
               {file.fileName}
             </Typography>
             <Box sx={{ display: "flex", gap: 2, mt: 0.5 }}>

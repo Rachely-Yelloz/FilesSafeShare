@@ -26,9 +26,9 @@ namespace SafeShare.SERVICE
             return _protectedLinkRepository.DeleteProtectedLinkAsync(linkId, userId);
         }
 
-        public Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId)
+        public Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId, DateTime? expirationDate)
         {
-            return _protectedLinkRepository.GenerateProtectedLinkAsync(fileId, passwordhash, isOneTimeUse, downloadLimit, userId);
+            return _protectedLinkRepository.GenerateProtectedLinkAsync(fileId, passwordhash, isOneTimeUse, downloadLimit, userId,expirationDate);
         }
 
         public Task<IEnumerable<ProtectedLink>> GetProtectedLinksByFileIdAsync(int fileId)

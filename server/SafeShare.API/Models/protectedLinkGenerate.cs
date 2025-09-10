@@ -8,5 +8,6 @@ namespace SafeShare.API.Models
         public string password { get; set; }
         public bool isOneTimeUse { get; set; }
         public int? downloadLimit { get; set; }
+        public DateTime? expirationDate { get; set; }
     }
 }

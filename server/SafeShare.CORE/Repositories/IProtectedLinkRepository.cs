@@ -9,7 +9,7 @@ namespace SafeShare.CORE.Repositories
 {
     public interface IProtectedLinkRepository
     {
-        Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId);
+        Task<string> GenerateProtectedLinkAsync(int fileId, string passwordhash, bool isOneTimeUse, int? downloadLimit, int userId, DateTime? expirationDate);
         Task<int> DecipherProtectedLinkAsync(string link, string passwordhash);
         Task<IEnumerable<ProtectedLink>> GetProtectedLinksByFileIdAsync(int fileId);
         Task<bool> DeleteProtectedLinkAsync(int linkId, int userId);
