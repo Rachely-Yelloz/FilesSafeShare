@@ -151,7 +151,7 @@ export default function ProtectedLinkPage({ fileId }: { fileId: number }) {
         Add new link
       </Typography>
      <Box sx={{ mb: 3, bgcolor: "black", color: "white", p: 2 }}>
-      <EmptyLink />
+      <EmptyLink FileId={fileId} />
       </Box>
 
 

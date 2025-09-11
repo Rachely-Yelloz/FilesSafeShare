@@ -39,9 +39,9 @@ namespace SafeShare.SERVICE
             return await _fileRepository.GetFilesByUserIdAsync(userId);
         }
 
-        public async Task<bool> UpdateFileAsync(int fileId, FileToUpload file)
+        public async Task<bool> UpdateFileAsync(int fileId, string fileName)
         {
-            return await _fileRepository.UpdateFileAsync(fileId, file);
+            return await _fileRepository.UpdateFileAsync(fileId, fileName);
         }
 
 

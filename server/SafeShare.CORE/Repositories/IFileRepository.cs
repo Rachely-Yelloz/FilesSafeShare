@@ -19,7 +19,7 @@ namespace SafeShare.CORE.Repositories
         Task<FileDownload> GetFileForDownloadAsync(int fileId);
 
         // Update file details (not content, just metadata)
-        Task<bool> UpdateFileAsync(int fileId, FileToUpload file);
+        Task<bool> UpdateFileAsync(int fileId, string filename);
         Task<bool> DeleteFileAsync(int fileId);
         Task<bool> UpdateFileCountAsync(int fileId);
         Task<IEnumerable<FileToUpload>> GetFilesByUserIdAsync(int userId);

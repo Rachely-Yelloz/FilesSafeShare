@@ -18,8 +18,8 @@ export default function FileCard() {
   const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString();
   const formatFileSize = (size: number) => `${(size / 1024 / 1024).toFixed(2)} MB`;
   const { selectedFile, setSelectedFile } = useFileContext();
-  const file = selectedFile;  
-if (!file) return <div>No file selected</div>;
+  const file = selectedFile;
+  if (!file) return <div>No file selected</div>;
   function handleDeleteFile(fileId: number): void {
     // You might want to show a confirmation dialog here
     if (window.confirm("Are you sure you want to delete this file?")) {
@@ -31,7 +31,9 @@ if (!file) return <div>No file selected</div>;
   }
 
   return (
-    <>
+    <>     <Typography variant="h6" sx={{ color: "#ff416c", fontWeight: "bold" }}>
+            file:            
+            </Typography>
       <Paper
         elevation={3}
         sx={{
@@ -44,6 +46,7 @@ if (!file) return <div>No file selected</div>;
           border: "1px solid rgba(255, 65, 108, 0.1)",
         }}
       >
+    
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, flex: 1 }}>
           <Box
             sx={{
@@ -57,6 +60,7 @@ if (!file) return <div>No file selected</div>;
           >
             <FaLock style={{ color: "#ff416c" }} />
           </Box>
+         
           <Box>
             <Typography variant="h6" sx={{ color: "#ff416c", fontWeight: "bold" }}>
               {file.fileName}
@@ -85,14 +89,7 @@ if (!file) return <div>No file selected</div>;
         </Box>
 
         <Box display="flex" gap={1}>
-          {/* <Tooltip title="Generate Link" arrow> */}
-          {/* <IconButton
-            sx={{ color: "#ff416c" }}
-            onClick={() => handleOpenLinks(file.fileId)}
-          >
-            <FaLink />
-          </IconButton> */}
-          {/* </Tooltip> */}
+
           <Tooltip title="Edit File" arrow>
             <IconButton
               sx={{ color: "#ff416c" }}

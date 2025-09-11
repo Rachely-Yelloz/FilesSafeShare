@@ -127,7 +127,7 @@ namespace SafeShare.API.Controllers
 
         // Update file metadata (e.g. file name)
         [HttpPut("{fileId}")]
-        public async Task<IActionResult> UpdateFileAsync(int fileId, [FromBody] FileToUpload file)
+        public async Task<IActionResult> UpdateFileAsync(int fileId, [FromBody] string file)
         {
             var userNameClaim = User.FindFirst("name")?.Value;
             var idClaim = User.FindFirst("id")?.Value;

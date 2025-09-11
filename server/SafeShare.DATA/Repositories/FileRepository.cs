@@ -80,19 +80,17 @@ namespace SafeShare.DATA.Repositories
             return files;
         }
 
-        public async Task<bool> UpdateFileAsync(int fileId, FileToUpload file)
+        public async Task<bool> UpdateFileAsync(int fileId, string fileName )
         {
             var fileFromDB = await _dataContext.filesToUpload.FirstOrDefaultAsync(f => f.FileId == fileId); ;
-            if (fileFromDB == null || file == null)
+            if (fileFromDB == null )
             {
                 return false;
             }
 
-            fileFromDB.FileName = file.FileName;
-            fileFromDB.UploadDate = file.UploadDate;
-            fileFromDB.DownloadCount = file.DownloadCount;
-            fileFromDB.FileType = file.FileType;
-            fileFromDB.StoragePath = file.StoragePath;
+            fileFromDB.FileName = fileName;
+        
+            
 
             // שמירה למסד הנתונים
             await _dataContext.SaveChangesAsync();
