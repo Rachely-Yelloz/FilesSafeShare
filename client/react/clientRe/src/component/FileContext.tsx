@@ -1,19 +1,12 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 export interface FileItem {
   fileId: number;
   fileName: string;
-  downloadCount: number;
+  downloadCount?: number;
   uploadDate?: string;
   fileSize?: number;
-  links?: ProtectedLinkItem[];
-}
-
-export interface ProtectedLinkItem {
-  linkId: number;
-  url: string;
-  passwordProtected: boolean;
-  createdAt?: string;
 }
 
 interface FileContextType {
@@ -26,8 +19,25 @@ interface FileContextType {
 const FileContext = createContext<FileContextType | undefined>(undefined);
 
 export const FileProvider = ({ children }: { children: ReactNode }) => {
-  const [files, setFiles] = useState<FileItem[]>([]);
-  const [selectedFile, setSelectedFile] = useState<FileItem | null>(null);
+  // טוענים מה-SessionStorage בתחילת הקומפוננטה
+  const [files, setFiles] = useState<FileItem[]>(() => {
+    const saved = sessionStorage.getItem("files");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [selectedFile, setSelectedFile] = useState<FileItem | null>(() => {
+    const saved = sessionStorage.getItem("selectedFile");
+    return saved ? JSON.parse(saved) : null;
+  });
+
+  // שמירה אוטומטית ב-SessionStorage בכל שינוי
+  useEffect(() => {
+    sessionStorage.setItem("files", JSON.stringify(files));
+  }, [files]);
+
+  useEffect(() => {
+    sessionStorage.setItem("selectedFile", JSON.stringify(selectedFile));
+  }, [selectedFile]);
 
   return (
     <FileContext.Provider value={{ files, setFiles, selectedFile, setSelectedFile }}>

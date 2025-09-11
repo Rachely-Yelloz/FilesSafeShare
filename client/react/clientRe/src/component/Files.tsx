@@ -1,59 +1,17 @@
 import { useState, useEffect } from "react"
+import {Container,Box,Typography,Button,List,IconButton,Divider,Modal,Tooltip,Fade,Backdrop,CircularProgress,
+  useMediaQuery,useTheme,Paper,Grid,Card,CardContent,CardActions,} from "@mui/material"
 import {
-  Container,
-  Box,
-  Typography,
-  Button,
-  List,
-  IconButton,
-  Divider,
-  Modal,
-  Tooltip,
-  Fade,
-  Backdrop,
-  CircularProgress,
-  useMediaQuery,
-  useTheme,
-  Paper,
-  Grid,
-  Card,
-  CardContent,
-  CardActions,
-} from "@mui/material"
-import {
-  FaFileUpload,
-  FaShieldAlt,
-  FaTrash,
-  FaEdit,
-  FaLink,
-  FaSearch,
-  FaSort,
-  FaFilter,
-  FaDownload,
-  FaEye,
-  FaLock,
-  FaListUl,
-} from "react-icons/fa"
+  FaFileUpload,  FaShieldAlt,  FaTrash,  FaEdit,  FaLink,  FaSearch,  FaSort,  FaFilter,  FaDownload,  FaEye,  FaLock,  FaListUl,} from "react-icons/fa"
 import axios from "axios"
-import ProtectedLink from "./ProtectedLink"
 import { motion } from "framer-motion"
 import { Outlet, useNavigate } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
-import { FileProvider, useFileContext } from "./FileContext"
-
-interface FileItem {
-  fileId: number
-  fileName: string
-  downloadCount: number
-  uploadDate?: string // Adding date for sorting
-  fileSize?: number // Adding size for information
-}
+import {  useFileContext, FileItem } from "./FileContext"
 
 export default function Files() {
   //const [files, setFiles] = useState<FileItem[]>([])
   const [filteredFiles, setFilteredFiles] = useState<FileItem[]>([])
-  const [openLinksModal, setOpenLinksModal] = useState(false)
-  const [selectedFileId, setSelectedFileId] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc")
@@ -107,10 +65,7 @@ export default function Files() {
     }
   }
 
-  const handleOpenLinks = (fileId: number) => {
-    setSelectedFileId(fileId)
-    setOpenLinksModal(true)
-  }
+
 
   const handleDeleteFile = async (fileId: number) => {
     setDeleteConfirmId(fileId)
@@ -255,7 +210,7 @@ export default function Files() {
                         <FaListUl /> {/* או FaLink גם בסדר אם רוצים משהו שמזכיר קישורים */}
                       </IconButton>
                     </Tooltip>
-
+{/* 
                     <Tooltip title="Generate Link" arrow>
                       <IconButton
                         sx={{
@@ -270,8 +225,8 @@ export default function Files() {
                       >
                         <FaLink />
                       </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Edit File" arrow>
+                    </Tooltip> */}
+                    {/* <Tooltip title="Edit File" arrow>
                       <IconButton
                         sx={{
                           color: "#ff416c",
@@ -285,7 +240,7 @@ export default function Files() {
                       >
                         <FaEdit />
                       </IconButton>
-                    </Tooltip>
+                    </Tooltip> */}
                     <Tooltip title="Delete File" arrow>
                       <IconButton
                         sx={{

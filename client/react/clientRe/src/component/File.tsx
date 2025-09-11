@@ -1,39 +1,74 @@
-import { Box, Paper, Typography, IconButton, Tooltip } from "@mui/material";
-import { FaLock, FaDownload, FaLink, FaEdit, FaTrash } from "react-icons/fa";
+import { Box, Paper, Typography, IconButton, Tooltip, Button, TextField } from "@mui/material";
+import { FaLock, FaDownload,  FaEdit, FaTrash } from "react-icons/fa";
 import ProtectedLinkPage from "./ProtectedLink";
 import { useFileContext } from "./FileContext";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
+import axios from "axios";
+import {  useNavigate } from "react-router-dom";
 
-interface FileItem {
-  fileId: number;
-  fileName: string;
-  downloadCount?: number;
-  uploadDate?: string;
-  fileSize?: number;
-}
+
 
 
 
 export default function FileCard() {
+  const [isEditFile, setIsEditFile] = useState(false)
   const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString();
   const formatFileSize = (size: number) => `${(size / 1024 / 1024).toFixed(2)} MB`;
   const { selectedFile, setSelectedFile } = useFileContext();
   const file = selectedFile;
+  const navigate = useNavigate();
+console.log(selectedFile);
+
+  const authToken = sessionStorage.getItem("authToken")
   if (!file) return <div>No file selected</div>;
-  function handleDeleteFile(fileId: number): void {
+  async function handleDeleteFile(fileId: number): Promise<void> {
     // You might want to show a confirmation dialog here
     if (window.confirm("Are you sure you want to delete this file?")) {
       // TODO: Replace with actual API call to delete the file
       // Example: await api.deleteFile(fileId);
-      console.log(`File with ID ${fileId} deleted.`);
-      // Optionally, trigger a state update or callback to remove the file from the UI
+      try {
+
+        await axios.delete(`https://filessafeshare-1.onrender.com/api/File?fileId=${file?.fileId}`, {
+          headers: { Authorization: `Bearer ${authToken}` }
+        });
+        console.log(`File with ID ${fileId} deleted.`);
+        navigate("/files");
+
+        // Optimistic UI update
+      } catch (error) {
+        console.error("Error deleting file:", error)
+
+        // Optionally, trigger a state update or callback to remove the file from the UI
+      }
     }
   }
+    async function handleEditFile(): Promise<void> {
+      try {
+        const response = await axios.put(
+          `https://filessafeshare-1.onrender.com/api/File/${file?.fileId}`, // URL של ה-API
+          file?.fileName, // תוכן הבקשה (string)
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${authToken}`, // אם יש צורך ב-JWT
+            },
+          }
+        );
 
+        console.log("Update success:", response.data);
+        setIsEditFile(false)
+
+        return response.data;
+      } catch (error: any) {
+        console.error("Update failed:", error.response?.data || error.message);
+        throw error;
+      }
+    }
+  
   return (
     <>     <Typography variant="h6" sx={{ color: "#ff416c", fontWeight: "bold" }}>
-            file:            
-            </Typography>
+      file:
+    </Typography>
       <Paper
         elevation={3}
         sx={{
@@ -46,7 +81,7 @@ export default function FileCard() {
           border: "1px solid rgba(255, 65, 108, 0.1)",
         }}
       >
-    
+
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, flex: 1 }}>
           <Box
             sx={{
@@ -60,11 +95,60 @@ export default function FileCard() {
           >
             <FaLock style={{ color: "#ff416c" }} />
           </Box>
-         
+
           <Box>
-            <Typography variant="h6" sx={{ color: "#ff416c", fontWeight: "bold" }}>
-              {file.fileName}
-            </Typography>
+            {!isEditFile ? (
+              <Typography variant="h6" sx={{ color: "#ff416c", fontWeight: "bold" }}>
+                {file.fileName}
+              </Typography>
+            ) : (
+              <>
+                <TextField
+                  variant="standard"
+                  value={file.fileName}
+                  onChange={(e) => setSelectedFile({ ...file, fileName: e.target.value })}
+                  autoFocus
+                  InputProps={{
+                    disableUnderline: true,
+                    sx: {
+                      background: "transparent",
+                      borderBottom: "2px solid #ff416c",
+                      color: "#ff416c",
+                      fontSize: "1.25rem",
+                      fontWeight: "bold",
+                      "&:focus": {
+                        outline: "none",
+                      },
+                    },
+                  }}
+                  sx={{
+                    width: "100%",
+                    mb: 1,
+                  }}
+                />
+
+                <Button
+                  onClick={handleEditFile}
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    background: "linear-gradient(45deg, #ff416c 30%, #ff4b2b 90%)",
+                    color: "white",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    borderRadius: "8px",
+                    px: 2,
+                    py: 0.5,
+                    "&:hover": {
+                      background: "linear-gradient(45deg, #ff4b2b 30%, #ff416c 90%)",
+                    },
+                  }}
+                >
+                  Save
+                </Button>
+              </>
+            )}
+
             <Box sx={{ display: "flex", gap: 2, mt: 0.5 }}>
               {file.downloadCount !== undefined && (
                 <Typography
@@ -93,7 +177,7 @@ export default function FileCard() {
           <Tooltip title="Edit File" arrow>
             <IconButton
               sx={{ color: "#ff416c" }}
-              onClick={() => console.log("Editing", file.fileId)}
+              onClick={() => setIsEditFile(true)}
             >
               <FaEdit />
             </IconButton>
@@ -114,7 +198,5 @@ export default function FileCard() {
     </>
   );
 }
-function fetchFiles() {
-  throw new Error("Function not implemented.");
-}
 
+  

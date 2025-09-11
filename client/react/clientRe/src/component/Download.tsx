@@ -45,48 +45,181 @@ export default function Download() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  // function base64ToUint8Array(base64: string) {
+  //   const binary = atob(base64); // ממיר ל־binary string
+  //   const bytes = new Uint8Array(binary.length);
+  //   for (let i = 0; i < binary.length; i++) {
+  //     bytes[i] = binary.charCodeAt(i);
+  //   }
+  //   return bytes;
+  // }
+  // const handleDownload = async () => {
+  //   if (!password.trim()) {
+  //     setError("Password is required");
+  //     return;
+  //   }
 
-  const handleDownload = async () => {
-    if (!password.trim()) {
-      setError("Password is required");
-      return;
-    }
-
-    setIsLoading(true);
-    setError("");
+  //   setIsLoading(true);
+  //   setError("");
 
 
-    const url = 'https://filessafeshare-1.onrender.com/api/ProtectedLink/download';
-    const data = {
-      linkIdDecoded: linkId,
-      password: password // Use the password entered by the user",
-    };
-    try {
-      // הכנס כאן את לוגיקת ההורדה
-      const response = await axios.post(url, data);
-      console.log('fileid ', response.data);
-      const responseData = await axios.post(`https://filessafeshare-1.onrender.com/api/File/download/${response.data}`)
-      console.log(responseData.data);
-      const encryptedResponse = await fetch(responseData.data.pathInS3);
-      const encryptedBuffer = await encryptedResponse.arrayBuffer();
+  //   const url = 'https://filessafeshare-1.onrender.com/api/ProtectedLink/download';
+  //   const data = {
+  //     linkIdDecoded: linkId,
+  //     password: password // Use the password entered by the user",
+  //   };
+  //   try {
+  //     // הכנס כאן את לוגיקת ההורדה
+  //     const response = await axios.post(url, data);
+  //     console.log('fileid ', response.data);
+  //     const responseData = await axios.post(`https://filessafeshare-1.onrender.com/api/File/download/${response.data}`)
+  //     console.log(responseData.data);
+  //     const encryptedResponse = await axios.get(responseData.data.pathInS3, { responseType: 'arraybuffer' });
+  //     const encryptedBuffer = encryptedResponse.data;
 
-      const encryptedData = new Uint8Array(encryptedBuffer);
-      const nonce = new Uint8Array(responseData.data.nonce);
-      const key = new Uint8Array(responseData.data.key);
-      const decryptedBlobFile = await decryptFile(encryptedData, nonce, key);
-      const url1 = URL.createObjectURL(decryptedBlobFile);
-      window.open(url, '_blank');
-      setTimeout(() => URL.revokeObjectURL(url1), 10000); // מנקה אחרי 10 שניות
-      setSuccess(true);
+  //     const encryptedData = new Uint8Array(encryptedBuffer);
+  //     const nonce = base64ToUint8Array(responseData.data.nonce);
+  //     const key = base64ToUint8Array(responseData.data.encryptionKey);
+  //     console.log(responseData.data.nonce, responseData.data.encryptionKey);
 
-      // כאן תוכל להוסיף את לוגיקת ההורדה האמיתית
-      console.log("Downloading file with linkId:", linkId, "and password:", password);
-    } catch (error) {
-      setError("Invalid password or download failed");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     const decryptedBlobFile = await decryptFile(encryptedData, nonce, key);
+  //     const url1 = URL.createObjectURL(decryptedBlobFile);
+  //     window.open(url1, '_blank');
+  //     setTimeout(() => URL.revokeObjectURL(url1), 10000); // מנקה אחרי 10 שניות
+  //     setSuccess(true);
+
+  //     // כאן תוכל להוסיף את לוגיקת ההורדה האמיתית
+  //     console.log("Downloading file with linkId:", linkId, "and password:", password);
+  //   } catch (error) {
+  //     setError("Invalid password or download failed");
+  //     console.log(error);
+
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+// פונקציה להמרת Base64 ל-Uint8Array
+function base64ToUint8Array(base64: string): Uint8Array {
+  const binary = atob(base64); // מפענח Base64 ל-string בינארי
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
+}
+
+// const handleDownload = async () => {
+//   if (!password.trim()) {
+//     setError("Password is required");
+//     return;
+//   }
+
+//   setIsLoading(true);
+//   setError("");
+
+//   try {
+//     // שליחת סיסמה וקבלת מזהה הקובץ
+//     const linkResponse = await axios.post(
+//       'https://filessafeshare-1.onrender.com/api/ProtectedLink/download',
+//       { linkIdDecoded: linkId, password }
+//     );
+
+//     const fileId = linkResponse.data;
+
+//     // קבלת פרטי הקובץ מהשרת
+//     const fileResponse = await axios.post(
+//       `https://filessafeshare-1.onrender.com/api/File/download/${fileId}`
+//     );
+//     const fileData = fileResponse.data;
+
+//     // הורדת הקובץ המוצפן מ-S3
+//     const encryptedResponse = await axios.get(fileData.pathInS3, { responseType: 'arraybuffer' });
+//     const encryptedData = new Uint8Array(encryptedResponse.data);
+
+//     // המרת מפתח ו-nonce מבסיס 64 ל-Uint8Array
+//     const nonce = base64ToUint8Array(fileData.nonce);
+//     const key = base64ToUint8Array(fileData.encryptionKey);
+
+//     // פענוח הקובץ
+//     const decryptedBlobFile = await decryptFile(encryptedData, nonce, key);
+
+//     // יצירת קישור הורדה אוטומטי
+//     const url = URL.createObjectURL(decryptedBlobFile);
+//     const a = document.createElement('a');
+//     a.href = url;
+//     a.download = fileData.fileType || 'file';
+//     document.body.appendChild(a);
+//     a.click();
+//     document.body.removeChild(a);
+//     URL.revokeObjectURL(url);
+
+//     setSuccess(true);
+//   } catch (error) {
+//     console.error(error);
+//     setError("Invalid password or download failed");
+//   } finally {
+//     setIsLoading(false);
+//   }
+// };
+
+const handleDownload = async () => {
+  if (!password.trim()) {
+    setError("Password is required");
+    return;
+  }
+
+  setIsLoading(true);
+  setError("");
+
+  try {
+    // קבלת id של הקובץ מה‑ProtectedLink
+    const linkResponse = await axios.post(
+      'https://filessafeshare-1.onrender.com/api/ProtectedLink/download',
+      { linkIdDecoded: linkId, password }
+    );
+
+    const fileId = linkResponse.data;
+
+    // קבלת פרטי הקובץ
+    const fileResponse = await axios.post(
+      `https://filessafeshare-1.onrender.com/api/File/download/${fileId}`
+    );
+
+    const fileData = fileResponse.data;
+
+    // הורדת הקובץ המוצפן מ‑S3
+    const encryptedResponse = await axios.get(fileData.pathInS3, { responseType: 'arraybuffer' });
+    const encryptedData = new Uint8Array(encryptedResponse.data);
+
+    const nonce = base64ToUint8Array(fileData.nonce);
+    const key = base64ToUint8Array(fileData.encryptionKey);
+
+    // פענוח הקובץ
+    const decryptedBlobFile = await decryptFile(encryptedData, nonce, key, fileData.fileType);
+
+    // יצירת לינק הורדה עם שם הקובץ והסיומת הנכונה
+    const url = URL.createObjectURL(decryptedBlobFile);
+    const a = document.createElement('a');
+    a.href = url;
+    const extension = fileData.fileType.split('/')[1]; // pdf, docx וכו'
+    a.download = `${fileData.fileName}.${extension}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // ניקוי ה־URL אחרי 10 שניות
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+
+    setSuccess(true);
+    console.log("File downloaded:", a.download);
+
+  } catch (error) {
+    setError("Invalid password or download failed");
+    console.log(error);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
