@@ -3,12 +3,10 @@ import { useEffect, useState } from "react"
 import {
   Box,
   Typography,
-
   Button,
   Paper,
   IconButton,
   Tooltip,
-  
   Checkbox,
   Slider,
 
@@ -39,18 +37,10 @@ interface ProtectedLink {
 
 export default function ProtectedLinkPage({ fileId }: { fileId: number }) {
   const [links, setLinks] = useState<ProtectedLink[]>([])
-  const [newLink, setNewLink] = useState({
-    password: "",
-    isOneTimeUse: false,
-    downloadLimit: 1,
-    expirationDate: "",
-  })
 
-  const today = new Date()
-  const minDate = today.toISOString().split("T")[0]
+
   const maxDate = new Date()
   maxDate.setFullYear(maxDate.getFullYear() + 1)
-  const maxDateStr = maxDate.toISOString().split("T")[0]
 
   const [editingLink, setEditingLink] = useState<ProtectedLink | null>(null)
   const authToken = sessionStorage.getItem("authToken")
@@ -71,31 +61,7 @@ export default function ProtectedLinkPage({ fileId }: { fileId: number }) {
     }
   }
 
-  const addLink = async () => {
-    try {
-      const requestData = {
-        fileId,
-        password: newLink.password,
-        isOneTimeUse: newLink.isOneTimeUse,
-        downloadLimit: newLink.downloadLimit,
-      }
 
-      await axios.post(
-        `https://filessafeshare-1.onrender.com/api/ProtectedLink/generate`,
-        requestData,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      fetchLinks()
-      setNewLink({ password: "", isOneTimeUse: false, downloadLimit: 1, expirationDate: "" })
-    } catch (error) {
-      console.error("Error adding link:", error)
-    }
-  }
   async function saveLink() {
     if (!editingLink) return;
     try {
@@ -335,4 +301,3 @@ export default function ProtectedLinkPage({ fileId }: { fileId: number }) {
   )
 }
 
-//export default ProtectedLink

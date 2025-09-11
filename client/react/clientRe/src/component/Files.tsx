@@ -10,7 +10,6 @@ import { AnimatePresence } from "framer-motion"
 import {  useFileContext, FileItem } from "./FileContext"
 
 export default function Files() {
-  //const [files, setFiles] = useState<FileItem[]>([])
   const [filteredFiles, setFilteredFiles] = useState<FileItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
@@ -210,37 +209,7 @@ export default function Files() {
                         <FaListUl /> {/* או FaLink גם בסדר אם רוצים משהו שמזכיר קישורים */}
                       </IconButton>
                     </Tooltip>
-{/* 
-                    <Tooltip title="Generate Link" arrow>
-                      <IconButton
-                        sx={{
-                          color: "#ff416c",
-                          transition: "all 0.2s",
-                          "&:hover": {
-                            background: "rgba(255, 65, 108, 0.2)",
-                            transform: "scale(1.1)",
-                          },
-                        }}
-                        onClick={() => {navigate(`:${file.fileId}`); setSelectedFile(file)}}
-                      >
-                        <FaLink />
-                      </IconButton>
-                    </Tooltip> */}
-                    {/* <Tooltip title="Edit File" arrow>
-                      <IconButton
-                        sx={{
-                          color: "#ff416c",
-                          transition: "all 0.2s",
-                          "&:hover": {
-                            background: "rgba(255, 65, 108, 0.2)",
-                            transform: "scale(1.1)",
-                          },
-                        }}
-                        onClick={() => {navigate(`:${file.fileId}`); setSelectedFile(file)}}
-                      >
-                        <FaEdit />
-                      </IconButton>
-                    </Tooltip> */}
+
                     <Tooltip title="Delete File" arrow>
                       <IconButton
                         sx={{
