@@ -24,6 +24,7 @@ import {
 import { motion } from "framer-motion";
 import axios from "axios";
 import { decryptFile } from "../encryptFile";
+import { LogDto, sendLog } from "./SendLog";
 
 export default function Download() {
   const { linkId } = useParams();
@@ -87,15 +88,46 @@ export default function Download() {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-
+      await axios.put(`https://filessafeshare-1.onrender.com/api/File/${fileId}/countdownload`)
+      .then(() => {console.log(`Download count updated for file ID ${fileId}`);})
+      .catch((err) => {console.error(`Failed to update download count for file ID ${fileId}`, err);
+      })
       // ניקוי ה־URL אחרי 10 שניות
       setTimeout(() => URL.revokeObjectURL(url), 10000);
 
       setSuccess(true);
       console.log("File downloaded:", a.download);
+      const logdata: LogDto = {
+        id: 0,
+        userId: 0,
+        createdAt: new Date().toISOString(),
+        action: 'Download',
+        userName: 'Anonymous',
+        isSuccess: true,
+        errorMessage: null
+      }
+
+      sendLog(logdata)
+        .then(() => console.log('Log sent successfully'))
+        .catch((err) => console.error('Failed to send log', err));
+
 
     } catch (error) {
       setError("Invalid password or download failed");
+      const logdata: LogDto = {
+        id: 0,
+        userId: 0,
+        createdAt: new Date().toISOString(),
+        action: 'Download',
+        userName: 'Anonymous',
+        isSuccess: false,
+        errorMessage: error instanceof Error ? error.message : 'Unknown error'
+      }
+
+      sendLog(logdata)
+        .then(() => console.log('Log sent successfully'))
+        .catch((err) => console.error('Failed to send log', err));
+
       console.log(error);
     } finally {
       setIsLoading(false);

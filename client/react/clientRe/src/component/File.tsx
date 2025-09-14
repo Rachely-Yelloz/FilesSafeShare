@@ -1,10 +1,11 @@
 import { Box, Paper, Typography, IconButton, Tooltip, Button, TextField } from "@mui/material";
-import { FaLock, FaDownload,  FaEdit, FaTrash } from "react-icons/fa";
+import { FaLock, FaDownload, FaEdit, FaTrash } from "react-icons/fa";
 import ProtectedLinkPage from "./ProtectedLink";
 import { useFileContext } from "./FileContext";
-import {  useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { LogDto, sendLog } from "./SendLog";
 
 
 
@@ -17,7 +18,7 @@ export default function FileCard() {
   const { selectedFile, setSelectedFile } = useFileContext();
   const file = selectedFile;
   const navigate = useNavigate();
-console.log(selectedFile);
+  console.log(selectedFile);
 
   const authToken = sessionStorage.getItem("authToken")
   if (!file) return <div>No file selected</div>;
@@ -32,6 +33,20 @@ console.log(selectedFile);
           headers: { Authorization: `Bearer ${authToken}` }
         });
         console.log(`File with ID ${fileId} deleted.`);
+        const logdata: LogDto = {
+          id: 0,
+          userId: Number(sessionStorage.getItem("userId") ?? 0),
+          createdAt: new Date().toISOString(),
+          action: 'delete file',
+          userName: sessionStorage.getItem("username") || "Unknown User",
+          isSuccess: true,
+          errorMessage: null
+        }
+
+        sendLog(logdata)
+          .then(() => console.log('Log sent successfully'))
+          .catch((err) => console.error('Failed to send log', err));
+
         navigate("/files");
 
         // Optimistic UI update
@@ -42,29 +57,29 @@ console.log(selectedFile);
       }
     }
   }
-    async function handleEditFile(): Promise<void> {
-      try {
-        const response = await axios.put(
-          `https://filessafeshare-1.onrender.com/api/File/${file?.fileId}`, // URL של ה-API
-          file?.fileName, // תוכן הבקשה (string)
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${authToken}`, // אם יש צורך ב-JWT
-            },
-          }
-        );
+  async function handleEditFile(): Promise<void> {
+    try {
+      const response = await axios.put(
+        `https://filessafeshare-1.onrender.com/api/File/${file?.fileId}`, // URL של ה-API
+        file?.fileName, // תוכן הבקשה (string)
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`, // אם יש צורך ב-JWT
+          },
+        }
+      );
 
-        console.log("Update success:", response.data);
-        setIsEditFile(false)
+      console.log("Update success:", response.data);
+      setIsEditFile(false)
 
-        return response.data;
-      } catch (error: any) {
-        console.error("Update failed:", error.response?.data || error.message);
-        throw error;
-      }
+      return response.data;
+    } catch (error: any) {
+      console.error("Update failed:", error.response?.data || error.message);
+      throw error;
     }
-  
+  }
+
   return (
     <>     <Typography variant="h6" sx={{ color: "#ff416c", fontWeight: "bold" }}>
       file:
@@ -199,4 +214,4 @@ console.log(selectedFile);
   );
 }
 
-  
+

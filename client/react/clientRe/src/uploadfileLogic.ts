@@ -59,68 +59,7 @@ export async function uploadFileToDb(fileName: string, storagePath: string, encr
 }
 
 
-// export async function generateProtectedLink(fileId: number, password: string, isOneTimeUse: boolean, downloadLimit: number) {
-//     try {
-//         const token = sessionStorage.getItem('authToken'); 
 
-//         // יצירת הנתונים לגוף הבקשה
-//         const requestData = {
-//             fileId,
-//             password,
-//             isOneTimeUse,
-//             downloadLimit
-//         };
-
-//         // שליחת הבקשה עם `POST`
-//         const response = await axios.post('https://filessafeshare-1.onrender.com/api/ProtectedLink/generate', requestData, {
-//             headers: {
-//                 'Authorization': `Bearer ${token}`,
-//                 'Content-Type': 'application/json' // שליחת הנתונים בפורמט JSON
-//             }
-//         });
-
-//         console.log('Generated Protected Link:', response.data.link);
-//         return response.data.link;
-//     } catch (error: any) {
-//         console.error('Error generating protected link:', error.response ? error.response.data : error);
-//         throw error;
-//     }
-// }
-// export async function generateProtectedLink(
-//   fileId: number,
-//   password: string,
-//   isOneTimeUse: boolean,
-//   downloadLimit?: number // אופציונלי
-// ) {
-//   try {
-//     const token = sessionStorage.getItem('authToken');
-
-//     const response = await axios.post(
-//       'https://filessafeshare-1.onrender.com/api/ProtectedLink/generate',
-//       null, // אין גוף כי הכל ב־query string
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//         params: {
-//           fileId,
-//           password,
-//           isOneTimeUse,
-//           downloadLimit,
-//         },
-//       }
-//     );
-
-//     console.log('Generated Protected Link:', response.data.link);
-//     return response.data.link;
-//   } catch (error: any) {
-//     console.error(
-//       'Error generating protected link:',
-//       error.response ? error.response.data : error
-//     );
-//     throw error;
-//   }
-// }
 export async function generateProtectedLink(
   fileId: number,
   password: string,

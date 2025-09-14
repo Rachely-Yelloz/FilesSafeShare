@@ -15,6 +15,7 @@ import axios from "axios"
 import { generateProtectedLink, uploadFileToDb, uploadFileToS3 } from "../uploadfileLogic"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
+import { LogDto, sendLog } from "./SendLog"
 
 export default function UploadFile() {
   const [fileName, setFileName] = useState("")
@@ -133,6 +134,21 @@ export default function UploadFile() {
 
       clearInterval(progressInterval)
       setUploadProgress(100)
+        const logdata: LogDto = {
+        id: 0,
+        userId: Number(sessionStorage.getItem("userId") ?? 0),
+        createdAt: new Date().toISOString(),
+        action: 'upload file',
+        userName:sessionStorage.getItem("username") || "Unknown User" ,
+        isSuccess: true,
+      
+      }
+
+      sendLog(logdata)
+        .then(() => console.log('Log sent successfully'))
+        .catch((err) => console.error('Failed to send log', err));
+
+      console.log(error);
       setGeneratedLink(link)
       setUploadSuccess(true)
       setError(false)
