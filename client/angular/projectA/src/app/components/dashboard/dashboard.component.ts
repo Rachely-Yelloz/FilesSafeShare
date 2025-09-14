@@ -115,11 +115,13 @@ export class DashboardComponent implements OnInit {
     this.loadData();
   }
   logOut(): void {
+    if(typeof window !== 'undefined' && localStorage) {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
     localStorage.removeItem('useremail');
     window.location.href = '/login';
+    }
   }
   loadData(): void {
     this.http.get<LogEntry[]>('https://filessafeshare-1.onrender.com/api/Loges/logs').subscribe({

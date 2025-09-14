@@ -32,75 +32,75 @@ export default function Download() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-function base64ToUint8Array(base64: string): Uint8Array {
-  const binary = atob(base64); // מפענח Base64 ל-string בינארי
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) {
-    bytes[i] = binary.charCodeAt(i);
-  }
-  return bytes;
-}
-
-
-
-const handleDownload = async () => {
-  if (!password.trim()) {
-    setError("Password is required");
-    return;
+  function base64ToUint8Array(base64: string): Uint8Array {
+    const binary = atob(base64); // מפענח Base64 ל-string בינארי
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes;
   }
 
-  setIsLoading(true);
-  setError("");
 
-  try {
-    // קבלת id של הקובץ מה‑ProtectedLink
-    const linkResponse = await axios.post(
-      'https://filessafeshare-1.onrender.com/api/ProtectedLink/download',
-      { linkIdDecoded: linkId, password }
-    );
 
-    const fileId = linkResponse.data;
+  const handleDownload = async () => {
+    if (!password.trim()) {
+      setError("Password is required");
+      return;
+    }
 
-    // קבלת פרטי הקובץ
-    const fileResponse = await axios.post(
-      `https://filessafeshare-1.onrender.com/api/File/download/${fileId}`
-    );
+    setIsLoading(true);
+    setError("");
 
-    const fileData = fileResponse.data;
+    try {
+      // קבלת id של הקובץ מה‑ProtectedLink
+      const linkResponse = await axios.post(
+        'https://filessafeshare-1.onrender.com/api/ProtectedLink/download',
+        { linkIdDecoded: linkId, password }
+      );
 
-    // הורדת הקובץ המוצפן מ‑S3
-    const encryptedResponse = await axios.get(fileData.pathInS3, { responseType: 'arraybuffer' });
-    const encryptedData = new Uint8Array(encryptedResponse.data);
+      const fileId = linkResponse.data;
 
-    const nonce = base64ToUint8Array(fileData.nonce);
-    const key = base64ToUint8Array(fileData.encryptionKey);
+      // קבלת פרטי הקובץ
+      const fileResponse = await axios.post(
+        `https://filessafeshare-1.onrender.com/api/File/download/${fileId}`
+      );
 
-    // פענוח הקובץ
-    const decryptedBlobFile = await decryptFile(encryptedData, nonce, key, fileData.fileType);
+      const fileData = fileResponse.data;
 
-    // יצירת לינק הורדה עם שם הקובץ והסיומת הנכונה
-    const url = URL.createObjectURL(decryptedBlobFile);
-    const a = document.createElement('a');
-    a.href = url;
-    const extension = fileData.fileType.split('/')[1]; // pdf, docx וכו'
-    a.download = `${fileData.fileName}.${extension}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+      // הורדת הקובץ המוצפן מ‑S3
+      const encryptedResponse = await axios.get(fileData.pathInS3, { responseType: 'arraybuffer' });
+      const encryptedData = new Uint8Array(encryptedResponse.data);
 
-    // ניקוי ה־URL אחרי 10 שניות
-    setTimeout(() => URL.revokeObjectURL(url), 10000);
+      const nonce = base64ToUint8Array(fileData.nonce);
+      const key = base64ToUint8Array(fileData.encryptionKey);
 
-    setSuccess(true);
-    console.log("File downloaded:", a.download);
+      // פענוח הקובץ
+      const decryptedBlobFile = await decryptFile(encryptedData, nonce, key, fileData.fileType);
 
-  } catch (error) {
-    setError("Invalid password or download failed");
-    console.log(error);
-  } finally {
-    setIsLoading(false);
-  }
-};
+      // יצירת לינק הורדה עם שם הקובץ והסיומת הנכונה
+      const url = URL.createObjectURL(decryptedBlobFile);
+      const a = document.createElement('a');
+      a.href = url;
+      const extension = fileData.fileType.split('/')[1]; // pdf, docx וכו'
+      a.download = `${fileData.fileName}.${extension}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // ניקוי ה־URL אחרי 10 שניות
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+
+      setSuccess(true);
+      console.log("File downloaded:", a.download);
+
+    } catch (error) {
+      setError("Invalid password or download failed");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {

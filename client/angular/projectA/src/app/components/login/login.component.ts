@@ -53,7 +53,7 @@ export class LoginComponent {
   private saveUserDetails(token: string) {
     try {
       const decodedToken = jwtDecode<DecodedToken>(token);
-      if (decodedToken?.id && decodedToken?.name && decodedToken?.email) {
+      if (typeof window !== 'undefined' && localStorage&&decodedToken?.id && decodedToken?.name && decodedToken?.email) {
         localStorage.setItem('userId', decodedToken.id);
         localStorage.setItem('username', decodedToken.name);
         localStorage.setItem('useremail', decodedToken.email);
